@@ -1,6 +1,6 @@
 const initState = {
     isLoggedIn: false,
-    token: null
+    token: null //Để lưu js web token
 }
 
 const authReducer = (state = initState, action) => {

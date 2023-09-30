@@ -1,7 +1,7 @@
 import authReducer from "./authReducer";
 import userReducer from "./userReducer";
-import { combineReducers } from "redux";
-import storage from "redux-persist/lib/storage";
+import { combineReducers } from "redux"; // combineReducers là một hàm từ thư viện Redux, được sử dụng để kết hợp nhiều reducers thành một reducer lớn cho cửa hàng Redux chung.
+import storage from "redux-persist/lib/storage"; //storage là thư viện Redux Persist sử dụng để lưu trữ dữ liệu trạng thái vào storage cục bộ (local storage).
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
 import { persistReducer } from "redux-persist";
 
