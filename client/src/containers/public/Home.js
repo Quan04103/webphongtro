@@ -1,14 +1,9 @@
 import React from 'react'
 import Header from './Header'
-import Footer from './Footer'
 
 const Home = () => {
   return (
-    <div>
-      <Header/>
-      <Footer/>
-    </div>
-
+    <button class="aria-label">Tải lại trang</button>
   )
 }
 
