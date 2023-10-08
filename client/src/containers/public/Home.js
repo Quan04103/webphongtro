@@ -1,9 +1,17 @@
 import React from 'react'
 import Header from './Header'
+import Qc from './Qc'
+import Footer from './Footer'
+
 
 const Home = () => {
   return (
-    <button class="aria-label">Tải lại trang</button>
+    <div>
+      <Header />
+      <Qc />
+      <Footer />
+    </div>
+
   )
 }
 

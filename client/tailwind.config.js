@@ -14,6 +14,9 @@ module.exports = {
         secondary2: 'f73859'
       }
     },
+    color: {
+      gray: "#d1d5db",
+    }
   },
   plugins: [],
 }
