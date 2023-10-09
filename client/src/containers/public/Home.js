@@ -1,6 +1,7 @@
 import imageIntro from '../../assets/Intro.png';
 import imageroom from '../../assets/room.png';
 import React, { useEffect } from 'react'
+import Qc from './Qc'
 import Header from './Header'
 import Footer from './Footer'
 import { LoginForm } from '../../components'
@@ -38,9 +39,6 @@ const Home = () => {
               <h3 style={styles.h3}>Giá: 4,7 triệu/tháng</h3>
             </div>
           ))}
-          <button style={{
-            background: 'gray', marginLeft: '790px', fontSize: '30px', marginBottom: '50px',
-          }}>Xem thêm</button>
         </div>
         <div style={styles.infor}>
           <h2 style={styles.textwhy}>Tại sao lại chọn PhongTro123.com?</h2>
@@ -85,7 +83,6 @@ const Home = () => {
           }}>Không phải lo tìm người cho thuê, phòng trống kéo dài</p>
           <button style={{ background: 'gray', marginLeft: '760px', fontSize: '30px', marginBottom: '50px' }}> Đăng tin ngay</button>
         </div>
-        
         <div>
           <Footer/>
         </div>

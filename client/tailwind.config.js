@@ -26,6 +26,9 @@ module.exports = withMT({
         '200px' :'200px',
       },
     },
+    color: {
+      gray: "#d1d5db",
+    }
   },
   plugins: [],
 });
