@@ -8,3 +8,20 @@ body {
 
 code {
 }
+.post_text_h1{
+    font-size: 34px;
+    font-weight: 750;
+}
+.post_text_h2{
+    font-size: 18px;
+    font-weight: 500;
+    color: rgb(17 24 39);
+}
+.separate{
+    border-width: 1px;
+    border-color: rgb(182, 182, 182);
+    
+}
+
+
+  /*  */
