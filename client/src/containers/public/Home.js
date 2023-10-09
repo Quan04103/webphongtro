@@ -15,8 +15,9 @@ const Home = () => {
   return (
     <div> 
       <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
-
+        
         <ComplexNavbar />
+
         <Footer />
       </div>
     </div>

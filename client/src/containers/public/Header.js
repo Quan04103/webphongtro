@@ -172,7 +172,7 @@ function NavList() {
   );
 }
 
-export function LoginButton(){
+export function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
 
   const handleOpenPopup = () => {
@@ -189,7 +189,7 @@ export function LoginButton(){
       <button onClick={handleOpenPopup} >Đăng nhập</button>
 
       {/* Render khung popup nếu isLoginPopupOpen là true */}
-      {isLoginPopupOpen && <LoginForm onClose={handleClosePopup}  />}
+      {isLoginPopupOpen && <LoginForm onClose={handleClosePopup} />}
     </div>
   );
 }
