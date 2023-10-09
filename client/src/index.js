@@ -6,17 +6,22 @@ import { PersistGate } from 'redux-persist/integration/react';
 import { Provider } from 'react-redux';
 import reduxStore from './redux';
 import { BrowserRouter } from "react-router-dom";
-const { store, persistor} = reduxStore();
+import { ThemeProvider } from "@material-tailwind/react";
+const { store, persistor } = reduxStore();
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-<Provider store={store}>
-    <PersistGate loading = {null} persistor={persistor}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </PersistGate>
-</Provider>
+    <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+            <BrowserRouter>
+                <ThemeProvider>
+                    <App />
+                </ThemeProvider>
+            </BrowserRouter>
+        </PersistGate>
+    </Provider>
 
 
 );

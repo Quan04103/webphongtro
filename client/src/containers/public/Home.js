@@ -1,13 +1,22 @@
-import React from 'react';
-import Header from './Header';
 import imageIntro from '../../assets/Intro.png';
 import imageroom from '../../assets/room.png';
+import React, {useEffect} from 'react'
+import Header from './Header'
+import Footer from './Footer'
+import { LoginForm } from '../../components'
+import { ComplexNavbar } from './Header'
+import { useState } from 'react'
+import { LoginButton } from './Header'
 
 
 const Home = () => {
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+  console.log("isLoginPopupOpen:", isLoginPopupOpen);
+
+
   return (
     <div style={styles.container}>
-      <div style={styles.header}>
+      <div style={styles.header} >
         {/* Nội dung của Header */}
       </div>
       <div style={styles.body}>
@@ -79,6 +88,14 @@ const Home = () => {
     </div>
   );
 };
+    /*<div> 
+      <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
+        
+        <ComplexNavbar />
+
+        <Footer />
+      </div>
+    </div>*/
 
 
 // Định nghĩa đối tượng chứa các thuộc tính CSS
