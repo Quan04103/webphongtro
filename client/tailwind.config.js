@@ -1,8 +1,12 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
-    "./node_modules/tw-elements/dist/js/**/*.js"
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
@@ -17,9 +21,12 @@ module.exports = {
         primary: '#F5F5F5',
         secondary1: '1266dd',
         secondary2: 'f73859'
-      }
+      },
+      margin: {
+        '200px' :'200px',
+      },
     },
   },
   plugins: [],
-}
+});
 
