@@ -35,7 +35,7 @@ const Profile = () => {
       <nav class="bg-blue-200" w-96>
         <div class="mx-auto w-4xl px-2 sm:px-6 lg:px-20 ">
           <div class="relative flex h-16 items-center justify-between">
-            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start ">
+            <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start   ">
               <div class="flex flex-shrink-0 items-center">
                 <img class="h-14 w-auto" src="https://adina.com.vn/wp-content/uploads/2021/08/logo-StayHome-hinh-ngoi-nha-1024x683.jpg" alt=""></img>
               </div>
@@ -222,7 +222,7 @@ const Profile = () => {
                   <div className="overflow-hidden">
                     <table className="min-w-full text-center text-sm font-light">
                       <thead
-                        className="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+                        className="border-b bg-black font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
                         <tr>
                           <th scope="col" className="px-6 py-4">Mã tin</th>
                           <th scope="col" className="px-6 py-4">Ảnh đại diện</th>
