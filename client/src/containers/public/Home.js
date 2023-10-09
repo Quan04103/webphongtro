@@ -1,10 +1,15 @@
 import React, {useEffect} from 'react'
 import Header from './Header'
+
+import CreatePost from './CreatePost'
+import PayPost from './PayPost'
+=======
 import Footer from './Footer'
 import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
+
 
 
 const Home = () => {
@@ -13,6 +18,14 @@ const Home = () => {
 
 
   return (
+
+
+
+    <CreatePost></CreatePost>
+    // <PayPost></PayPost>
+
+    
+
     <div> 
       <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
         
@@ -21,6 +34,7 @@ const Home = () => {
         <Footer />
       </div>
     </div>
+
 
   )
 }

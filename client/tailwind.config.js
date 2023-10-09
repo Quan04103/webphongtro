@@ -17,6 +17,12 @@ module.exports = withMT({
         secondary1: '1266dd',
         secondary2: 'f73859'
       },
+
+      minWidth: {
+        '600' : '600px'
+      }
+      
+
       margin: {
         '200px' :'200px',
       },
