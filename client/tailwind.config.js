@@ -2,9 +2,14 @@
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js"
   ],
   theme: {
     extend: {
+      colors:{
+          "dark-purple": "#081A51",
+          'light-white': 'rgba(250,250,250,0.18)'
+      },
       width: {
         '1100': '1100px'
       },

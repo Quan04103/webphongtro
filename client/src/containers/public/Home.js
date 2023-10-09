@@ -1,10 +1,13 @@
-import React from 'react'
-import Header from './Header'
-
+import Profile from './Profile'
+import Test from './Test'
 const Home = () => {
   return (
-    <button class="aria-label">Tải lại trang</button>
+    //<AccountManage/>
+    <Profile/>,
+    <Test />
+
   )
 }
 
 export default Home
+
