@@ -8,7 +8,7 @@ export const LienHe = () => {
       <Header></Header>
       <div class="border-t-4 border-gray-400"></div>
 
-    
+
       <h1 className='pl-[30px] font-semibold text-3xl pb-[20px] '>Liên Hệ với chúng tôi</h1>
       <div className='w-full flex justity-between pl-[50px] pr-[50px] '>
         <Outlet />
@@ -30,7 +30,7 @@ export const LienHe = () => {
             <InputForm label={'Họ Và Tên'} />
             <InputForm label={'Số Điện Thoại'} />
             <InputForm label={'Nội Dung'} />
-            
+
           </div>
           <div className='flex justify-center items-center pt-[10px]'>
             <Button
@@ -42,7 +42,7 @@ export const LienHe = () => {
         </div>
       </div>
 
-    
+
     </div>
   )
 }
