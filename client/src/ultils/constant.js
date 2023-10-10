@@ -4,4 +4,5 @@ export const path = {
     QC: '/qc',
     PROFILE: '/profile',
     TEST: '/test',
+    LIENHE: '/lienhe',
 }
