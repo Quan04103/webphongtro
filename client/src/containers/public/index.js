@@ -4,3 +4,6 @@ export {default as Header} from './Header'
 export {default as Test} from './Test'
 export {default as Profile} from './Profile'
 export {default as LienHe} from './Lienhe'
+export {default as CreatePost} from './CreatePost'
+export {default as PayPost} from './PayPost'
+
