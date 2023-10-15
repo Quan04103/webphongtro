@@ -1,24 +1,18 @@
 /** @type {import('tailwindcss').Config} */
-module.exports = {
+const withMT = require("@material-tailwind/react/utils/withMT");
+
+module.exports = withMT({
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
+    "./node_modules/tw-elements/dist/js/**/*.js",
+    "path-to-your-node_modules/@material-tailwind/react/components/**/*.{js,ts,jsx,tsx}",
+    "path-to-your-node_modules/@material-tailwind/react/theme/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
-      width: {
-        '1100': '1100px'
-      },
-      backgroundColor: {
-        primary: '#F5F5F5',
-        secondary1: '1266dd',
-        secondary2: 'f73859'
-      }
-    },
-    extend: {
       colors: {
-        white: "#fff",
-        black: "#000",
-        //block lien he
+        "dark-purple": "#081A51",
+        'light-white': 'rgba(250,250,250,0.18)',
         gray: {
           "100": "#fdfffe",
           "200": "#949494",
@@ -33,8 +27,8 @@ module.exports = {
         lightgray: "rgba(203, 203, 203, 0.3)",
         darkslategray: "rgba(58, 49, 49, 0.3)",
         royalblue: "#1266dd",
+
       },
-      //from
       spacing: {},
       fontFamily: {
         inter: "Inter",
@@ -45,23 +39,36 @@ module.exports = {
         mini: "15px",
         smi: "13px",
       },
+      width: {
+        '1100': '1100px'
+      },
+      backgroundColor: {
+        primary: '#F5F5F5',
+        secondary1: '1266dd',
+        secondary2: 'f73859'
+      },
+      margin: {
+        '200px': '200px',
+      },
+      fontSize: {
+        smi: "13px",
+        "2xl": "21px",
+        "5xl": "24px",
+        sm: "14px",
+        base: "16px",
+        xl: "20px",
+        "13xl": "32px",
+        "3xl": "22px",
+        "7xs": "6px",
+        mini: "15px",
+        lg: "18px",
+        inherit: "inherit",
+      },
     },
-    //size tong the
-    fontSize: {
-      smi: "13px",
-      "2xl": "21px",
-      "5xl": "24px",
-      sm: "14px",
-      base: "16px",
-      xl: "20px",
-      "13xl": "32px",
-      "3xl": "22px",
-      "7xs": "6px",
-      mini: "15px",
-      lg: "18px",
-      inherit: "inherit",
-    },
+    color: {
+      gray: "#d1d5db",
+    }
   },
   plugins: [],
-}
-//.........Huy......//
+});
+
