@@ -14,13 +14,6 @@ module.exports = {
         secondary2: 'f73859'
       }
     },
-  },
-  plugins: [],
-}
-//.........Huy......//
-module.exports = {
-  content: ["./src/**/*.{js,jsx,ts,tsx}"],
-  theme: {
     extend: {
       colors: {
         white: "#fff",
@@ -47,7 +40,8 @@ module.exports = {
         inter: "Inter",
         "segoe-ui-variable": "'Segoe UI Variable'",
       },
-      borderRadius: {"3xs": "10px","8xs": "5px","6xl": "25px",
+      borderRadius: {
+        "3xs": "10px", "8xs": "5px", "6xl": "25px",
         mini: "15px",
         smi: "13px",
       },
@@ -68,8 +62,6 @@ module.exports = {
       inherit: "inherit",
     },
   },
-  corePlugins: {
-    preflight: false,
-  },
-};
-
+  plugins: [],
+}
+//.........Huy......//
