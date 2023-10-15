@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, Profile, Test, LienHe} from "./containers/public";
+import { Home, Login, Profile, Test, LienHe,CreatePost, PayPost} from "./containers/public";
 import {path} from './ultils/constant'
 //npm i react-router-dom --save
 function App() {
@@ -11,6 +11,10 @@ function App() {
         <Route path = {path.PROFILE} element = {<Profile />}/>
         <Route path = {path.TEST} element = {<Test />}/>
         <Route path = {path.LIENHE} element = {<LienHe />}/>
+        <Route path = {path.CREATE_POST} element = {<CreatePost />}/>
+        <Route path = {path.PAY_POST} element = {<PayPost />}/>
+
+
       </Routes>
     </div>
   );
