@@ -6,7 +6,8 @@ export const path = {
     TEST: '/test',
     LIENHE: '/lienhe',
     CREATE_POST: '/createpost',
-    PAY_POST: '/paypost'
+    PAY_POST: '/paypost',
+    DETAILS: '/details',
 
     
 }

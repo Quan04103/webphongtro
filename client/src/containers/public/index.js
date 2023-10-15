@@ -6,4 +6,5 @@ export {default as Profile} from './Profile'
 export {default as LienHe} from './Lienhe'
 export {default as CreatePost} from './CreatePost'
 export {default as PayPost} from './PayPost'
+export {default as Details} from './Details'
 
