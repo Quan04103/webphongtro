@@ -3,8 +3,7 @@ import logo from '../assets/logoremovebg.png'
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 
-const LoginForm = () => {
-    return ()[]};
+
 
 const LoginForm = ({ onClose }) => {
     return (
