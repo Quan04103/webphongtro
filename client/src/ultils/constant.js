@@ -9,5 +9,4 @@ export const path = {
     PAY_POST: '/paypost',
     DETAILS: '/details',
 
-    
 }
