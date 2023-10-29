@@ -44,10 +44,7 @@ const Profile = () => {
                   <nav class="bg-grey-light w-full rounded-md" aria-label="breadcrumb">
                     <ol class="list-reset flex">
                       <li>
-                        <a
-                          href="#"
-                          class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
-                        >Home</a>
+                        <a href="#!" class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium" > Home</a>
                       </li>
                       <li>
                         <span class="mx-2 text-neutral-500 dark:text-neutral-200"
@@ -55,7 +52,7 @@ const Profile = () => {
                       </li>
                       <li>
                         <a
-                          href="#"
+                          href="#!"
                           class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
                         >Quản lí tài khoản</a>
                       </li>
@@ -65,7 +62,7 @@ const Profile = () => {
                       </li>
                       <li>
                         <a
-                          href="#"
+                          href="#!"
                           class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
                         >Quản lí tin đăng</a>
                       </li>
@@ -106,7 +103,7 @@ const Profile = () => {
                   data-te-dropdown-menu-ref>
                   <li>
                     <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
-                      href="#"
+                      href="#!"
                       data-te-dropdown-item-ref>
                       <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200"
                         alt="jane avatar"></img>
@@ -194,7 +191,7 @@ const Profile = () => {
                 <>
                   <li
                     key={index}
-                    
+
                     className={` text-black hover:text-white hover:bg-sky-400 text-sm flex items-center
         gap-x-4 cursor-pointer p-4 Ohover:bg-light-white
         rounded-md  ${menu.spacing ? "mt-9" : "mt-2"} `}

@@ -8,6 +8,9 @@ import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
+import Lienhe from './Lienhe'
+import Profile from './Profile'
+import Test from './Test';
 
 
 const Home = () => {
@@ -17,11 +20,11 @@ const Home = () => {
 
   return (
     <div style={styles.container}>
-      
-        <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
-          <ComplexNavbar />
-        </div>
-        {/* Nội dung của Header */}
+
+      <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
+        <ComplexNavbar />
+      </div>
+      {/* Nội dung của Header */}
       <div style={styles.body}>
         <div style={styles.intro}>
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
@@ -40,9 +43,12 @@ const Home = () => {
             </div>
           ))}
         </div>
-        <Qc/>
+        <Qc />
         <div>
-          <Footer/>
+          {/* <Footer /> */}
+          <Profile />
+          <Lienhe />
+          <Test />
         </div>
       </div>
     </div>

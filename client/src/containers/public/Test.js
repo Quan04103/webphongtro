@@ -1,4 +1,8 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
+import { InputReadOnly, InputFormv2, Button } from '../../components'
+import tt from '../../assets/tt.png'
+import { useSelector } from 'react-redux'
+import { apiUploadImages, apiUpdateUser } from '../../services'
 import {
   FiDollarSign
 } from "react-icons/fi"
@@ -22,7 +26,35 @@ import {
 
 const Test = () => {
   initTE({ Dropdown, Ripple, Input });
+  const { currentData } = useSelector(state => state.user)
+  const [invalidFields, setInvalidFields] = useState([])
   const [open, setOpen] = useState(true);
+  const [payload, setPayload] = useState({
+    name: currentData?.name || '',
+    avata: currentData?.avatar,
+    email: currentData?.email || '',
+    fbUrl: currentData?.fbUrl || '',
+    zalo: currentData?.zalo || ''
+  })
+  const handleUploadFile = async (e) => {
+    const image = e.target.files[0]
+    const formData = new FormData()
+    formData.append('file', image)
+    formData.append('upload_preset', process.env.REACT_APP_UPLOAD_ASSETS_NAME)
+    const response = await apiUploadImages(formData)
+    if (response.status === 200) {
+      setPayload(prev => ({
+        ...prev,
+        avata: response?.data.secure_url
+      }))
+    }
+
+  }
+  const handleSubmit = async () => {
+    // const invalidcounter = validate(payload, setInvalidFields)
+    // const response = await apiUpdateUser(payload)
+    // console.log(response)
+  }
   const Menus = [
     { title: "Quản lí tin đăng" },
     { title: "Sửa thông tin cá nhân", icon: <BsFillPersonPlusFill /> },
@@ -45,32 +77,7 @@ const Test = () => {
                 <div class="flex w-full flex-wrap items-center justify-between px-3">
                   <nav class="bg-grey-light w-full rounded-md" aria-label="breadcrumb">
                     <ol class="list-reset flex">
-                      <li>
-                        <a
-                          href="#"
-                          class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
-                        >Home</a>
-                      </li>
-                      <li>
-                        <span class="mx-2 text-neutral-500 dark:text-neutral-200"
-                        >/</span>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
-                        >Quản lí tài khoản</a>
-                      </li>
-                      <li>
-                        <span class="mx-2 text-neutral-500 dark:text-neutral-200"
-                        >/</span>
-                      </li>
-                      <li>
-                        <a
-                          href="#"
-                          class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
-                        >Quản lí tin đăng</a>
-                      </li>
+
                     </ol>
                   </nav>
                 </div>
@@ -195,7 +202,7 @@ const Test = () => {
                 <>
                   <li
                     key={index}
-                 
+
                     className={` text-black hover:text-white  hover:bg-sky-400 text-sm flex items-center
         gap-x-4 cursor-pointer p-4 Ohover:bg-light-white
         rounded-md  ${menu.spacing ? "mt-9" : "mt-2"} `}
@@ -218,130 +225,67 @@ const Test = () => {
 
 
           {/* CONTENT */}
-          <div className="p-7 w-full h-screen">
-            <div class="flex items-center justify-center p-12 ">
-              <div class="mx-auto w-full max-w-[550px]">
-                <form action="https://formbold.com/s/FORM_ID" method="POST">
-                  <div class="mb-2">
-                    <label
-                      for="name"
-                      class="mb-1 block text-base font-medium text-[#07074D]"
-                    >
-                      Mã thành viên
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Nhập mã"
-                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                  <div class="mb-5">
-                    <label
-                      for="name"
-                      class="mb-3 block text-base font-medium text-[#07074D]"
-                    >
-                      Số điện
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="số điện thoại"
-                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                  <div class="mb-5">
-                    <label
-                      for="name"
-                      class="mb-3 block text-base font-medium text-[#07074D]"
-                    >
-                      Tên hiển thị
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      id="name"
-                      placeholder="Full Name"
-                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                  <div class="mb-5">
-                    <label
-                      for="email"
-                      class="mb-3 block text-base font-medium text-[#07074D]"
-                    >
-                      Email Address
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      id="email"
-                      placeholder="example@domain.com"
-                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                  <div class="mb-5">
-                    <label
-                      for="subject"
-                      class="mb-3 block text-base font-medium text-[#07074D]"
-                    >
-                      Số ZALO
-                    </label>
-                    <input
-                      type="text"
-                      name="subject"
-                      id="subject"
-                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                    />
-                  </div>
-                  <div class="mb-5">
-                    <label
-                      for="subject"
-                      class="mb-3 block text-base font-medium text-[#07074D]"
-                    >
-                      Mật khẩu
-                    </label>
-                    <a href="#!" class="underline text-blue-400">Đổi mật khẩu</a>
-                  </div>
-                  <div class="mb-5">
-                    <label
-                      for="message"
-                      class="mb-3 block text-base font-medium text-[#07074D] text-center "
-                    >
-                      AVATA
-                    </label>
-                    <img
-                      src="https://tecdn.b-cdn.net/img/new/avatars/2.webp"
-                      class="w-32 rounded-full mx-auto my-auto "
-                      alt="Avatar" />
-                    <span>
-                      <input href="#!" class="underline text-blue-400 relative m-0 
-                        block w-full min-w-0 flex-auto rounded border-neutral-300 bg-clip-padding 
-                        px-3 py-[0.32rem] text-base font-normal transition duration-300 ease-in-out 
-                        file:-mx-3 file:-my-[0.32rem] 
-                        file:overflow-hidden file:rounded-none file:border-0 
-                        file:border-solid file:border-inherit file:bg-neutral-100 file:px-3 file:py-[0.32rem] 
-                        file:text-neutral-700 file:transition file:duration-150 file:ease-in-out file:[border-inline-end-width:1px] 
-                        file:[margin-inline-end:0.75rem] hover:file:bg-neutral-200 focus:border-primary 
-                        focus:text-neutral-700 focus:shadow-te-primary focus:outline-none dark:border-neutral-600 dark:text-neutral-200 
-                        dark:file:bg-neutral-700 dark:file:text-neutral-100 dark:focus:border-primary"
-                        type="file"
-                        id="formFile" /></span>
-   
-                  </div>
-                   <button class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white items-center"
-                  >
-                    Save
-                  </button>
-              
+
+          <div className="p-7 w-full h-screen  items-center">
+            <h1 className='text-3xl font-medium py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
+            <div className='w-3/5 flex items-center justify-center flex-auto'>
+              <div className=' py-6 flex flex-col gap-4 w-full'>
+                <InputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row' label="Mã thành viên" />
+                <InputReadOnly value={currentData?.phone} editPhone direction='flex-row' label="Số điện thoại" />
+
+                <InputFormv2
+                  name='name'
+                  setValue={setPayload}
+
+                  direction='flex-row'
+                  value={payload.name}
+                  label='Tên hiển thị' />
 
 
-                </form>
+                <InputFormv2
+                  name='Email'
+                  setValue={setPayload}
+                  direction='flex-row'
+
+
+                  label='Email' />
+
+
+                <InputFormv2
+                  name='zalo'
+                  setValue={setPayload}
+                  direction='flex-row'
+
+                  value={payload.zalo}
+                  label='Zalo' />
+
+                <InputFormv2
+                  name='fbUrl'
+                  setValue={setPayload}
+                  direction='flex-row'
+
+                  value={payload.fbUrl}
+
+                  label='Facebook' />
+                <div className='flex'>
+                  <label className='w-48 flex-none' htmlFor="Password">Mật khẩu</label>
+                  <small className='flex-auto text-blue-500 h-12 cursor-pointer'>Đổi mật khẩu</small>
+                </div>
+
+                <div className='flex mb-6'>
+                  <label className='w-48 flex-none' htmlFor="avatar">Ảnh đại diện</label>
+                  <div>
+                    <img src={payload.avatar || tt} alt="avatar" className='w-28 h-28 rounded-full object-cover' />
+                    <input onChange={handleUploadFile} type="file" className="appearance-none my-4" id="avatar" />
+                  </div>
+                </div>
+                <Button text='Cập nhập'
+                  bgColor='bg-blue-600'
+                  textColor='text-white'
+                  onclick={handleSubmit}
+                />
               </div>
             </div>
-
           </div>
         </div>
       </body>
@@ -349,6 +293,3 @@ const Test = () => {
   )
 }
 export default Test
-
-
-
