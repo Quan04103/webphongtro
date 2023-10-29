@@ -7,6 +7,7 @@ function App() {
     <div class="h-screen w-creen">
       <Routes>
         <Route path = {path.HOME} element = {<Home />}/>
+        <Route path = {path.HOME__PAGE} element = {<Home />}/>
         <Route path = {path.LOGIN} element = {<Login />}/>
         <Route path = {path.PROFILE} element = {<Profile />}/>
         <Route path = {path.TEST} element = {<Test />}/>
