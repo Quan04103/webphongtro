@@ -8,37 +8,34 @@ import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
+import { useDispatch } from 'react-redux'
+import { getPosts} from '../../store/actions/post'
+import {List} from './index'
+
 
 
 const Home = () => {
+
+ 
+
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   console.log("isLoginPopupOpen:", isLoginPopupOpen);
+
 
 
   return (
     <div style={styles.container}>
       
-        <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
+        { <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
           <ComplexNavbar />
-        </div>
+        </div> }
         {/* Nội dung của Header */}
       <div style={styles.body}>
         <div style={styles.intro}>
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
         <div style={styles.room}>
-          {Array.from({ length: 12 }).map((_, index) => (
-            <div key={index} style={styles.imageContainer}>
-              <div style={styles.imageFrame}>
-                <img style={styles.imageroom} src={imageroom} alt={`Room ${index + 1}`} />
-              </div>
-              <h4 style={styles.h4}>Quận 9, Tp. Hồ Chí Minh</h4>
-              <p style={styles.p1}> ★ 4.86</p>
-              <p style={styles.p2}>Diện tích: 300m vuông</p>
-              <p style={styles.p3}>Đăng tin bởi: Minh Quốc</p>
-              <h3 style={styles.h3}>Giá: 4,7 triệu/tháng</h3>
-            </div>
-          ))}
+          <List/> 
         </div>
         <Qc/>
         <div>
@@ -49,17 +46,7 @@ const Home = () => {
   );
 };
 
-/*<div> 
-  <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}></div>
-    
-    <ComplexNavbar />
 
-    <Footer />
-  </div>
-</div>*/
-
-
-// Định nghĩa đối tượng chứa các thuộc tính CSS
 const styles = {
   container: {
     display: 'flex',
