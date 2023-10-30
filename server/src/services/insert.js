@@ -80,6 +80,14 @@ export const insertService = () => new Promise(async (resolve, reject) => {
                     published: item?.header?.attributes?.published,
                     hashtag: item?.header?.attributes?.hashtag,
                 })
+                await db.Province.findOrCreate({
+                    where: { code: provinceCode },
+                    defaults: {
+                        code: provinceCode,
+                        value: item?.header?.address?.split(',').slice(-1)[0]
+                    }
+
+                })
                 await db.Image.create({
                     id: imagesId,
                     image: JSON.stringify(item?.images)
@@ -121,15 +129,15 @@ export const createPricesAndAreas = () => new Promise((resolve, reject) => {
     try {
         dataPrice.forEach(async (item, index) => {
             await db.Price.create({
-                code: item.code,
-                value: item.value,
+                code: item?.code,
+                value: item?.value,
                 order: index + 1
             })
         })
         dataArea.forEach(async (item, index) => {
             await db.Area.create({
-                code: item.code,
-                value: item.value,
+                code: item?.code,
+                value: item?.value,
                 order: index + 1
             })
         })
