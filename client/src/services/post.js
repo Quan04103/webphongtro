@@ -51,3 +51,4 @@ export const apiUploadImages = (images) => new Promise(async (resolve, reject) =
         reject(error)
     }
 })
+

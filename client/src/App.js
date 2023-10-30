@@ -1,12 +1,15 @@
 import { Routes, Route } from "react-router-dom";
 import { Home, Login, Profile, Test, LienHe,CreatePost, PayPost, Details} from "./containers/public";
 import {path} from './ultils/constant'
+import Search from "./containers/public/Search";
+import { SearchItem } from "./components";
 //npm i react-router-dom --save
 function App() {
   return (
     <div class="h-screen w-creen">
       <Routes>
         <Route path = {path.HOME} element = {<Home />}/>
+        <Route path = {path.SEARCH} element = {<SearchItem />}/>
         <Route path = {path.LOGIN} element = {<Login />}/>
         <Route path = {path.PROFILE} element = {<Profile />}/>
         <Route path = {path.TEST} element = {<Test />}/>

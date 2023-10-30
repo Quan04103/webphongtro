@@ -7,4 +7,14 @@ export {default as LienHe} from './Lienhe'
 export {default as CreatePost} from './CreatePost'
 export {default as PayPost} from './PayPost'
 export {default as Details} from './Details'
+export {default as Search} from './Search'
+export {default as SearchDetail} from './SearchDetail'
+export {default as Pagination} from './Pagination'
+export {default as List} from './List'
+
+
+
+
+
+
 

@@ -8,12 +8,14 @@ import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
-
+import Search from './Search';
+import { useLocation } from 'react-router-dom';
+import { path } from '../../ultils/constant';
 
 const Home = () => {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   console.log("isLoginPopupOpen:", isLoginPopupOpen);
-
+const location = useLocation();
 
   return (
     <div style={styles.container}>
@@ -40,6 +42,7 @@ const Home = () => {
             </div>
           ))}
         </div>
+        <Search/>
         <Qc/>
         <div>
           <Footer/>

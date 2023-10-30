@@ -45,14 +45,29 @@ export const apiGetPublicProvinces = () => new Promise(async (resolve, reject) =
         reject(error)
     }
 })
-export const apiGetPublicDistrict = (provinceId) => new Promise(async (resolve, reject) => {
+export const apiGetPublicDistricts = (provinc_id) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosDefault({
             method: 'get',
-            url: `https://vapi.vnappmob.com/api/province/district/${provinceId}`
+            url: `https://vapi.vnappmob.com/api/province/district/${provinc_id}`,
+
         })
         resolve(response)
     } catch (error) {
         reject(error)
     }
 })
+export const apiGetPublicWards = (district_id) => 
+     new Promise(async (resolve, reject) => {
+        try {
+            const response = await axiosDefault({
+                method: 'get',
+                url: `https://vapi.vnappmob.com/api/province/ward/${district_id}`,
+
+            })
+            resolve(response)
+
+        } catch (error) {
+            reject(error)
+        }
+    })
