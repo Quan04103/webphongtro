@@ -8,9 +8,30 @@ import { MdOutlineHouseSiding, MdOutlineLibraryBooks } from 'react-icons/md'
 import { FiSearch } from 'react-icons/fi'
 import { ImPencil2, ImBin } from 'react-icons/im'
 import { BiUserPin } from 'react-icons/bi'
+import {
+    FiDollarSign
+} from "react-icons/fi"
+import {
+    BsArrowLeftShort,
+    BsFillPersonPlusFill,
+    BsFillDatabaseFill
+} from "react-icons/bs";
+import {
+    AiFillEnvironment,
+    AiOutlineBarChart,
+
+} from "react-icons/ai";
+import { RiDashboardFill } from "react-icons/ri";
 
 const icons = {
+    FiDollarSign,
+    BsArrowLeftShort,
+    BsFillPersonPlusFill,
+    BsFillDatabaseFill,
+    AiFillEnvironment,
+    AiOutlineBarChart,
     AiOutlinePlusCircle,
+    RiDashboardFill,
     GrNext,
     BsChevronRight,
     HiOutlineLocationMarker,

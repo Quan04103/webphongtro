@@ -27,8 +27,8 @@ const CreatePost = () => {
     return (
         <div className='flex flex-col gap-10 bg-white'>
             <div className='flex justify-center'>
-                <div className='gap-5 flex flex-col w-3/4'>
-                    <Card className='  py-10 border-solid border-2'>
+                <div className='gap-5 flex flex-col w-1/2'>
+                    <Card className='  py-10 border-solid  '>
                         <div className='flex justify-center'>
                             <div className='flex w-3/4 flex-col gap-5' >
                                 <Typography variant="h2">Thông tin cơ bản</Typography>
@@ -72,7 +72,7 @@ const CreatePost = () => {
                             </div>
                         </div>
                     </Card>
-                    <Card className='flex  py-10 border-solid border-2'>
+                    <Card className='flex  py-10 border-solid  '>
                         <div className='flex justify-center'>
                             <div className='flex w-3/4 flex-col gap-5' >
                                 <Typography variant="h2">Thông tin bài viết</Typography>
@@ -90,7 +90,7 @@ const CreatePost = () => {
                             </div>
                         </div>
                     </Card>
-                    <Card className='flex  py-10 border-solid border-2'>
+                    <Card className='flex  py-10 border-solid  '>
                         <div className='flex justify-center'>
                             <div className='flex w-3/4 flex-col gap-5' >
                                 <Typography variant="h2">Hình ảnh và video</Typography>
@@ -101,7 +101,7 @@ const CreatePost = () => {
                                     <Typography variant="small"> Mỗi ảnh có kích thước tối thiểu 100 x 100 px, tối đa 15MB</Typography>
                                 </div>
                                 <div className="flex items-center justify-center">
-                                    <label htmlFor="file" className="w-full border-2 h-[16rem] my-4 flex items-center justify-center bg-gray-200 rounded-md flex-col">
+                                    <label htmlFor="file" className="w-full   h-[16rem] my-4 flex items-center justify-center bg-gray-200 rounded-md flex-col">
                                         <CameraIcon className='w-[5%]' />
                                         <h2 className="text-gray-700 font-bold">Bấm hoặc chọn ảnh cần tải </h2>
                                         <p className="text-gray-700 italic text-xs">hoặc kéo thả ảnh vào đây </p>
@@ -113,7 +113,7 @@ const CreatePost = () => {
                             </div>
                         </div>
                     </Card>
-                    <Card className='flex  py-10 border-solid border-2'>
+                    <Card className='flex  py-10 border-solid  '>
                         <div className='flex justify-center'>
                             <div className='flex w-3/4 flex-col gap-5' >
                                 <Typography variant="h2">Thông tin liên hệ</Typography>
@@ -157,7 +157,7 @@ const CreatePost = () => {
 
                                     <button
                                         className=' bg-orange-400 hover:bg-orange-600 text-white w-[9em] h-[3em] rounded-[30em] text-[15px] drop-shadow-[6px_6px_10px_#c5c5c5]'
-                                        onClick={() => goPaypost(false)}>
+                                        onClick={() => goPaypost(true)}>
                                         Tiếp tục
                                     </button>
                                 </div>

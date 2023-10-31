@@ -10,6 +10,9 @@ module.exports = withMT({
   ],
   theme: {
     extend: {
+      zIndex: {
+        '999': '999',
+      },
       colors: {
         "dark-purple": "#081A51",
         'light-white': 'rgba(250,250,250,0.18)',

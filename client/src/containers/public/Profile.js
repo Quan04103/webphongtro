@@ -193,7 +193,7 @@ const Profile = () => {
                     key={index}
 
                     className={` text-black hover:text-white hover:bg-sky-400 text-sm flex items-center
-        gap-x-4 cursor-pointer p-4 Ohover:bg-light-white
+        gap-x-4 cursor-pointer p-4 hover:bg-light-white
         rounded-md  ${menu.spacing ? "mt-9" : "mt-2"} `}
                   >
                     <span className="text-2xl  block float-left">

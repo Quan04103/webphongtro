@@ -1,6 +1,6 @@
 import icons from './icons'
 
-const { ImPencil2, MdOutlineLibraryBooks, BiUserPin } = icons
+const { ImPencil2, BsFillPersonPlusFill, FiDollarSign, AiOutlineBarChart, BiUserPin } = icons
 
 const memuSidebar = [
     {
@@ -13,19 +13,31 @@ const memuSidebar = [
         id: 2,
         text: 'Quản lý tin đăng',
         path: '/he-thong/quan-ly-bai-dang',
-        icon: <MdOutlineLibraryBooks />
+        icon: <BsFillPersonPlusFill />
     },
     {
         id: 4,
         text: 'Sửa thông tin cá nhân',
         path: '/he-thong/sua-thong-tin-ca-nhan',
-        icon: <BiUserPin />
+        icon: <BsFillPersonPlusFill />
     },
     {
         id: 5,
-        text: 'Liên hệ',
-        path: '/he-thong/lien-he',
-        icon: <BiUserPin />
+        text: 'Nạp tiền',
+        path: '/he-thong/nap-tien',
+        icon: <FiDollarSign />
+    },
+    {
+        id: 6,
+        text: 'Lịch sử nạp tiền',
+        path: '/he-thong/lich-su-nap-tien',
+        icon: <AiOutlineBarChart />
+    },
+    {
+        id: 7,
+        text: 'Lịch sử thanh toán',
+        path: '/he-thong/lich-su-thanh-toan',
+        icon: <AiOutlineBarChart />
     }
 ]
 

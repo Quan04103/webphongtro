@@ -1,6 +1,10 @@
-import React from 'react'
 import { useState } from 'react';
-import Logo from '../../assets/boyshouse.jpg'
+import logo1 from '../../assets/logo-sb.png'
+import { useSelector, useDispatch } from 'react-redux'
+import menuSidebar from '../../ultils/menuSidebar'
+import { NavLink } from 'react-router-dom'
+import * as actions from '../../store/actions'
+import { AiOutlineLogout } from 'react-icons/ai'
 import {
     FiDollarSign
 } from "react-icons/fi"
@@ -20,68 +24,59 @@ import {
     Ripple,
     initTE,
 } from "tw-elements";
-import { useHref } from 'react-router-dom';
+import memuSidebar from '../../ultils/menuSidebar';
 initTE({ Dropdown, Ripple });
-const Sidebar = () => {
 
+const activeStyle = 'hover:bg-gray-200 flex  rounded-md items-center gap-2 py-2 font-bold bg-gray-200'
+const notActiceStyle = 'hover:bg-gray-200 flex  rounded-md items-center gap-2 py-2 cursor-pointer'
+
+const Sidebar = () => {
     const [open, setOpen] = useState(true);
-    const Menus = [
-        { title: "Đăng tin mới", href: "/he-thong/tao-moi-bai-dang" },
-        { title: "Quản lí tin đăng", href: "/he-thong/quan-li-tin-dang" },
-        { title: "Sửa thông tin cá nhân", href: "/he-thong/chinh-sua-thong-tin", icon: <BsFillPersonPlusFill /> },
-        { title: "Nạp tiền vào tài khoản", href: "/he-thong/nap-tien", icon: <FiDollarSign /> },
-        { title: "Lịch sử nạp tiền", href: "/he-thong/lich-su-nap-tien", icon: < BsFillDatabaseFill /> },
-        { title: "Lịch sử thanh toán", href: "/he-thong/lich-su-thanh-toan", icon: <AiOutlineBarChart /> },
-    ];
+    const dispatch = useDispatch()
     return (
+
         <div className="flex">
-            <div className={` bg-blue-300  p-5 pt-9 rounded-r-xl rounded-x-xl  ${open ?
+            <div className={` bg-blue-300 fixed h-screen z-[999] p-5 pt-9 rounded-r-xl rounded-x-xl  ${open ?
                 "w-72" : "w-20"} duration-300 relative `}>
                 <BsArrowLeftShort className={`bg-white
       text-dark-purple text-3xl 
-      rounded-full absolute -right-3 top-9 border
+      rounded-full absolute -right-3 top-16 border
       ☐ border-dark-purple cursor-pointer ${!open && "rotate-180"}
       `} onClick={() => setOpen(!open)} />
 
-                <div className="inline-flex">
+                <div className=" rounded flex mr-2" >
                     {/* <AiFillEnvironment
                         className={`bg-amber-300 text-4xl rounded
-        cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"
-                            }`} />
-                    <h1 className={`text-white origin-left font-size-xl
-          text-2xl duration-300 ${!open && "scale-0"}`}>
-                        Stay
-                    </h1> */}
-                    <img src={Logo} alt="logo" className='rounded-lg' />
-
+                    cursor-pointer block float-left mr-2 duration-500 ${open && "rotate-[360deg]"
+                    }`} /> */}
+                    < img src={logo1} alt='logo' width={70} />
                 </div>
-                <ul className="pt-4">
-                    {Menus.map((menu, index) => (
-                        <>
-                            <li
-                                key={index}
-
+                <ul className="pt-2 ">
+                    {menuSidebar.map(item => {
+                        return (
+                            <NavLink
                                 className={` text-black hover:text-white hover:bg-sky-400 text-sm flex items-center
-        gap-x-4 cursor-pointer p-4 hover:bg-light-white
-        rounded-md  ${menu.spacing ? "mt-9" : "mt-2"} `}
+                            gap-x-4 cursor-pointer p-4 hover:bg-light-white 
+                            rounded-md  ${item.spacing ? "mt-9" : "mt-2"} `}
+                                key={item.id}
+                                to={item?.path}
                             >
                                 <span className="text-2xl  block float-left">
-                                    {menu.icon ? menu.icon : <RiDashboardFill />}
+                                    {item.icon ? item.icon : <RiDashboardFill />}
                                 </span>
                                 <span
                                     className={`text-base font-medium flex-1
         duration-200 ${!open && "hidden"
                                         }`}
                                 >
-                                    {menu.title}
-                                    {menu.href}
+                                    {item.text}
                                 </span>
-                            </li>
-                        </>
-                    ))}
+                            </NavLink>
+                        )
+                    })}
                 </ul>
             </div>
-        </div>
+        </div >
     )
 }
 
