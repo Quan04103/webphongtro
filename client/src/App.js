@@ -14,7 +14,8 @@ function App() {
         <Route path = {path.CREATE_POST} element = {<CreatePost />}/>
         <Route path = {path.PAY_POST} element = {<PayPost />}/>
         <Route path = {path.DETAILS} element = {<Details />}/>
-
+        <Route path={path.DETAIL_POST_TITLE_POSTID} element={< Details/>}/>
+        <Route path={path.DETAIL_ALL} element ={<Details/>}/>
       </Routes>
     </div>
   );

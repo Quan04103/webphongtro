@@ -6,7 +6,7 @@ const Details = () => {
 
 
             <img class="absolute  bg-emerald-200 top-[100px] left-[790px] w-80 h-60 object-cover"
-                src=""
+                src=""  
             />
             <img class="absolute  top-[360px] left-[790px] w-80 h-[244px] object-cover"
                 src="/image.png"

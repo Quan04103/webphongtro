@@ -4,8 +4,7 @@ import { getPosts } from '../../store/actions/post'
 import { useDispatch, useSelector } from 'react-redux'
 import { list } from '@material-tailwind/react'
 
-
-
+ 
 const List = () =>{
 
     const dispatch = useDispatch()

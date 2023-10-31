@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { formatVietnameseToString } from '../ultils/formatVietnameseToString'
 import imageIntro from '../assets/Intro.png';
 import imageroom from '../assets/room.png';
+import { path } from '../ultils/constant';
 const indexs = [0]
 
 const Item = ({ images, user, title, star, description, attributes, address, id }) => {
@@ -15,9 +16,21 @@ const Item = ({ images, user, title, star, description, attributes, address, id 
           <div style={styles.room} > 
        
               <div style={styles.imageContainer}>
-                  <div style={styles.imageFrame}>
-                       <img style={styles.imageroom} src={imageroom} alt='Room'/>
-                  </div>
+                  <Link    to={`${path.DETAILS}${formatVietnameseToString(title)}/${id}`} 
+                >
+                    <div style={styles.imageFrame}>   
+                  {/* {images.length > 0 && images.filter((i, indexs) => indexs.some(i => i === indexs))?.map((i, indexs) => {
+                    return (
+                        <img key={indexs} src={i} alt="Room"style={styles.imageroom} />
+                    )
+                })} */}
+                       <img style={styles.imageroom} src={imageroom} alt="Room" />
+                
+              </div>
+              {/* <span  style={styles.imageroom}>{`${images.length} ảnh`}</span> */}
+                  
+
+                  </Link>
                 
               {/* <span style={styles.imageroom}>{`${images.length} ảnh`}  </span>      */}
           
