@@ -8,22 +8,36 @@ import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
+import Fillter from './Fillter';
+import * as actions from '../../store/actions'
+import { useDispatch } from 'react-redux';
+
+
+
 
 
 const Home = () => {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   console.log("isLoginPopupOpen:", isLoginPopupOpen);
 
+  const dispatch = useDispatch()
+  useEffect(() =>{
+    dispatch(actions.getPrices())
+    dispatch(actions.getAreas())
+    dispatch(actions.getProvinces())
+  })
+
 
   return (
+    
     <div style={styles.container}>
-      
         <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
-          <ComplexNavbar />
+          <ComplexNavbar />          
         </div>
         {/* Nội dung của Header */}
-      <div style={styles.body}>
-        <div style={styles.intro}>
+      <div style={styles.body}>    
+        <div style={styles.intro}>  
+            <div><Fillter/></div>
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
         <div style={styles.room}>
