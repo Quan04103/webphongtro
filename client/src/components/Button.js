@@ -1,5 +1,4 @@
-import { memo } from "react"
-import React from 'react'
+import React, { memo } from "react"
 
 const Button = ({text, textColor, bgColor, IcAfter, onClick, fullwidth, width}) => {
   return (

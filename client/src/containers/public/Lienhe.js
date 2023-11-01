@@ -1,14 +1,15 @@
 import React from 'react'
 import { InputForm, Button } from '../../components'
 import { Outlet } from 'react-router-dom'
-import Header, { ComplexNavbar } from './Header'
-
-export const LienHe = () => {
+import  { ComplexNavbar } from './Header'
+import { ContextRegiter } from './Home'
+const LienHe = () => {
+  
   return (
     <div className='bg-[white] max-w-screen-3xl m-auto h-auto '>
-        <ComplexNavbar/>
+      <ComplexNavbar/>
       <div class="border-t-4 border-gray-400"></div>
-
+    
       <h1 className='pl-[30px] font-semibold text-3xl pb-[20px] '>Liên Hệ với chúng tôi</h1>
       <div className='w-full flex justity-between pl-[50px] pr-[50px] '>
         <Outlet />
@@ -21,7 +22,6 @@ export const LienHe = () => {
             <small className='p-[5px] pb-[10px] text-[white]'>Zalo: 0987654321</small>
             <small className='p-[5px] pb-[10px] text-[white]'>Viper: 0987654321</small>
             <small className='p-[5px] pb-[10px] text-[white]'>Địa Chỉ: 101 Tân Thới Nhất 5, Tân Thới Nhất, Quận 12, Thành Phố Hồ Chí Minh, Việt Nam</small>
-
           </div>
         </div>
         <div className='bg-[#F4F4F4] w-[400px] h-[350px] p-[30px] rounded-md shadow-sm '>
@@ -30,7 +30,6 @@ export const LienHe = () => {
             <InputForm label={'Họ Và Tên'} />
             <InputForm label={'Số Điện Thoại'} />
             <InputForm label={'Nội Dung'} />
-
           </div>
           <div className='flex justify-center items-center pt-[10px]'>
             <Button
@@ -43,6 +42,7 @@ export const LienHe = () => {
       </div>
 
     </div>
+    
   )
 }
 export default LienHe

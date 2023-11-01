@@ -10,11 +10,11 @@ export const path = {
     SEARCH: 'tim-kiem',
     SYSTEM: '/he-thong/*',
     CREATE_POST: 'tao-moi-bai-dang',
-    MANAGE_POST: 'quan-li-bai-dang',
+    MANAGE_POST: 'quan-ly-bai-dang',
     QC: '/qc',
     PROFILE: '/profile',
     EDIT_ACCOUNT: 'sua-thong-tin-ca-nhan',
-    LIENHE: '/lien-he',
+    LIENHE: '/lienhe',
     PAY_POST: 'paypost',
     DETAILS: '/details',
 

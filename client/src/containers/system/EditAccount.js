@@ -1,60 +1,31 @@
 import React, { useState } from "react"
+import anonavatar from "../../assets/anonavatar.png"
 import { InputReadOnly, InputFormv2, Button } from '../../components'
-import tt from '../../assets/tt.png'
 import { useSelector } from 'react-redux'
-import { apiUploadImages, apiUpdateUser } from '../../services'
-import {
-    FiDollarSign
-} from "react-icons/fi"
-import {
-    BsArrowLeftShort,
-    BsFillPersonPlusFill,
-    BsFillDatabaseFill
-} from "react-icons/bs";
-import {
-    AiFillEnvironment,
-    AiOutlineBarChart,
-
-} from "react-icons/ai";
-import { RiDashboardFill } from "react-icons/ri";
-import {
-    Dropdown,
-    Ripple,
-    Input,
-    initTE
-} from "tw-elements";
-
+import {  apiUpdateUser } from '../../services'
+import { fileToBase64 } from "../../ultils/Common/tobase64"
 const EditAccount = () => {
-    initTE({ Dropdown, Ripple, Input });
     const { currentData } = useSelector(state => state.user)
-    const [invalidFields, setInvalidFields] = useState([])
-    const [open, setOpen] = useState(true);
     const [payload, setPayload] = useState({
         name: currentData?.name || '',
-        avata: currentData?.avatar,
-        email: currentData?.email || '',
+        avatar: currentData?.avatar,
         fbUrl: currentData?.fbUrl || '',
         zalo: currentData?.zalo || ''
     })
+    const handleSubmit = async() => {
+     const response = await apiUpdateUser(payload)
+       console.log(response)
+        
+    }
     const handleUploadFile = async (e) => {
-        const image = e.target.files[0]
-        const formData = new FormData()
-        formData.append('file', image)
-        formData.append('upload_preset', process.env.REACT_APP_UPLOAD_ASSETS_NAME)
-        const response = await apiUploadImages(formData)
-        if (response.status === 200) {
-            setPayload(prev => ({
-                ...prev,
-                avata: response?.data.secure_url
-            }))
-        }
+       const imageBase64 = await fileToBase64(e.target.files[0])
+       setPayload(pre => ({
+        ...pre,
+        avatar: imageBase64
+       }))
 
     }
-    const handleSubmit = async () => {
-        // const invalidcounter = validate(payload, setInvalidFields)
-        // const response = await apiUpdateUser(payload)
-        // console.log(response)
-    }
+
     return (
         <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen  items-center">
             <h1 className='text-3xl font-medium py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
@@ -66,26 +37,19 @@ const EditAccount = () => {
                     <InputFormv2
                         name='name'
                         setValue={setPayload}
-
                         direction='flex-row'
                         value={payload.name}
                         label='Tên hiển thị' />
-
-
-                    <InputFormv2
+                    {/* <InputFormv2
                         name='Email'
-                        setValue={setPayload}
+                        // setValue={}
                         direction='flex-row'
-
-
-                        label='Email' />
-
+                        label='Email' /> */}
 
                     <InputFormv2
                         name='zalo'
                         setValue={setPayload}
                         direction='flex-row'
-
                         value={payload.zalo}
                         label='Zalo' />
 
@@ -93,27 +57,25 @@ const EditAccount = () => {
                         name='fbUrl'
                         setValue={setPayload}
                         direction='flex-row'
-
                         value={payload.fbUrl}
-
                         label='Facebook' />
+
                     <div className='flex'>
                         <label className='w-48 flex-none' htmlFor="Password">Mật khẩu</label>
                         <small className='flex-auto text-blue-500 h-12 cursor-pointer'>Đổi mật khẩu</small>
                     </div>
-
                     <div className='flex mb-6'>
                         <label className='w-48 flex-none' htmlFor="avatar">Ảnh đại diện</label>
                         <div>
-                            <img src={payload.avatar || tt} alt="avatar" className='w-28 h-28 rounded-full object-cover' />
+                            <img src={payload.avatar || anonavatar} alt="avatar" className='w-28 h-28 rounded-full object-cover' />
                             <input onChange={handleUploadFile} type="file" className="appearance-none my-4" id="avatar" />
                         </div>
                     </div>
-                    <Button text='Cập nhập'
+                    
+                   <Button text='Cập nhật'
                         bgColor='bg-blue-600'
                         textColor='text-white'
-                        onclick={handleSubmit}
-                    />
+                        onClick={handleSubmit}></Button>
                 </div>
             </div>
         </div>

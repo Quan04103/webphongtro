@@ -14,8 +14,9 @@ function App() {
         <Route path={path.LIENHE} element={<LienHe />} />
         <Route path={path.DETAILS} element={<Details />} />
         <Route path={path.SYSTEM} element={<System />} >
-          <Route path={path.CREATE_POST} element={<CreatePost />} />
-          <Route path={path.PAY_POST} element={<PayPost />} />
+          <Route path={path.CREATE_POST} element={<CreatePost />} >
+            <Route path={path.PAY_POST} element={<PayPost />} />
+          </Route>
           <Route path={path.MANAGE_POST} element={<ManagePost />} />
           <Route path={path.EDIT_ACCOUNT} element={<EditAccount />} />
         </Route>

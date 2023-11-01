@@ -36,8 +36,8 @@ const Sidebar = () => {
     return (
 
         <div className="flex">
-            <div className={` bg-blue-300 fixed h-screen z-[999] p-5 pt-9 rounded-r-xl rounded-x-xl  ${open ?
-                "w-72" : "w-20"} duration-300 relative `}>
+            <div className={` bg-blue-300 fixed z-[999] p-5 pt-9 rounded-r-xl rounded-x-xl  ${open ?
+                "w-72" : "w-20"} duration-300 relative h-[1000px]`}>
                 <BsArrowLeftShort className={`bg-white
       text-dark-purple text-3xl 
       rounded-full absolute -right-3 top-16 border
