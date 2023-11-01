@@ -1,28 +1,39 @@
 import React, { useState } from "react"
 import anonavatar from "../../assets/anonavatar.png"
 import { InputReadOnly, InputFormv2, Button } from '../../components'
-import { useSelector } from 'react-redux'
-import {  apiUpdateUser } from '../../services'
-import { fileToBase64 } from "../../ultils/Common/tobase64"
+import { useSelector, useDispatch } from 'react-redux'
+import { apiUpdateUser } from '../../services'
+import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
+import { getCurrent } from "../../store/actions"
+import Swal from "sweetalert2"
 const EditAccount = () => {
     const { currentData } = useSelector(state => state.user)
+    const dispatch = useDispatch()
     const [payload, setPayload] = useState({
         name: currentData?.name || '',
-        avatar: currentData?.avatar,
+        avatar: blobToBase64(currentData?.avatar) || '',
         fbUrl: currentData?.fbUrl || '',
         zalo: currentData?.zalo || ''
     })
-    const handleSubmit = async() => {
-     const response = await apiUpdateUser(payload)
-       console.log(response)
-        
+    const handleSubmit = async () => {
+        const response = await apiUpdateUser(payload)
+        if (response?.data.err === 0) {
+            Swal.fire('Done', 'Chỉnh sửa thành công', 'success').then(() => {
+                dispatch(getCurrent())
+            })
+        }
+        else {
+            Swal.file('Oops!', 'Chỉnh sửa thất bại', 'err')
+        }
     }
+
+
     const handleUploadFile = async (e) => {
-       const imageBase64 = await fileToBase64(e.target.files[0])
-       setPayload(pre => ({
-        ...pre,
-        avatar: imageBase64
-       }))
+        const imageBase64 = await fileToBase64(e.target.files[0])
+        setPayload(pre => ({
+            ...pre,
+            avatar: imageBase64
+        }))
 
     }
 
@@ -71,8 +82,8 @@ const EditAccount = () => {
                             <input onChange={handleUploadFile} type="file" className="appearance-none my-4" id="avatar" />
                         </div>
                     </div>
-                    
-                   <Button text='Cập nhật'
+
+                    <Button text='Cập nhật'
                         bgColor='bg-blue-600'
                         textColor='text-white'
                         onClick={handleSubmit}></Button>
@@ -81,5 +92,6 @@ const EditAccount = () => {
         </div>
     )
 }
+
 
 export default EditAccount

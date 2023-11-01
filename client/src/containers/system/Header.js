@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { InputReadOnly } from '../../components'
 import * as actions from "../../store/actions";
+import anonavatar from "../../assets/anonavatar.png"
 import {
     Navbar,
     MobileNav,
@@ -44,13 +45,13 @@ import {
     RocketLaunchIcon,
     Bars2Icon,
 } from "@heroicons/react/24/outline";
-import { RiDashboardFill } from "react-icons/ri";
 import {
     Dropdown,
     Ripple,
     Input,
     initTE
 } from "tw-elements";
+import { blobToBase64 } from "../../ultils/Common/tobase64";
 const Header = () => {
     const profileMenuItems = [
 
@@ -114,8 +115,7 @@ const Header = () => {
                     <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
                         href="#!"
                         data-te-dropdown-item-ref>
-                        <img class="flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" src="https://images.unsplash.com/photo-1523779917675-b6ed3a42a561?ixid=MnwxMjA3fDB8MHxzZWFyY2h8N3x8d29tYW4lMjBibHVlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=face&w=500&q=200"
-                            alt="jane avatar"></img>
+                       <img src={blobToBase64(currentData?.avatar || anonavatar)} alt="avatar" className='w-10 object-cover rounded-full h-10 border-2 shadow-md border-white' />
                         <div class="mx-1">
                             {isLoggedIn && (
                                 <>
