@@ -3,7 +3,7 @@ import React from 'react'
 const InputFormV2 = ({ label, unit, value, setValue, name, small, invalidFields, setInvalidFields, direction }) => {
     return (
         <div className={`flex ${direction ? direction : 'flex-col'}`}>
-            <label className='w-48 flex-none' htmlFor="title">{label}</label>
+            <label className='w-48 mt-2 flex-none' htmlFor="title">{label}</label>
             <div className='flex flex-auto flex-col items-center'>
                 <div className='flex w-full items-center'>
                     <input

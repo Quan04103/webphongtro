@@ -4,11 +4,9 @@ import React, { Profiler, createContext, useEffect } from "react";
 import Qc from "./Qc";
 
 import Footer from "./Footer";
-import { LoginForm } from "../../components";
 import { ComplexNavbar } from "./Header";
 import { useState, useContext } from "react";
-import { loginContext } from "./Header";
-import { LoginButton } from "./Header";
+
 import Profile  from "./Profile";
 export const ContextRegiter = createContext();
 export const Context = createContext();

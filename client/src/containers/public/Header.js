@@ -38,7 +38,10 @@ import Swal from 'sweetalert2'
 import { NavLink } from "react-router-dom";
 import * as link from '../../ultils/constant'
 import { apiGetCurrent } from "../../services";
+import { blobToBase64 } from "../../ultils/Common/tobase64";
 import logo from '../../assets/logo.png';
+import anonavatar from '../../assets/anonavatar.png';
+
 // profile menu component
 const profileMenuItems = [
 
@@ -70,6 +73,7 @@ const profileMenuItems = [
 ];
 
 function ProfileMenu() {
+  const { currentData } = useSelector(state => state.user)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const dispatch = useDispatch();
   const closeMenu = () => setIsMenuOpen(false);
@@ -89,7 +93,7 @@ function ProfileMenu() {
             size="sm"
             alt="tania andrew"
             className="border border-gray-900 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            src={blobToBase64(currentData?.avatar || anonavatar)}
           />
           <ChevronDownIcon
             strokeWidth={2.5}

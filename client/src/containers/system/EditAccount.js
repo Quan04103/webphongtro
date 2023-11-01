@@ -38,12 +38,12 @@ const EditAccount = () => {
     }
 
     return (
-        <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen  items-center">
-            <h1 className='text-3xl font-medium py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
+        <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen">
+            <h1 className='text-13xl font-bold py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
             <div className='w-1/2 flex items-center justify-center flex-auto'>
-                <div className=' py-6 flex flex-col gap-4 w-full'>
-                    <InputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row' label="Mã thành viên" />
-                    <InputReadOnly value={currentData?.phone} editPhone direction='flex-row' label="Số điện thoại" />
+                <div className=' py-6 flex flex-1/3 flex-col gap-5 w-full'>
+                    <InputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
+                    <InputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" />
 
                     <InputFormv2
                         name='name'
@@ -75,10 +75,10 @@ const EditAccount = () => {
                         <label className='w-48 flex-none' htmlFor="Password">Mật khẩu</label>
                         <small className='flex-auto text-blue-500 h-12 cursor-pointer'>Đổi mật khẩu</small>
                     </div>
-                    <div className='flex mb-6'>
+                    <div className='flex mb-6 '>
                         <label className='w-48 flex-none' htmlFor="avatar">Ảnh đại diện</label>
                         <div>
-                            <img src={payload.avatar || anonavatar} alt="avatar" className='w-28 h-28 rounded-full object-cover' />
+                            <img src={payload.avatar || anonavatar} alt="avatar" className='w-28 h-28 rounded-full border-collapse border-2 object-cover' />
                             <input onChange={handleUploadFile} type="file" className="appearance-none my-4" id="avatar" />
                         </div>
                     </div>

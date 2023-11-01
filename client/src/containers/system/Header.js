@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import { InputReadOnly } from '../../components'
 import * as actions from "../../store/actions";
+import logo from "../../assets/logo.png"
 import anonavatar from "../../assets/anonavatar.png"
 import {
     Navbar,
@@ -101,9 +102,10 @@ const Header = () => {
                             variant="circular"
                             size="sm"
                             alt="tania andrew"
-                            className="border border-gray-900 p-0.5"
-                            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+                            className="border border-gray-900 p-0.5 "
+                            src={blobToBase64(currentData?.avatar || anonavatar)}
                         />
+                        <span className=" items-center right-[100px]">{currentData.name}</span>
                         <ChevronDownIcon
                             strokeWidth={2.5}
                             className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
@@ -111,12 +113,12 @@ const Header = () => {
                         />
                     </Button>
                 </MenuHandler>
-                <MenuList className="p-1">
-                    <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700 hover:bg-gray-100 active:text-zinc-800 active:no-underline disabled:pointer-events-none disabled:bg-transparent disabled:text-gray-400 dark:text-gray-200 dark:hover:bg-white/30"
+                <MenuList className="p-1 shadow-2xl border-blue-gray-400">
+                    <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700   dark:text-gray-200 "
                         href="#!"
                         data-te-dropdown-item-ref>
-                       <img src={blobToBase64(currentData?.avatar || anonavatar)} alt="avatar" className='w-10 object-cover rounded-full h-10 border-2 shadow-md border-white' />
-                        <div class="mx-1">
+                        <img src={blobToBase64(currentData?.avatar || anonavatar)} alt="avatar" className='w-10 object-cover rounded-full h-10 border-2 shadow-md border-white' />
+                        <div class="mx-1 ">
                             {isLoggedIn && (
                                 <>
                                     {" "}
@@ -128,6 +130,7 @@ const Header = () => {
                             )}
                         </div>
                     </a>
+                    <hr />
                     {profileMenuItems.map(({ label, icon, dispatchAction }, key) => {
                         const isLastItem = key === profileMenuItems.length - 1;
                         const handleClickOn = async () => {
@@ -179,17 +182,20 @@ const Header = () => {
         zalo: currentData?.zalo || ''
     })
     return (
-        <nav class="bg-blue-200" w-96>
-            <div class="mx-auto w-4xl px-2 sm:px-6 lg:px-20 ">
+        <nav class="mr-5 w-full">
+            <div class=" px-1 sm:px-4 lg:px-14 ">
                 <div class="relative flex h-16 items-center justify-between">
-                    <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start   ">
-
+                    <div class="flex">
+                        <img className="mt-5 cursor-pointer py-1.5 w-28 h-28" src={logo} />
                         <div class="hidden sm:ml-60 py-4 sm:block">
-                            <div class="flex w-full flex-wrap items-center justify-between px-3">
+                            <div class="flex-auto w-full px-1 mt-9">
                                 <nav class="bg-grey-light w-full rounded-md flex-1" aria-label="breadcrumb">
                                     <ol class="list-reset flex">
                                         <li>
-                                            <a href="http://localhost:3000/" class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium" >
+                                            <a href="http://localhost:3000/" class="hover:bg-blue-gray-50 hover:bg-opacity-80
+                                             focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
+                                              hover:text-blue-gray-900 focus:text-blue-gray-900
+                                             active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium" >
                                                 Home</a>
                                         </li>
                                         <li>
@@ -199,7 +205,10 @@ const Header = () => {
                                         <li>
                                             <a
                                                 href="#!"
-                                                class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
+                                                class="hover:bg-blue-gray-50 hover:bg-opacity-80
+                                                focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
+                                                 hover:text-blue-gray-900 focus:text-blue-gray-900
+                                                active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium"
                                             >Quản lí tài khoản</a>
                                         </li>
                                         <li>
@@ -209,7 +218,10 @@ const Header = () => {
                                         <li>
                                             <a
                                                 href="#!"
-                                                class="hover:text-white  hover:bg-sky-400 rounded-md px-3 py-2 text-sm font-medium"
+                                                class="hover:bg-blue-gray-50 hover:bg-opacity-80
+                                                focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
+                                                 hover:text-blue-gray-900 focus:text-blue-gray-900
+                                                active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium"
                                             >Quản lí tin đăng</a>
                                         </li>
                                     </ol>
@@ -218,7 +230,7 @@ const Header = () => {
                         </div>
                     </div>
 
-                    <ProfileMenu/>
+                    <ProfileMenu />
                 </div>
             </div>
         </nav >

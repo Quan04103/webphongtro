@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { Home, Login, Profile, Test, LienHe, Details } from "./containers/public";
 import { path } from './ultils/constant'
-import { CreatePost, PayPost, ManagePost, EditAccount, System } from "./containers/system";
+import { CreatePost, PayPost, ManagePost, EditAccount, System, DepositHistory } from "./containers/system";
 //npm i react-router-dom --save
 function App() {
   return (
@@ -19,6 +19,7 @@ function App() {
           </Route>
           <Route path={path.MANAGE_POST} element={<ManagePost />} />
           <Route path={path.EDIT_ACCOUNT} element={<EditAccount />} />
+          <Route path={path.DEPOSITHISTORY} element={<DepositHistory />} />
         </Route>
       </Routes>
     </div>

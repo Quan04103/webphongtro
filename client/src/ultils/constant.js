@@ -17,7 +17,7 @@ export const path = {
     LIENHE: '/lienhe',
     PAY_POST: 'paypost',
     DETAILS: '/details',
-
+    DEPOSITHISTORY: 'lich-su-thanh-toan',
 
 }
 
