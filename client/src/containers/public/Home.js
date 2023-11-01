@@ -11,22 +11,21 @@ import { LoginButton } from './Header'
 import Fillter from './Fillter';
 import * as actions from '../../store/actions'
 import { useDispatch } from 'react-redux';
+import { apiGetProvinces } from '../../services';
 
 
 
 
-
-const Home = () => {
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
-  console.log("isLoginPopupOpen:", isLoginPopupOpen);
-
+const Home = () => {  
   const dispatch = useDispatch()
   useEffect(() =>{
     dispatch(actions.getPrices())
     dispatch(actions.getAreas())
     dispatch(actions.getProvinces())
+    dispatch(actions.getCategories())
   })
-
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+  console.log("isLoginPopupOpen:", isLoginPopupOpen);
 
   return (
     

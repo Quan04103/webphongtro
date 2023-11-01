@@ -8,4 +8,4 @@ export {default as CreatePost} from './CreatePost'
 export {default as PayPost} from './PayPost'
 export {default as Details} from './Details'
 export {default as Fillter} from './Fillter'
-
+export {default as SearchDetail} from './SearchDetail'
