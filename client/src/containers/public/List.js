@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { Item } from '../../components'
 import { getPosts } from '../../store/actions/post'
 import { useDispatch, useSelector } from 'react-redux'
-import { list } from '@material-tailwind/react'
 
 
 
-const List = () =>{
+
+const List = () => {
 
     const dispatch = useDispatch()
-    const { posts } =   useSelector(state => state.post)
+    const { posts } = useSelector(state => state.post)
     useEffect(() => {
 
         dispatch(getPosts())
@@ -17,8 +17,9 @@ const List = () =>{
     }, [])
 
 
-    return (      
-            <div  /*style={liststyle.items}*/ className='items' >
+    return (
+        <div>
+
             {posts?.length > 0 && posts.map(item => {
                 return (
                     <Item
@@ -31,22 +32,14 @@ const List = () =>{
                         title={item?.title}
                         user={item?.user}
                         id={item?.id}
-                        
+
                     />
                 )
             })}
         </div>
-       
+
     )
 }
-// const liststyle= {
-    
-//     items: {     
-//         display: 'flex',
-//         flex: '1 0 33.333333%',
-//         padding: '10px',
-      
-    
-//     },
-// };
+
+
 export default List

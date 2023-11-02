@@ -35,7 +35,7 @@ const Home = () => {
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
         <div style={styles.room}>
-          <List/> 
+          <List />  {/* tang body*/}
         </div>
         <Qc/>
         <div>
