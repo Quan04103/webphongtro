@@ -45,11 +45,12 @@ export const apiGetPublicProvinces = () => new Promise(async (resolve, reject) =
         reject(error)
     }
 })
-export const apiGetPublicDistricts = (provinc_id) => new Promise(async (resolve, reject) => {
+export const apiGetPublicDistricts = (province_id) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosDefault({
             method: 'get',
-            url: `https://vapi.vnappmob.com/api/province/district/${provinc_id}`,
+            url: `https://vapi.vnappmob.com/api/province/district/${province_id}`,
+            
 
         })
         resolve(response)

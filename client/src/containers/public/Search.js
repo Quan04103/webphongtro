@@ -1,11 +1,12 @@
 import React, { useState, useCallback, useEffect } from 'react'
-import { SearchItem, Modal } from '../../components'
 import icons from '../../ultils/icons'
+import  {path } from '../../ultils/constant'
+
+import { SearchItem, Modal } from '../../components'
 import { useSelector, useDispatch } from 'react-redux'
 //import { getCodesArea, getCodes } from '../../ultils/Common/getCodes'
-import * as actions from '../../store/actions'
+//import * as actions from '../../store/actions'
 import { useNavigate, createSearchParams, useLocation } from 'react-router-dom'
-import { path } from '../../ultils/constant'
 
 const { BsChevronRight, CiLocationOn, TbReportMoney, RiCropLine, MdOutlineMapsHomeWork, CiSearch } = icons
 const Search = () => {
@@ -14,7 +15,7 @@ const Search = () => {
   const [content, setContent] = useState([])
   const { provinces, areas, prices, categories } = useSelector(state => state.app)
   const [name, setName] = useState('')
-  const [queries, setQueries] = useState({})
+   const [queries, setQueries] = useState({})
   const [arrMinMax, setArrMinMax] = useState({})
   const dispatch = useDispatch()
   const [defaultText, setDefaultText] = useState('')
@@ -30,7 +31,7 @@ const Search = () => {
     }
   }, [location])
 
-  // console.log(getCodesArea([35 , 90],areas))
+  // // console.log(getCodesArea([35 , 90],areas))
   const handleShowModal = (content, name, defaultText) => {
     setContent(content)
     setName(name)
@@ -68,8 +69,8 @@ const Search = () => {
 
   return (
     <>
-      <div className=" p-[10px] w-3/5 mt-3 bg-[#FEBB02]  rounded-lg lg:flex-row flex items-center gap-2  justify-around">
-        <div className="cursor-pointer flex-1"
+      <div className=" p-[10px] w-3/5 mt-3 bg-[#00659E]  rounded-lg lg:flex-row flex items-center gap-2  justify-around">
+      <div className="cursor-pointer flex-1"
           onClick={() => {
             handleShowModal(categories, 'category', 'Tìm tất cả')
           }}
@@ -92,7 +93,7 @@ const Search = () => {
             handleShowModal(prices, 'price', 'Chọn giá')
           }}
         >
-          <SearchItem IconBefore={<TbReportMoney />} IconAfter={<BsChevronRight color='rgb(156, 163, 175)' />}
+        <SearchItem IconBefore={<TbReportMoney />} IconAfter={<BsChevronRight color='rgb(156, 163, 175)' />}
             text={queries.price} defaultText={'Chọn giá'} />
 
         </div>
@@ -108,7 +109,7 @@ const Search = () => {
         <button
           onClick={handleSearch}
           type="button"
-          className="outline-none py-1 px-2 flex-1 bg-secondary1 rounded-lg text-white font-medium text-sm flex items-center justify-center gap-1"
+          className="outline-none py-1 px-2 flex-1 bg-secondary1 rounded-lg text-white font-medium text-sm flex items-center justify-center gap-1 bg-[#034DA1]"
         >
           <CiSearch />
           Tìm kiếm

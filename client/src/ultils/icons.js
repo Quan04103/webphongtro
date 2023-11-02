@@ -1,4 +1,4 @@
-import React from 'react'
+
 import {AiOutlinePlusCircle} from 'react-icons/ai'
 import {GrNext, GrLogout} from 'react-icons/gr'
 import { BsChevronRight, BsChevronDoubleDown, BsClock, BsTelephoneFill } from 'react-icons/bs'
@@ -13,8 +13,8 @@ import {BiBookContent, BiUserCircle, BiChevronDown,BiMessageRounded} from 'react
 import {IoIosLogOut} from 'react-icons/io'
 import {SiZalo} from 'react-icons/si'
 
-const icons = () => {
-  return (
+const icons = {
+  
     AiOutlinePlusCircle,
     GrNext,
     BsChevronRight,
@@ -39,7 +39,7 @@ const icons = () => {
     CiHashtag,
     BsTelephoneFill,
     SiZalo
-  )
+  
 }
 
 export default icons

@@ -11,6 +11,10 @@ export {default as RelativePost} from './RelativePost'
 export {default as ItemSidebar} from './ItemSidebar'
 export {default as Item} from './Item'
 export {default as PageNumber} from './PageNumber'
+export {default as ProvinceBtn} from './ProvinceBtn'
+export {default as Sitem} from './Sitem'
+
+
 
 
 

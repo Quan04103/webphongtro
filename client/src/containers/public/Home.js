@@ -8,9 +8,13 @@ import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
-import Search from './Search';
+
 import { useLocation } from 'react-router-dom';
 import { path } from '../../ultils/constant';
+import  Test35  from './Test35'
+import  Search from './Search'
+import { Outlet } from 'react-router-dom';
+import SearchTest from './SearchTest';
 
 const Home = () => {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
@@ -19,12 +23,18 @@ const location = useLocation();
 
   return (
     <div style={styles.container}>
-      
+
         <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
           <ComplexNavbar />
         </div>
+        <div className='flex justify-center items-center h-screen'><Search/></div>
+        
+        <Outlet/>
+        
+
+
         {/* Nội dung của Header */}
-      <div style={styles.body}>
+      {/* <div style={styles.body}>
         <div style={styles.intro}>
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
@@ -42,12 +52,11 @@ const location = useLocation();
             </div>
           ))}
         </div>
-        <Search/>
         <Qc/>
         <div>
           <Footer/>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

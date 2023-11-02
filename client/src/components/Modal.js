@@ -146,7 +146,7 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
       >
         <div className="h-[45px] px-4 flex items-center border-b border-gray-500">
           <span
-            className="cursor-pointer font-semibold italic text-orange-600"
+            className="cursor-pointer font-semibold italic text-[#034DA1]"
             onClick={(e) => {
               e.stopPropagation()
               setisShowModal(false)
@@ -167,19 +167,21 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
             ))}
           </select>
           <button
-            className='absolute bottom-0 left-0 right-0 bg-orange-600 py-4 text-white font-semibold cursor-pointer'
+            className='absolute bottom-0 left-0 right-0 bg-[#034DA1] py-4 text-white font-semibold cursor-pointer'
             type='button'
             onClick={handleClickProvince}
           >
             Áp dụng
           </button>
         </div>}
-        {(name === 'category') &&
+        {(name === 'category' ) &&
           <div className="p-4 flex flex-col ">
             <div className="py-2 flex gap-2 items-center border-b border-gap-500">
               <input type='radio' name={name} id='default' value={defaultText || ''}
                 onClick={(e) => handleSubmit(e, { [name]: defaultText, [`${name}Code`]: null })}
                 checked={!queries[`${name}Code`] ? true : false}
+                onChange={(e) => handleSubmit(e, { [name]: defaultText, [`${name}Code`]: null })}
+                
               />
               <label htmlFor='default'>{defaultText || ''}</label>
             </div>
@@ -207,7 +209,7 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
                 {`${(persent1 === 100 && persent2 === 100) ? `Trên ${convert100ToTarget(persent1)}` : `Từ ${persent1 <= persent2 ? convert100ToTarget(persent1) : convert100ToTarget(persent2)} - ${persent2 < persent1 ? convert100ToTarget(persent1) : convert100ToTarget(persent2)}`}  ${name === 'price' ? 'triệu' : 'm2'}`}
               </div>
               <div onClick={handleClickStrack} id="strack" className='slider-track h-[5px] bg-gray-300 rounded-full absolute top-0 bottom-0 w-full'></div>
-              <div onClick={handleClickStrack} id='strack-active' className='slider-track-active h-[5px] bg-orange-500 rounded-full absolute top-0 bottom-0 '></div>
+              <div onClick={handleClickStrack} id='strack-active' className='slider-track-active h-[5px] bg-[#034DA1] rounded-full absolute top-0 bottom-0 '></div>
 
               <input
                 type='range'
@@ -277,7 +279,7 @@ const Modal = ({ setisShowModal, content, name, handleSubmit, queries, arrMinMax
         {(name === 'price' || name === 'area') &&
           <button
             type='button'
-            className="w-full font-semibold bg-orange-400 absolute bottom-0 py-2 mt-5 rounded-bl-lg rounded-br-lg"
+            className="w-full font-semibold bg-[#034DA1] absolute bottom-0 py-2 mt-5 rounded-bl-lg rounded-br-lg text-white"
             onClick={handleBeforeSubmit}
           >
             ÁP DỤNG
