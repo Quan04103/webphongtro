@@ -7,7 +7,7 @@ import { FlagIcon } from '@heroicons/react/24/outline';
 const {GrLinkNext,GrLinkPrevious} = icons
 
 const Pagination =({page}) => {
-    // number lấy từ url ở trang Home
+    // page lấy từ url ở trang Home
     const {count, posts } = useSelector(state => state.post)
     const [arrPage, setArrPage] = useState([])
     const [currentPage, setCurrentPage] = useState(+page)
