@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { SelectAddress } from '../../components';
 import { path } from '../../ultils/constant'
 import Footer from './Footer'
+import { ComplexNavbar } from './Header';
 import { Card,
     Input,
     Typography,
@@ -23,6 +24,7 @@ const CreatePost = () => {
         navigate(path.PAY_POST, { state: { flag } })
     }, [])
     return (
+        
             <div className='flex flex-col gap-10 bg-white'>
                 <div className='flex justify-center'>
                     <div className='gap-5 flex flex-col w-3/4'>
