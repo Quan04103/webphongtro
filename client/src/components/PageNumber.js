@@ -5,7 +5,7 @@ import { Button, IconButton } from "@material-tailwind/react";
 const notActive = 'text-base font-bold bg-white  text-black rounded-md'
 const active = 'text-base font-bold bg-black   text-white rounded-md'
 
-const PageNumber = ({text,  currentPage, icon,setCurrentPage,type}) => {
+const PageNumber = ({text,  currentPage, icon,setCurrentPage}) => {
     const navigate = useNavigate()
    const handleChangePage = () => {
         if(!(text === '...')){
