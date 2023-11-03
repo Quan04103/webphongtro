@@ -270,6 +270,17 @@ export function ComplexNavbar() {
     );
   }, []);
 
+  const { categories } = useSelector(state => state.app)
+
+
+   useEffect(() => { 
+     dispatch(actions.getCategories())
+  },[actions.getCategories])
+
+  useEffect(() => {
+    console.log("Current Data:", currentData);
+  }, [currentData]);
+
   useEffect(() => { 
     setTimeout(() => { 
       isLoggedIn && dispatch(actions.getCurrent())
@@ -283,6 +294,8 @@ export function ComplexNavbar() {
   useEffect(() => { 
     msg && Swal.fire('Oops !', msg, 'error')
    },[msg, update])
+
+   console.log(currentData)
 
   return (
     <Navbar className="mx-auto max-w-screen-3xl p-2 lg:pl-6">

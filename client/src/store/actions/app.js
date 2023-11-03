@@ -20,7 +20,8 @@ export const getCategories = () => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: actionTypes.GET_CATEGORIES,
-            categories: null
+            categories: null,
+            msg: error
         })
     }
 }

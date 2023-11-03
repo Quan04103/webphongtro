@@ -2,23 +2,25 @@ import imageIntro from "../../assets/Intro.png";
 import imageroom from "../../assets/room.png";
 import React, { createContext, useEffect } from "react";
 import Qc from "./Qc";
-
 import Footer from "./Footer";
 import { LoginForm } from "../../components";
 import { ComplexNavbar } from "./Header";
 import { useState, useContext } from "react";
 import { loginContext } from "./Header";
 import { LoginButton } from "./Header";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from '../../store/actions'
+import Header from "./Header";
 
 export const ContextRegiter = createContext();
 export const Context = createContext();
 const Home = () => {
+  const dispatch = useDispatch()
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
 
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
-    console.log(isLoginPopupOpen);
   }, [isLoginPopupOpen]);
 
   return (
