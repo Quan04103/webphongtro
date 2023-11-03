@@ -4,8 +4,4 @@ export {default as InputForm} from './InputForm'
 export {default as SelectAddress} from './SelectAddress'
 export {default as ItemRoom} from './ItemRoom'
 export {default as PageNumber} from './PageNumber'
-
-
-
-
-
+export {default as Modal} from './Modal'

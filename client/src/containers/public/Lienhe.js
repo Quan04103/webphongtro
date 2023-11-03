@@ -1,12 +1,52 @@
-import React from 'react'
+import React, {useContext, createContext, useState} from 'react'
 import { InputForm, Button } from '../../components'
 import { Outlet } from 'react-router-dom'
 import Header, { ComplexNavbar } from './Header'
+import { useDispatch, useSelector } from 'react-redux'
+import imageIntro from "../../assets/Intro.png";
+import imageroom from "../../assets/room.png";
+import Qc from "./Qc";
+import Footer from "./Footer";
+import { LoginForm } from "../../components";
+import { loginContext } from "./Header";
+import { LoginButton } from "./Header";
+import { Context, ContextRegiter } from "./Home";
 
-export const LienHe = () => {
+import * as actions from '../../store/actions'
+
+
+
+
+const LienHe = () => {
+  const dispatch = useDispatch()
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+
   return (
+    <>
+    <ContextRegiter.Provider
+      value={[isRegisterPopupOpen, setIsRegisterPopupOpen]}
+    >
+      <Context.Provider value={[isLoginPopupOpen, setIsLoginPopupOpen]}>
+        <div>
+          <div
+            className={
+              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+            }
+          >
+            <div
+              className={
+                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+              }
+            >
+              <ComplexNavbar />
+            </div>
+          </div>
+              </div>
+
     <div className='bg-[white] max-w-screen-3xl m-auto h-auto '>
-        <ComplexNavbar/>
+
+
       <div class="border-t-4 border-gray-400"></div>
 
       <h1 className='pl-[30px] font-semibold text-3xl pb-[20px] '>Liên Hệ với chúng tôi</h1>
@@ -14,6 +54,7 @@ export const LienHe = () => {
         <Outlet />
         <div className=' bg-gradient-to-r from-black to-gray-300 w-[450px] h-[350px] p-[20px] rounded-[60px] shadow-sm mr-[150px]'>
           <h3 className='text-[white] font-semibold text-2xl mb-3 pl-[20px]'>Thông Tin Liên Hệ</h3>
+
           <div className='mt-7 flex flex-col items-left justify-between'>
             <small className='p-[5px] pb-[10px] text-[white]'>Chúng tôi biết bạn có rất nhiều sự lựa chọn. Nhưng cảm ơn vì đã lựa chọn chúng tôi</small>
             <small className='p-[5px] pb-[10px] text-[white]'>Điện Thoại: 09876654321</small>
@@ -43,6 +84,9 @@ export const LienHe = () => {
       </div>
 
     </div>
+    </Context.Provider>
+    </ContextRegiter.Provider>
+    </>
   )
 }
-export default LienHe
+export default LienHe;

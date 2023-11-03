@@ -9,5 +9,6 @@ export const path = {
     CREATE_POST: '/createpost',
     PAY_POST: '/paypost',
     DETAILS: '/details',
+    SEARCH: 'tim-kiem'
 
 }
