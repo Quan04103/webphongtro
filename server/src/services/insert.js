@@ -80,6 +80,7 @@ export const insertService = () => new Promise(async (resolve, reject) => {
                     published: item?.header?.attributes?.published,
                     hashtag: item?.header?.attributes?.hashtag,
                 })
+               
                 await db.Image.create({
                     id: imagesId,
                     image: JSON.stringify(item?.images)

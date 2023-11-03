@@ -1,3 +1,6 @@
+import { LoginButton } from './Header'
+import Fillter from './Fillter';
+import { apiGetProvinces } from '../../services';
 import imageIntro from "../../assets/Intro.png";
 import imageroom from "../../assets/room.png";
 import React, { createContext, useEffect } from "react";
@@ -7,7 +10,6 @@ import { LoginForm } from "../../components";
 import { ComplexNavbar } from "./Header";
 import { useState, useContext } from "react";
 import { loginContext } from "./Header";
-import { LoginButton } from "./Header";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../../store/actions'
 import Header from "./Header";
@@ -18,7 +20,12 @@ const Home = () => {
   const dispatch = useDispatch()
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-
+  useEffect(() =>{
+    dispatch(actions.getPrices())
+    dispatch(actions.getAreas())
+    dispatch(actions.getProvinces())
+    dispatch(actions.getCategories())
+  })
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
   }, [isLoginPopupOpen]);
@@ -42,7 +49,7 @@ const Home = () => {
               <ComplexNavbar />
             </div>
           </div>
-
+          <div><Fillter/></div>
           <div style={styles.body}>
             <div style={styles.intro}>
               <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
