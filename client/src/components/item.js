@@ -11,10 +11,7 @@ const Item = ({ images, user, title, star, description, attributes, address, id 
  
 
     return (
-     
-        <div style={styles.body}>   
-          <div style={styles.room} > 
-       
+
               <div style={styles.imageContainer}>
                   <Link    to={`${path.DETAILS}${formatVietnameseToString(title)}/${id}`} 
                 >
@@ -39,19 +36,16 @@ const Item = ({ images, user, title, star, description, attributes, address, id 
                   </span>
             
                 <span style={styles.p1}> </span>
-                <span style={styles.p2}> {attributes?.acreage}</span>
-                <p style={styles.p3}> {user?.name}</p>
-                <span style={styles.h3}>${attributes?.price}</span>
+                <span style={styles.p2}>Diện tích: {attributes?.acreage}</span>
+                <p style={styles.p3}>Tên: {user?.name}</p>
+                <span style={styles.h3}> Giá: ${attributes?.price}</span>
 
                 <p className='text-gray-500 w-full h-[50px] text-ellipsis overflow-hidden'>
-                    {description}
+                Mô tả: {description}
                 </p>
 
               </div>
-      
-          </div>         
-        </div>
-   
+
     );
   };
   

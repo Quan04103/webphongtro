@@ -34,8 +34,10 @@ const Home = () => {
         <div style={styles.intro}>
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
-        <div style={styles.room}>
-          <List/> 
+        <div>
+          
+             <List/> 
+           
         </div>
         <Qc/>
         <div>

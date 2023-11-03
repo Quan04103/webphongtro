@@ -17,7 +17,10 @@ const List = () =>{
 
 
     return (      
-            <div  /*style={liststyle.items}*/ className='items' >
+        <div>
+            <div class="items " style={liststyle.room}>
+            
+ 
             {posts?.length > 0 && posts.map(item => {
                 return (
                     <Item
@@ -34,18 +37,22 @@ const List = () =>{
                     />
                 )
             })}
+           
+           
         </div>
-       
+        </div>    
     )
 }
-// const liststyle= {
+const liststyle= {
     
-//     items: {     
-//         display: 'flex',
-//         flex: '1 0 33.333333%',
-//         padding: '10px',
-      
+    room: {
+        flex: '40%',
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-between',
+      },
+
     
-//     },
-// };
+    
+};
 export default List
