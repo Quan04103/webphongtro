@@ -11,6 +11,7 @@ import { path } from '../../ultils/constant'
 const {BsChevronRight, HiOutlineLocationMarker, TbReportMoney, RiCrop2Line, GiSpookyHouse, FiSearch} = icons
 
 const Fillter = () => {
+  
   const navigate = useNavigate()
   const location = useLocation()
   const [isShowModal, setIsShowModal] = useState(false)
@@ -34,7 +35,7 @@ const Fillter = () => {
     setIsShowModal(false)
   }, [isShowModal, queries])
   console.log(isShowModal);
-  
+
   const handleSearch = () => {
     const queryCodes = Object.entries(queries).filter(item => item[0].includes('Code')).filter(item => item[1])
     let queryCodesObj = {}
@@ -44,9 +45,7 @@ const Fillter = () => {
       pathname: path.SEARCH,
       search: createSearchParams(queryCodesObj).toString(),
   })
-    
   } 
-
   return (
     <>
     <div className='flex justify-center items-center'>

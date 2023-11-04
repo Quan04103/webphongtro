@@ -5,8 +5,6 @@ import { createContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 //npm i react-router-dom --save
 
-
-
 function App() {
 
   return (
@@ -14,6 +12,7 @@ function App() {
       
       <Routes>
         <Route path = {path.HOME} element = {<Home />}/>
+        <Route path = {path.HOME__PAGE} element = {<Home />}/>
         <Route path = {path.LOGIN} element = {<Login />}/>
         <Route path = {path.PROFILE} element = {<Profile />}/>
         <Route path = {path.TEST} element = {<Test />}/>
