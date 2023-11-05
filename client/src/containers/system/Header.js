@@ -5,6 +5,7 @@ import { InputReadOnly } from '../../components'
 import * as actions from "../../store/actions";
 import logo from "../../assets/logo.png"
 import anonavatar from "../../assets/anonavatar.png"
+
 import {
     Navbar,
     MobileNav,
@@ -15,36 +16,15 @@ import {
     MenuList,
     MenuItem,
     Avatar,
-    Card,
     IconButton,
-} from "@material-tailwind/react";
+  } from "@material-tailwind/react";
 import {
-    FiDollarSign
-} from "react-icons/fi"
-import {
-    BsArrowLeftShort,
-    BsFillPersonPlusFill,
-    BsFillDatabaseFill
-} from "react-icons/bs";
-import {
-    AiFillEnvironment,
-    AiOutlineBarChart,
-
-} from "react-icons/ai";
-import {
-    HeartIcon,
-    BellIcon,
-    CubeTransparentIcon,
     UserCircleIcon,
-    CodeBracketSquareIcon,
-    Square3Stack3DIcon,
     ChevronDownIcon,
     Cog6ToothIcon,
     InboxArrowDownIcon,
     LifebuoyIcon,
     PowerIcon,
-    RocketLaunchIcon,
-    Bars2Icon,
 } from "@heroicons/react/24/outline";
 import {
     Dropdown,
@@ -53,121 +33,129 @@ import {
     initTE
 } from "tw-elements";
 import { blobToBase64 } from "../../ultils/Common/tobase64";
-const Header = () => {
-    const profileMenuItems = [
-
-        {
-            label: "My Profile",
-            icon: UserCircleIcon,
-            dispatch: "",
-        },
-        {
-            label: "Edit Profile",
-            icon: Cog6ToothIcon,
-            dispatch: "",
-        },
-        {
-            label: "Inbox",
-            icon: InboxArrowDownIcon,
-            dispatch: "",
-        },
-        {
-            label: "Help",
-            icon: LifebuoyIcon,
-            dispatch: "",
-        },
-        {
-            label: "Sign Out",
-            icon: PowerIcon,
-            dispatchAction: actions.logout(),
-        },
-    ];
-
-    function ProfileMenu() {
-        const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-        const dispatch = useDispatch();
-        const closeMenu = () => setIsMenuOpen(false);
-
-        return (
+import { Link} from "react-router-dom";
 
 
-            <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
-                <MenuHandler>
-                    <Button
-                        variant="text"
-                        color="blue-gray"
-                        className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
-                    >
-                        <Avatar
-                            variant="circular"
-                            size="sm"
-                            alt="tania andrew"
-                            className="border border-gray-900 p-0.5 "
-                            src={blobToBase64(currentData?.avatar || anonavatar)}
-                        />
-                        <span className=" items-center right-[100px]">{currentData.name}</span>
-                        <ChevronDownIcon
-                            strokeWidth={2.5}
-                            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
+const profileMenuItems = [
+
+    {
+        label: "Trang chủ",
+        icon: UserCircleIcon,
+        dispatch: "",
+    },
+    {
+        label: "Tin yêu thích",
+        icon: Cog6ToothIcon,
+        dispatch: "",
+    },
+    {
+        label: "Thông báo",
+        icon: InboxArrowDownIcon,
+        dispatch: "",
+    },
+    {
+        label: "Liên hệ ",
+        icon: LifebuoyIcon,
+        dispatch: "",
+    },
+    {
+        label: "Đăng xuất",
+        icon: PowerIcon,
+        dispatchAction: actions.logout(),
+    },
+];
+
+function ProfileMenu() {
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const closeMenu = () => setIsMenuOpen(false);
+
+    const dispatch = useDispatch();
+
+    const {currentData} = useSelector(state => state.user)
+    const { isLoggedIn} = useSelector(state => state.auth);
+
+    return (
+
+
+        <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
+            <MenuHandler>
+                <Button
+                    variant="text"
+                    color="blue-gray"
+                    className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+                >
+                    <Avatar
+                        variant="circular"
+                        size="sm"
+                        alt="tania andrew"
+                        className="border border-gray-900 p-0.5 "
+                        src={blobToBase64(currentData?.avatar || anonavatar)}
+                    />
+                    <span className=" items-center right-[100px]">{currentData.name}</span>
+                    <ChevronDownIcon
+                        strokeWidth={2.5}
+                        className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
+                            }`}
+                    />
+                </Button>
+            </MenuHandler>
+            <MenuList className="p-1 shadow-2xl border-blue-gray-400">
+                <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700   dark:text-gray-200 "
+                    href="#!"
+                    data-te-dropdown-item-ref>
+                    <img src={blobToBase64(currentData?.avatar || anonavatar)} alt="avatar" className='w-10 object-cover rounded-full h-10 border-2 shadow-md border-white' />
+                    <div class="mx-1 ">
+                        {isLoggedIn && (
+                            <>
+                                {" "}
+                                <span className=" items-center right-[100px]">{currentData.name}</span>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">Điện thoại: {currentData.phone}</p>
+                            </>
+
+                        )}
+                    </div>
+                </a>
+                <hr />
+                {profileMenuItems.map(({ label, icon, dispatchAction }, key) => {
+                    const isLastItem = key === profileMenuItems.length - 1;
+                    const handleClickOn = async () => {
+                        dispatch(dispatchAction);
+                    }
+                    return (
+                        <MenuItem
+                            key={label}
+                            onClick={closeMenu}
+                            className={`flex items-center gap-2 rounded ${isLastItem
+                                ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                                : ""
                                 }`}
-                        />
-                    </Button>
-                </MenuHandler>
-                <MenuList className="p-1 shadow-2xl border-blue-gray-400">
-                    <a class="block w-full whitespace-nowrap bg-transparent px-4 py-2 text-sm font-normal text-gray-700   dark:text-gray-200 "
-                        href="#!"
-                        data-te-dropdown-item-ref>
-                        <img src={blobToBase64(currentData?.avatar || anonavatar)} alt="avatar" className='w-10 object-cover rounded-full h-10 border-2 shadow-md border-white' />
-                        <div class="mx-1 ">
-                            {isLoggedIn && (
-                                <>
-                                    {" "}
-                                    <span className=" items-center right-[100px]">{currentData.name}</span>
-                                    <h1>Mã thành viên: #{currentData.id.match(/\d/g).join('')?.slice(0, 6)}</h1>
-                                    <p class="text-sm text-gray-500 dark:text-gray-400">Điện thoại: {currentData.phone}</p>
-                                </>
+                        >
+                            <span className="flex" onClick={handleClickOn}>
+                                {React.createElement(icon, {
+                                    className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
+                                    strokeWidth: 2,
+                                })}
+                                <Typography
 
-                            )}
-                        </div>
-                    </a>
-                    <hr />
-                    {profileMenuItems.map(({ label, icon, dispatchAction }, key) => {
-                        const isLastItem = key === profileMenuItems.length - 1;
-                        const handleClickOn = async () => {
-                            dispatch(dispatchAction);
-                        }
-                        return (
-                            <MenuItem
-                                key={label}
-                                onClick={closeMenu}
-                                className={`flex items-center gap-2 rounded ${isLastItem
-                                    ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                                    : ""
-                                    }`}
-                            >
-                                <span className="flex" onClick={handleClickOn}>
-                                    {React.createElement(icon, {
-                                        className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
-                                        strokeWidth: 2,
-                                    })}
-                                    <Typography
+                                    as="span"
+                                    variant="small"
+                                    className="font-normal ml-6"
+                                    color={isLastItem ? "red" : "inherit"}
+                                >
+                                    {label}
 
-                                        as="span"
-                                        variant="small"
-                                        className="font-normal ml-6"
-                                        color={isLastItem ? "red" : "inherit"}
-                                    >
-                                        {label}
+                                </Typography>
+                            </span>
+                        </MenuItem>
+                    );
+                })}
+            </MenuList>
+        </Menu>
+    );
+}
 
-                                    </Typography>
-                                </span>
-                            </MenuItem>
-                        );
-                    })}
-                </MenuList>
-            </Menu>
-        );
-    }
+
+export function Navbar1 () {
     // nav list component
     initTE({ Dropdown, Ripple, Input });
     const { currentData } = useSelector(state => state.user)
@@ -229,12 +217,16 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-
-                    <ProfileMenu />
+                    <div><ProfileMenu /></div>
                 </div>
             </div>
         </nav >
+
     )
 }
 
+const Header = () => {
+    <Navbar1 />;
+  };
+  
 export default Header

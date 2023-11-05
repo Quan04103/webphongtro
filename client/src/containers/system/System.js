@@ -1,16 +1,29 @@
-import React from 'react'
+import React, {createContext} from 'react'
 import { Outlet } from 'react-router'
 import Sidebar from './Sidebar'
-import Header from './Header'
+import Header, { Navbar1, ProfileMenu } from './Header'
+import * as actions from "../../store/actions";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 const System = () => {
+    const dispatch = useDispatch()
+    const { currentData } = useSelector(state => state.user)
+    const { isLoggedIn} = useSelector(state => state.auth);
+    
+    useEffect(() => {
+        
+          dispatch(actions.getCurrent())
+        
+      }, [isLoggedIn])
+
     return (
         <div>
 
             <nav class="fixed top-0 z-50 w-full bg-blue-100  rounded-2xl dark:bg-gray-800 dark:border-gray-700">
                 <div class="px-3 py-3 lg:px-5 lg:pl-3">
                     <div class="flex items-center  w-full">
-                        <Header />
+                        <Navbar1/>
                     </div>
                 </div>
             </nav>
@@ -27,6 +40,7 @@ const System = () => {
                 </div>
             </div>
         </div>
+
     )
 }
 

@@ -149,7 +149,6 @@ const PayPost = () => {
                                 onClick={() => goCreatePost(false)}>
                                 <ArrowUturnLeftIcon />
                                 Quay lại
-
                             </Button>
                             <Button variant="text" className=' bg-orange-400 hover:bg-orange-600 text-white rounded-[30em] flex items-center gap-2 drop-shadow-[6px_6px_10px_#c5c5c5]'
                                 onClick={handleOpen}>

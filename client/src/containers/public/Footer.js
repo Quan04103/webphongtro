@@ -1,9 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { NavLink } from 'react-router-dom'
-import { path } from '../../ultils/constant'
-
 const Footer = () => {
     return (
         <footer class="rounded-lg bg-neutral-600 text-center text-neutral-600 dark:bg-gray-600 dark:text-neutral-200 lg:text-left">

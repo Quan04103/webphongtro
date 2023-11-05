@@ -1,13 +1,13 @@
 import imageIntro from "../../assets/Intro.png";
 import imageroom from "../../assets/room.png";
-import React, { Profiler, createContext, useEffect } from "react";
+import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
 
 import Footer from "./Footer";
 import { ComplexNavbar } from "./Header";
 import { useState, useContext } from "react";
 
-import Profile  from "./Profile";
+
 export const ContextRegiter = createContext();
 export const Context = createContext();
 const Home = () => {
@@ -85,7 +85,7 @@ const Home = () => {
                 </div>
               ))}
             </div>
-            <Profile />
+            <Qc />
             <div>
               <Footer />
             </div>

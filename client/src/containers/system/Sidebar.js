@@ -1,24 +1,7 @@
 import { useState } from 'react';
-import logo1 from '../../assets/logo-sb.png'
-import { useSelector, useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import menuSidebar from '../../ultils/menuSidebar'
 import { NavLink } from 'react-router-dom'
-import * as actions from '../../store/actions'
-import { AiOutlineLogout } from 'react-icons/ai'
-import {
-    FiDollarSign
-} from "react-icons/fi"
-import { SiEtcd } from "react-icons/si";
-import {
-    BsArrowLeftShort,
-    BsFillPersonPlusFill,
-    BsFillDatabaseFill
-} from "react-icons/bs";
-import {
-    AiFillEnvironment,
-    AiOutlineBarChart,
-
-} from "react-icons/ai";
 import { RiDashboardFill } from "react-icons/ri";
 import {
     Dropdown,
@@ -26,10 +9,6 @@ import {
     initTE,
 } from "tw-elements";
 initTE({ Dropdown, Ripple });
-
-const activeStyle = 'hover:bg-gray-200 flex  rounded-md items-center gap-2 py-2 font-bold bg-gray-200'
-const notActiceStyle = 'hover:bg-gray-200 flex  rounded-md items-center gap-2 py-2 cursor-pointer'
-
 const Sidebar = () => {
     const [open, setOpen] = useState(true);
     const dispatch = useDispatch()

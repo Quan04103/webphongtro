@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   MobileNav,
@@ -9,35 +9,27 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  Card,
   IconButton,
-  ThemeProvider,
 } from "@material-tailwind/react";
 import {
   HeartIcon,
   BellIcon,
-  CubeTransparentIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
 import LoginForm from "../../components/LoginForm";
 import { Context, ContextRegiter } from "./Home";
 import RegisterForm from "../../components/RegisterForm";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
 import Swal from 'sweetalert2'
 import { NavLink } from "react-router-dom";
-import * as link from '../../ultils/constant'
-import { apiGetCurrent } from "../../services";
 import { blobToBase64 } from "../../ultils/Common/tobase64";
 import logo from '../../assets/logo.png';
 import anonavatar from '../../assets/anonavatar.png';
@@ -48,27 +40,37 @@ const profileMenuItems = [
   {
     label: "My Profile",
     icon: UserCircleIcon,
-    dispatch: "",
+    dispatch: '',
+    key1:true,
+    link:'/he-thong/sua-thong-tin-ca-nhan',
   },
   {
     label: "Edit Profile",
     icon: Cog6ToothIcon,
-    dispatch: "",
+    dispatch:'' ,
+    key1:true,
+    link:'',
   },
   {
     label: "Inbox",
     icon: InboxArrowDownIcon,
     dispatch: "",
+    key1:true,
+    link:'',
   },
   {
     label: "Help",
     icon: LifebuoyIcon,
     dispatch: "",
+    key1:true,
+    link:'',
   },
   {
     label: "Sign Out",
     icon: PowerIcon,
     dispatchAction: actions.logout(),
+    key1:false,
+    link:'',
   },
 ];
 
@@ -103,11 +105,13 @@ function ProfileMenu() {
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon, dispatchAction }, key) => {
+        {profileMenuItems.map(({ label, icon, dispatchAction, link, key1 }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
+
           const handleClickOn = async () => {
-            dispatch(dispatchAction);
-          }
+            (dispatch(dispatchAction))
+
+        }
           return (
             <MenuItem
               key={label}
@@ -116,8 +120,9 @@ function ProfileMenu() {
                 ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
                 : ""
                 }`}
-            >
-              <span className="flex" onClick={handleClickOn}>
+            ><Link>
+              <span className="flex" onClick={!key1 ? handleClickOn : ('/he-thong/sua-thong-tin-ca-nhan')}
+              >
                 {React.createElement(icon, {
                   className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
                   strokeWidth: 2,
@@ -133,6 +138,7 @@ function ProfileMenu() {
 
                 </Typography>
               </span>
+              </Link>
             </MenuItem>
           );
         })}
@@ -215,11 +221,9 @@ function NavList() {
 
 export function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
-
   const handleClosePopup = () => {
     setIsLoginPopupOpen(false);
   };
-
   return (
     <div>
       {/* Button hoặc sự kiện mở khung popup */}
