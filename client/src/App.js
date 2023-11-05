@@ -1,13 +1,40 @@
 import { Routes, Route } from "react-router-dom";
 import { Home, Login, Profile, Test, LienHe,CreatePost, PayPost, Details, SearchDetail} from "./containers/public";
 import {path} from './ultils/constant'
-import { createContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import * as actions from './store/actions'
+import React, { useCallback,useState, useEffect } from 'react';
 //npm i react-router-dom --save
 
 function App() {
+  const dispatch = useDispatch()
+  const { isLoggedIn } = useSelector(state => state.auth)
+  useEffect(() => {
+    setTimeout(() => {
+      isLoggedIn && dispatch(actions.getCurrent())
+    }, 1000)
+  }, [isLoggedIn])
 
+  // useEffect(() => {
+  //   dispatch(actions.getPrices())
+  //   dispatch(actions.getAreas())
+  //   dispatch(actions.getProvinces())
+  // }, [])
+
+  // const {categories} = useSelector(state => state.app)
+  // const dispatch = useDispatch()
+
+  // useEffect(() => {
+  //     dispatch(actions.getCategories())
+
+  // }, [actions.getCategories])
+
+  // useEffect(() => {
+  //     console.log("Categories :", categories)
+  // }, [categories])
+  
   return (
+
     <div class="h-screen w-creen">
       
       <Routes>

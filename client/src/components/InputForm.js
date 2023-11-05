@@ -12,4 +12,5 @@ const InputForm = ( {value, setValue, keyOb,type}) => {
     </div>
   )
 }
+
 export default memo(InputForm)

@@ -31,10 +31,16 @@ const Home = () => {
     dispatch(actions.getAreas());
     dispatch(actions.getProvinces());
     dispatch(actions.getCategories());
-  });
+  },[]);
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
   }, [isLoginPopupOpen]);
+  const {categories} = useSelector(state => state.app)
+
+  useEffect(() => {
+      dispatch(actions.getCategories())
+
+  }, [actions.getCategories])
 
   return (
     <ContextRegiter.Provider
