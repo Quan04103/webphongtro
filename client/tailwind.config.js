@@ -48,7 +48,10 @@ module.exports = withMT({
       backgroundColor: {
         primary: '#F5F5F5',
         secondary1: '1266dd',
-        secondary2: 'f73859'
+        secondary2: 'f73859',
+        'overlay-30': 'rgba(0,0,0,0.3)',
+        'overlay-70': 'rgba(0,0,0,0.7)',
+
       },
       margin: {
         '200px': '200px',

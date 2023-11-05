@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { SelectAddress } from '../../components';
+import { Select } from '../../components';
 import { path } from '../../ultils/constant'
 // import Footer from './Footer'
 import {
@@ -8,7 +8,7 @@ import {
     Input,
     Typography,
     ButtonGroup, Button,
-    Select, Option,
+     Option,
     Popover, PopoverHandler, PopoverContent
 
 
@@ -55,12 +55,12 @@ const CreatePost = () => {
 
                                 </div>
                                 <div className="flex gap-10 ">
-                                    <SelectAddress label="Tỉnh, Thành Phố"></SelectAddress>
-                                    <SelectAddress label="Quận, Huyện"></SelectAddress>
+                                    <Select label="Tỉnh, Thành Phố"></Select>
+                                    <Select label="Quận, Huyện"></Select>
                                 </div>
                                 <div className="flex gap-10 ">
-                                    <SelectAddress label="Phường, Xã"></SelectAddress>
-                                    <SelectAddress label="Đường, Phố"></SelectAddress>
+                                    <Select label="Phường, Xã"></Select>
+                                    <Select label="Đường, Phố"></Select>
                                 </div>
                                 <Select size="lg" label="Dự án">
                                     <Option>Material Tailwind HTML</Option>

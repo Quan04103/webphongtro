@@ -1,5 +1,4 @@
 import React, {memo} from 'react'
-
 const InputForm = ( {value, setValue, keyOb,type}) => {
   return (
     <div>
@@ -13,4 +12,5 @@ const InputForm = ( {value, setValue, keyOb,type}) => {
     </div>
   )
 }
+
 export default memo(InputForm)

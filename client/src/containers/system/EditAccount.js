@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import anonavatar from "../../assets/anonavatar.png"
-import { InputReadOnly, InputFormv2, Button } from '../../components'
+import { InputReadOnly, InputFormV2, Button } from '../../components'
 import { useSelector, useDispatch } from 'react-redux'
 import { apiUpdateUser } from '../../services'
 import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
@@ -45,7 +45,7 @@ const EditAccount = () => {
                     <InputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
                     <InputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" />
 
-                    <InputFormv2
+                    <InputFormV2
                         name='name'
                         setValue={setPayload}
                         direction='flex-row'
@@ -57,14 +57,14 @@ const EditAccount = () => {
                         direction='flex-row'
                         label='Email' /> */}
 
-                    <InputFormv2
+                    <InputFormV2
                         name='zalo'
                         setValue={setPayload}
                         direction='flex-row'
                         value={payload.zalo}
                         label='Zalo' />
 
-                    <InputFormv2
+                    <InputFormV2
                         name='fbUrl'
                         setValue={setPayload}
                         direction='flex-row'

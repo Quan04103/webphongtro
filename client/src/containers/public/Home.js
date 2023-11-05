@@ -1,23 +1,45 @@
+import { LoginButton } from "./Header";
+import List from "./List";
+import Pagination from "./Pagination";
+import { useSearchParams } from "react-router-dom";
+
+import { apiGetProvinces } from "../../services";
 import imageIntro from "../../assets/Intro.png";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
-
 import Footer from "./Footer";
 import { ComplexNavbar } from "./Header";
 import { useState, useContext } from "react";
-
+import { loginContext } from "./Header";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../store/actions";
+import Header from "./Header";
+import Fillter from "./Fillter";
 
 export const ContextRegiter = createContext();
 export const Context = createContext();
 const Home = () => {
+  const [params] = useSearchParams()
+
+  const dispatch = useDispatch();
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-
+  useEffect(() => {
+    dispatch(actions.getPrices());
+    dispatch(actions.getAreas());
+    dispatch(actions.getProvinces());
+    dispatch(actions.getCategories());
+  },[]);
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
-    console.log(isLoginPopupOpen);
   }, [isLoginPopupOpen]);
+  const {categories} = useSelector(state => state.app)
+
+  useEffect(() => {
+      dispatch(actions.getCategories())
+
+  }, [actions.getCategories])
 
   return (
     // <<<<<<< HEAD
@@ -62,60 +84,25 @@ const Home = () => {
               {/* >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1 */}
             </div>
           </div>
-
+          <><Fillter /></>
           <div style={styles.body}>
             <div style={styles.intro}>
               <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
             </div>
-            <div style={styles.room}>
-              {Array.from({ length: 12 }).map((_, index) => (
-                <div key={index} style={styles.imageContainer}>
-                  <div style={styles.imageFrame}>
-                    <img
-                      style={styles.imageroom}
-                      src={imageroom}
-                      alt={`Room ${index + 1}`}
-                    />
-                  </div>
-                  <h4 style={styles.h4}>Quận 9, Tp. Hồ Chí Minh</h4>
-                  <p style={styles.p1}> ★ 4.86</p>
-                  <p style={styles.p2}>Diện tích: 300m vuông</p>
-                  <p style={styles.p3}>Đăng tin bởi: Minh Quốc</p>
-                  <h3 style={styles.h3}>Giá: 4,7 triệu/tháng</h3>
-                </div>
-              ))}
-            </div>
+            <List page={params.get("page")} />
+            <Pagination page={params.get("page")} />
             <Qc />
             <div>
               <Footer />
             </div>
           </div>
         </div>
-        {/* <<<<<<< HEAD
-        <Qc />
-        <div>
-          <Footer /> 
-          <Profile />
-          <Lienhe />
-          <Test />
-        </div>
-      </div>
-    </div>
-======= */}
+        
       </Context.Provider>
     </ContextRegiter.Provider>
-    // >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1
+
   );
 };
-
-/*<div> 
-  <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}></div>
-    
-    <ComplexNavbar />
-
-    <Footer />
-  </div>
-</div>*/
 
 // Định nghĩa đối tượng chứa các thuộc tính CSS
 const styles = {

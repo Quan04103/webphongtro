@@ -8,6 +8,9 @@ import { MdOutlineHouseSiding, MdOutlineLibraryBooks } from 'react-icons/md'
 import { FiSearch } from 'react-icons/fi'
 import { ImPencil2, ImBin } from 'react-icons/im'
 import { BiUserPin } from 'react-icons/bi'
+import {TbBuildingWarehouse} from 'react-icons/tb'
+import {BiSolidBuildingHouse} from 'react-icons/bi'
+import {GiSpookyHouse} from 'react-icons/gi'
 import {
     FiDollarSign
 } from "react-icons/fi"
@@ -23,6 +26,7 @@ import {
 } from "react-icons/ai";
 import { RiDashboardFill } from "react-icons/ri";
 
+
 const icons = {
     FiDollarSign,
     BsArrowLeftShort,
@@ -32,6 +36,7 @@ const icons = {
     AiOutlineBarChart,
     AiOutlinePlusCircle,
     RiDashboardFill,
+    AiOutlinePlusCircle,
     GrNext,
     BsChevronRight,
     HiOutlineLocationMarker,
@@ -51,7 +56,10 @@ const icons = {
     AiOutlineLogout,
     BsChevronDown,
     ImBin,
-    BsCameraFill
+    BsCameraFill,
+    TbBuildingWarehouse,
+    BiSolidBuildingHouse,
+    GiSpookyHouse,
 }
 
 export default icons

@@ -23,6 +23,5 @@ root.render(
         </PersistGate>
     </Provider>
 
-
 );
 

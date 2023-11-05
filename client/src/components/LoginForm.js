@@ -27,9 +27,9 @@ const LoginForm = ({ onClose }) => {
   return (
 
       <div className="fixed inset-0 flex items-center justify-center">
-        <div className="bg-white w-2/5 rounded-lg shadow-lg p-12 px-36 flex flex-col space-y-4 mt-[700px] ">
+        <div className="bg-white w-2/5 rounded-lg shadow-lg p-12 px-12 flex flex-col space-y-0 mt-[700px] ">
           <button
-            className="relative flex items-center gap-2 lg:rounded-full bottom-[30px] right-[120px] "
+            className="relative flex items-center gap-2 lg:rounded-full bottom-[30px] right-[30px] "
             onClick={onClose}
           >
             {React.createElement(XMarkIcon, {
@@ -44,7 +44,7 @@ const LoginForm = ({ onClose }) => {
 
             </div>
             <div class="mt-4 sm:mx-auto sm:w-full sm:max-w-sm relative bottom-[70px]">
-              <div class="space-y-12">
+              <div class="space-y-8">
                 <div>
                   <label
                     class="block text-sm font-medium leading-6 text-gray-900"
@@ -86,7 +86,7 @@ const LoginForm = ({ onClose }) => {
 
                 <div>
                   <button
-                    class="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    class="flex w-full translate-y-[20px] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                     type="submit"
                     onClick={handleSubmit}
                     
