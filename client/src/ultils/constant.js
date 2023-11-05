@@ -1,5 +1,6 @@
 export const path = {
     HOME: '/*',
+    HOME__PAGE: ':page',
     LOGIN: '/login',
     QC: '/qc',
     PROFILE: '/profile',
@@ -8,5 +9,6 @@ export const path = {
     CREATE_POST: '/createpost',
     PAY_POST: '/paypost',
     DETAILS: '/details',
+    SEARCH: 'tim-kiem'
 
 }

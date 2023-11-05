@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.get('/all', postController.getPosts)
 router.get('/limit', postController.getPostsLimit)
+router.get('/limitpage', postController.getPostsPage)
 router.get('/new-post', postController.getNewPosts)
 router.use(verifyToken)
 router.post('/create-new', postController.createNewPost)
