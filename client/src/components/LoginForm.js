@@ -1,5 +1,5 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import logo from "../assets/logoremovebg.png";
+import logo from "../assets/logo.png";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import InputForm from "./InputForm";
 import { useDispatch, useSelector } from "react-redux";

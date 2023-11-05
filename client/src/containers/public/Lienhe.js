@@ -62,7 +62,6 @@ const LienHe = () => {
             <small className='p-[5px] pb-[10px] text-[white]'>Zalo: 0987654321</small>
             <small className='p-[5px] pb-[10px] text-[white]'>Viper: 0987654321</small>
             <small className='p-[5px] pb-[10px] text-[white]'>Địa Chỉ: 101 Tân Thới Nhất 5, Tân Thới Nhất, Quận 12, Thành Phố Hồ Chí Minh, Việt Nam</small>
-
           </div>
         </div>
         <div className='bg-[#F4F4F4] w-[400px] h-[350px] p-[30px] rounded-md shadow-sm '>
@@ -71,7 +70,6 @@ const LienHe = () => {
             <InputForm label={'Họ Và Tên'} />
             <InputForm label={'Số Điện Thoại'} />
             <InputForm label={'Nội Dung'} />
-
           </div>
           <div className='flex justify-center items-center pt-[10px]'>
             <Button

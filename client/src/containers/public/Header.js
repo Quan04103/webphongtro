@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import {
   Navbar,
   MobileNav,
@@ -9,74 +9,80 @@ import {
   MenuList,
   MenuItem,
   Avatar,
-  Card,
   IconButton,
-  ThemeProvider,
 } from "@material-tailwind/react";
 import {
   HeartIcon,
   BellIcon,
-  CubeTransparentIcon,
   UserCircleIcon,
-  CodeBracketSquareIcon,
-  Square3Stack3DIcon,
   ChevronDownIcon,
   Cog6ToothIcon,
   InboxArrowDownIcon,
   LifebuoyIcon,
   PowerIcon,
-  RocketLaunchIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
 import LoginForm from "../../components/LoginForm";
 import { Context, ContextRegiter } from "./Home";
 import RegisterForm from "../../components/RegisterForm";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
 import Swal from 'sweetalert2'
 import { NavLink } from "react-router-dom";
-import * as link from '../../ultils/constant'
-import { apiGetCurrent } from "../../services";
+import { blobToBase64 } from "../../ultils/Common/tobase64";
 import logo from '../../assets/logo.png';
+import anonavatar from '../../assets/anonavatar.png';
+
 // profile menu component
 const profileMenuItems = [
 
   {
     label: "My Profile",
     icon: UserCircleIcon,
-    dispatch: "",
+    dispatch: '',
+    key1:true,
+    link:'/he-thong/sua-thong-tin-ca-nhan',
   },
   {
     label: "Edit Profile",
     icon: Cog6ToothIcon,
-    dispatch: "",
+    dispatch:'' ,
+    key1:true,
+    link:'',
   },
   {
     label: "Inbox",
     icon: InboxArrowDownIcon,
     dispatch: "",
+    key1:true,
+    link:'',
   },
   {
     label: "Help",
     icon: LifebuoyIcon,
     dispatch: "",
+    key1:true,
+    link:'',
   },
   {
     label: "Sign Out",
     icon: PowerIcon,
     dispatchAction: actions.logout(),
+    key1:false,
+    link:'',
   },
 ];
 
 function ProfileMenu() {
+  const { currentData } = useSelector(state => state.user)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const dispatch = useDispatch();
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    
-    
+
+
     <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
       <MenuHandler>
         <Button
@@ -89,48 +95,50 @@ function ProfileMenu() {
             size="sm"
             alt="tania andrew"
             className="border border-gray-900 p-0.5"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1480&q=80"
+            src={blobToBase64(currentData?.avatar || anonavatar)}
           />
           <ChevronDownIcon
             strokeWidth={2.5}
-            className={`h-3 w-3 transition-transform ${
-              isMenuOpen ? "rotate-180" : ""
-            }`}
+            className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
+              }`}
           />
         </Button>
       </MenuHandler>
       <MenuList className="p-1">
-        {profileMenuItems.map(({ label, icon, dispatchAction }, key) => {
+        {profileMenuItems.map(({ label, icon, dispatchAction, link, key1 }, key) => {
           const isLastItem = key === profileMenuItems.length - 1;
+
           const handleClickOn = async () => {
-            dispatch(dispatchAction);
-          }
+            (dispatch(dispatchAction))
+
+        }
           return (
             <MenuItem
               key={label}
               onClick={closeMenu}
-              className={`flex items-center gap-2 rounded ${
-                isLastItem
-                  ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                  : ""
-              }`}
-            >
-             <span className="flex" onClick={handleClickOn}>
-              {React.createElement(icon, {
-                className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
-                strokeWidth: 2,
-              })}
-              <Typography
-
-                as="span"
-                variant="small"
-                className="font-normal ml-6"
-                color={isLastItem ? "red" : "inherit"}
+              className={`flex items-center gap-2 rounded ${isLastItem
+                ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                : ""
+                }`}
+            ><Link>
+              <span className="flex" onClick={!key1 ? handleClickOn : ('/he-thong/sua-thong-tin-ca-nhan')}
               >
-                {label}
+                {React.createElement(icon, {
+                  className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
+                  strokeWidth: 2,
+                })}
+                <Typography
 
-              </Typography>
+                  as="span"
+                  variant="small"
+                  className="font-normal ml-6"
+                  color={isLastItem ? "red" : "inherit"}
+                >
+                  {label}
+
+                </Typography>
               </span>
+              </Link>
             </MenuItem>
           );
         })}
@@ -169,17 +177,17 @@ const navListItems = [
   },
   {
     label: "Cho thuê phòng trọ",
-    link:"'/createpost'",
+    link: "'/createpost'",
     key: '2'
   },
   {
     label: "Nhà cho thuê",
-    link:"'/detail'",
+    link: "'/detail'",
     key: '3'
   },
   {
     label: "Cho thuê căn hộ",
-    link:'',
+    link: '',
     key: '4'
   },
 ];
@@ -190,20 +198,20 @@ function NavList() {
   return (
 
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
-      {navListItems.map(({ label }, link, {key}) => (
+      {navListItems.map(({ label }, link, { key }) => (
         <NavLink to={link}>
-        <Typography
-          key={key}
-          as="a"
-          href="#"
-          variant="small"
-          color="blue-gray"
-          className="font-normal"
-        >
-          <MenuItem className="flex items-center gap-2 lg:rounded-full">
-            {label}
-          </MenuItem>
-        </Typography>
+          <Typography
+            key={key}
+            as="a"
+            href="#"
+            variant="small"
+            color="blue-gray"
+            className="font-normal"
+          >
+            <MenuItem className="flex items-center gap-2 lg:rounded-full">
+              {label}
+            </MenuItem>
+          </Typography>
         </NavLink>
       ))}
     </ul>
@@ -213,11 +221,9 @@ function NavList() {
 
 export function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
-
   const handleClosePopup = () => {
     setIsLoginPopupOpen(false);
   };
-
   return (
     <div>
       {/* Button hoặc sự kiện mở khung popup */}
@@ -254,7 +260,7 @@ export function ComplexNavbar() {
   const dispatch = useDispatch();
 
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
-  const { isLoggedIn, msg, update} = useSelector((state) => state.auth);
+  const { isLoggedIn, msg, update } = useSelector((state) => state.auth);
   const { currentData } = useSelector(state => state.user)
   const handleClosePopup = () => {
     setIsLoginPopupOpen(false);
@@ -284,16 +290,16 @@ export function ComplexNavbar() {
   useEffect(() => { 
     setTimeout(() => { 
       isLoggedIn && dispatch(actions.getCurrent())
-     }, 300)
-   },[isLoggedIn])
+    }, 300)
+  }, [isLoggedIn])
 
   useEffect(() => {
     isLoggedIn && setIsLoginPopupOpen(false);
   }, [isLoggedIn]);
 
-  useEffect(() => { 
+  useEffect(() => {
     msg && Swal.fire('Oops !', msg, 'error')
-   },[msg, update])
+  }, [msg, update])
 
    console.log(currentData)
 
@@ -313,7 +319,7 @@ export function ComplexNavbar() {
             <div className="absolute items-center right-[100px]">Xin chào {currentData.name}</div>
             <ProfileMenu />
           </>
-          
+
         )}
 
         {!isLoggedIn && (
@@ -333,7 +339,7 @@ export function ComplexNavbar() {
         <div className="absolute right-[100px] ml-[500px]">
           <LoginButton />
         </div> */}
-        <NavLink className="absolute top-2/4 left-3/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block" to = {'/createpost'}>
+        <NavLink className="absolute top-2/4 left-3/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block" to={'/he-thong/tao-moi-bai-dang'}>
           <Button variant="outlined">Đăng tin</Button>
         </NavLink>
         <IconButton

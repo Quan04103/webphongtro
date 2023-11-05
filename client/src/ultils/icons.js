@@ -11,9 +11,31 @@ import { BiUserPin } from 'react-icons/bi'
 import {TbBuildingWarehouse} from 'react-icons/tb'
 import {BiSolidBuildingHouse} from 'react-icons/bi'
 import {GiSpookyHouse} from 'react-icons/gi'
+import {
+    FiDollarSign
+} from "react-icons/fi"
+import {
+    BsArrowLeftShort,
+    BsFillPersonPlusFill,
+    BsFillDatabaseFill
+} from "react-icons/bs";
+import {
+    AiFillEnvironment,
+    AiOutlineBarChart,
+
+} from "react-icons/ai";
+import { RiDashboardFill } from "react-icons/ri";
 
 
 const icons = {
+    FiDollarSign,
+    BsArrowLeftShort,
+    BsFillPersonPlusFill,
+    BsFillDatabaseFill,
+    AiFillEnvironment,
+    AiOutlineBarChart,
+    AiOutlinePlusCircle,
+    RiDashboardFill,
     AiOutlinePlusCircle,
     GrNext,
     BsChevronRight,
