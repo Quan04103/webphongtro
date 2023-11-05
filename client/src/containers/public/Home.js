@@ -8,12 +8,24 @@ import { LoginForm } from '../../components'
 import { ComplexNavbar } from './Header'
 import { useState } from 'react'
 import { LoginButton } from './Header'
-
+import { useDispatch, useSelector } from 'react-redux';
+import * as actions from '../../store/actions'
 
 const Home = () => {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   console.log("isLoginPopupOpen:", isLoginPopupOpen);
 
+  const {categories} = useSelector(state => state.app)
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+      dispatch(actions.getCategories())
+
+  }, [actions.getCategories])
+
+  useEffect(() => {
+      console.log("Categories :", categories)
+  }, [categories])
 
   return (
     <div style={styles.container}>
