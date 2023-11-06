@@ -1,9 +1,3 @@
-import { LoginButton } from "./Header";
-import List from "./List";
-import Pagination from "./Pagination";
-import { useSearchParams } from "react-router-dom";
-import { Outlet } from 'react-router-dom';
-
 import { apiGetProvinces } from "../../services";
 import imageIntro from "../../assets/Intro.png";
 import imageroom from "../../assets/room.png";
@@ -17,6 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 import Header from "./Header";
 import Fillter from "./Fillter";
+import { getPosts} from '../../store/actions/post'
+import {List} from './index'
+import { useSearchParams } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+
+import { LoginButton } from "./Header";
+import Pagination from "./Pagination";
 
 export const ContextRegiter = createContext();
 export const Context = createContext();
@@ -41,6 +42,7 @@ const Home = () => {
       dispatch(actions.getCategories())
 
   }, [actions.getCategories])
+
 
   return (
     // <<<<<<< HEAD
@@ -87,18 +89,12 @@ const Home = () => {
           </div>
           <><Fillter /></>
           <div style={styles.body}>
-            {/* <div style={styles.intro}>
-              <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
-            </div> */}
-            {/* <div className='w-4/5 lg:w-3/5 flex flex-col items-start justify-start mt-3'>
-                <Outlet />
-            </div> */}
-            <div class="p-4 border-2 border-gray-200 rounded-lg shadow-xl shadow-blue-gray-400 dark:border-gray-700 mt-14">
-                    <Outlet />
-                </div>
-            <List page={params.get("page")} />
-            <Pagination page={params.get("page")} />
-            <Qc />
+            </div>
+        <div style={styles.intro}>
+          <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
+        </div>
+        <div style={styles.room}>
+          <List />  {/* tang body*/}
             <div>
               <Footer />
             </div>
@@ -111,7 +107,6 @@ const Home = () => {
   );
 };
 
-// Định nghĩa đối tượng chứa các thuộc tính CSS
 const styles = {
   container: {
     flexDirection: "column",
