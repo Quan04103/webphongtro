@@ -66,6 +66,7 @@ export const getPostsLimitService = (page, query, { priceNumber, areaNumber }) =
             nest: true,
             offset: offset * +process.env.LIMIT,
             limit: +process.env.LIMIT,
+            order: [['createdAt', 'DESC']],
             include: [
                 { model: db.Image, as: 'images', attributes: ['image'] },
                 { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
@@ -137,6 +138,7 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
             id: attributesId,
             price: +body.priceNumber < 1 ? `${+body.priceNumber * 1000000} đồng/tháng` : `${body.priceNumber} triệu/tháng`,
             acreage:`${body.areaNumber} m2`,
+            // `${body.areaNumber} m2`body.areaNumber < 1 ? `${+body.areaNumber * 1} m2` : `${body.areaNumber} m2`
             published: moment(new Date).format('DD/MM/YYYY'),
             hashtag
         })
@@ -149,7 +151,6 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
             code: hashtag,
             area: body.label,
             type: body?.category,
-            target: body?.target,
             bonus: 'Tin thường',
             created: currentDate,
             expired: currentDate.setDate(currentDate.getDate() + 10),

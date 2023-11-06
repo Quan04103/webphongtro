@@ -12,3 +12,4 @@ export const insert = async (req, res) => {
         })
     }
 }
+//createPricesAndAreas

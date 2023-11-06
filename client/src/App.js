@@ -16,11 +16,11 @@ function App() {
     }, 1000)
   }, [isLoggedIn])
 
-  // useEffect(() => {
-  //   dispatch(actions.getPrices())
-  //   dispatch(actions.getAreas())
-  //   dispatch(actions.getProvinces())
-  // }, [])
+  useEffect(() => {
+    dispatch(actions.getPrices())
+    dispatch(actions.getAreas())
+    dispatch(actions.getProvinces())
+  }, [])
 
   // const {categories} = useSelector(state => state.app)
   // const dispatch = useDispatch()

@@ -26,7 +26,7 @@ const {ImBin } = icons
         title: '',
         priceNumber: 0,
         areaNumber: 0,
-        images: '',
+        images: [],
         address: '',
         priceCode: '',
         areaCode: '',
@@ -72,6 +72,7 @@ const {ImBin } = icons
             areaCode,
             userId: currentData.id,
             priceNumber: +payload.priceNumber / Math.pow(10,6),
+            areaNumber: +payload.areaNumber,
             label: `${categories?.find(item => item.code === payload?.categoryCode)?.value} ${payload?.address?.split(',')[0]}`
         }
         const response = await apiCreatePost(finalPayload)
@@ -82,7 +83,7 @@ const {ImBin } = icons
                     title: '',
                     priceNumber: 0,
                     areaNumber: 0,
-                    images: '',
+                    images: [],
                     address: '',
                     priceCode: '',
                     areaCode: '',
