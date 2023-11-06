@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { useSearchParams } from "react-router-dom";
 
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/intro1.jpg";
+import imageIntro from "../../assets/intro2.jpg";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
@@ -139,7 +139,7 @@ const styles = {
   imageIntro: {
     position: "relative",
     width: "100%",
-    height: "520px",
+    height: "670px",
     objectFit: "cover",
   },
   room: {
