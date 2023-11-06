@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { useSearchParams } from "react-router-dom";
 
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/Intro.png";
+import imageIntro from "../../assets/intro.jpg";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
@@ -69,7 +69,7 @@ const Home = () => {
       value={[isRegisterPopupOpen, setIsRegisterPopupOpen]}
     >
       <Context.Provider value={[isLoginPopupOpen, setIsLoginPopupOpen]}>
-        <div style={styles.container}>
+        <div style={styles.container}  className="z-50 absolute">
           <div
             className={
               isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
@@ -84,10 +84,14 @@ const Home = () => {
               {/* >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1 */}
             </div>
           </div>
-          <><Fillter /></>
+          
+          {/* <><Fillter /></> */}
           <div style={styles.body}>
-            <div style={styles.intro}>
+            <div style={styles.intro} className="">
               <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
+            </div>
+            <div style={styles.search} >
+          <><Fillter /></>
             </div>
             <List page={params.get("page")} />
             <Pagination page={params.get("page")} />
@@ -107,6 +111,7 @@ const Home = () => {
 // Định nghĩa đối tượng chứa các thuộc tính CSS
 const styles = {
   container: {
+    position: "absolute",
     flexDirection: "column",
     height: "100vh",
   },
@@ -124,9 +129,17 @@ const styles = {
   intro: {
     flex: "10%",
   },
+  search:{
+    position: "absolute",
+    top: "400px",
+    right: "400px",
+    left: "400px",
+    
+  },
   imageIntro: {
+    position: "relative",
     width: "100%",
-    height: "100%",
+    height: "520px",
     objectFit: "cover",
   },
   room: {

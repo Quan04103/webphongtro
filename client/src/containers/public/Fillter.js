@@ -49,7 +49,7 @@ const Fillter = () => {
   return (
     <>
     <div className='flex justify-center items-center'>
-        <div className='w-3/5 h-[55px] p-[10px] bg-[#febb02] rounded-lg flex items-center justify-around gap-2'>
+        <div className='w-250px h-[70px] p-[10px] bg-[#034DA1] rounded-lg flex items-center justify-around gap-2'>
             <span onClick={() => handleShowModal(categories, 'category', 'Tìm tất cả')} className='cursor-pointer flex-1'>
               <SearchItem IconBefor={< GiSpookyHouse/>} fontWeight IconAfter={<BsChevronRight coler='rgb(156, 163, 175 '/>}
                text={queries.category} defaultText ={'Tìm tất cả'}/></span>
@@ -68,10 +68,10 @@ const Fillter = () => {
 
             <button type='button'
                     onClick={handleSearch}
-                    className='outline-none py-2 px-4 flex-1 bg-light-blue-700 text-sm flex items-center justify-center gap-2 text-white font-medium'
+                    className='w-30px h-30px outline-none py-1 px-2  bg-[#034DA1] rounded-lg flex-1 text-white font-medium text-sm flex items-center justify-center gap-1 '
             >
-                <FiSearch/>
-                Tìm kiếm
+                <FiSearch className='text-5xl'/>
+                
             </button>
         </div>
     </div>
