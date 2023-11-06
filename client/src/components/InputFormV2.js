@@ -3,7 +3,7 @@ import React from 'react'
 const InputFormV2 = ({ label, unit, value, setValue, name, small }) => {
     return (
         <div>
-            <label htmlFor="title">{label}</label>
+            <label className='font-semibold' htmlFor="title">{label}</label>
             <div className='flex items-center'>
                 <input
                     type="text"

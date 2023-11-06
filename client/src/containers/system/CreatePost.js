@@ -106,47 +106,20 @@ const CreatePost = () => {
     return (
         <div className='flex flex-col gap-10 bg-white'>
             <div className='flex justify-center'>
-                <div className='gap-5 flex flex-col w-1/2'>
+                <div className='gap-5 flex flex-col w-2/3'>
                     <Card className='  py-10 border-solid  '>
                         <div className='flex justify-center'>
                             <div className='flex w-3/4 flex-col gap-5' >
-                                <Typography variant="h2">Thông tin cơ bản</Typography>
+                                {/* <Typography variant="h2">Thông tin cơ bản</Typography> */}
+                                <h2 className='font-semibold text-xl py-4'>Thông tin cơ bản</h2>
                                 <ButtonGroup variant="text" fullWidth >
                                     <Button className='bg-gray-200'>BÁN </Button>
                                     <Button className='bg-gray-200'>CHO THUÊ</Button>
                                 </ButtonGroup>
-                                <div className="flex flex-col">
-                                    <label className=" font-bold" >Loại bất động sản</label>
-                                    <input type="text" readOnly className="cursor-default outline-none border border-gray-300  rounded-[5px] p-2"></input>
-
-                                </div>
-                                <div className="flex flex-col">
-                                    <label className="font-bold" htmlFor="exactly-address">Địa chỉ chính xác</label>
-                                    <Popover>
-                                        <PopoverHandler>
-                                            <input type="text" id="exactly-address" readOnly className="cursor-default outline-none border border-gray-300  rounded-[5px] p-2"></input>
-                                        </PopoverHandler>
-                                        <PopoverContent>
-                                            Thông tin địa chỉ sẽ được tự động nhập dựa trên thông tin nhập của bạn
-                                        </PopoverContent>
-                                    </Popover>
-
-
-                                </div>
-                                <div className="flex gap-4 ">
+                            
+                                <div className="flex flex-col gap-2">
                                         <Address payload={payload} setPayload={setPayload} />
                                     </div>
-                                {/* <div className="flex gap-10 ">
-                                    <Select label="Tỉnh, Thành Phố"></Select>
-                                    <Select label="Quận, Huyện"></Select>
-                                </div>
-                                <div className="flex gap-10 ">
-                                    <Select label="Phường, Xã"></Select>
-                                    <Select label="Đường, Phố"></Select>
-                                </div> */}
-                                {/* <Select size="lg" label="Dự án">
-                                    <Option>Material Tailwind HTML</Option>
-                                </Select> */}
                                 <div className="flex flex-col gap-2">
                                     <label className="font-bold" >Địa chỉ hiển thị trên tin đăng</label>
                                     <input type="text" placeholder="Bạn có thể bổ sung hẻm, ngỏ, ngách,..." className="outline-none border border-gray-300 rounded-[5px] p-2"></input>
@@ -160,27 +133,11 @@ const CreatePost = () => {
                                 <Overview payload={payload} setPayload={setPayload} />
                                 </div>
                             </div>
-                        {/* <div className='flex justify-center'>
-                            <div className='flex w-3/4 flex-col gap-5' >
-                                <Typography variant="h2">Thông tin bài viết</Typography>
-                                <div className="flex flex-col gap-2">
-                                    <label className="font-bold" >Tiêu đề</label>
-                                    <input type="text" className="outline-none border border-gray-300 rounded-[5px] p-2"></input>
-                                </div>
-                                <div className="flex flex-col gap-2 w-full">
-                                    <label className="font-bold">Mô tả</label>
-                                    <textarea cols="30" rows="10" className="outline-none border border-gray-300 rounded-[5px] p-1">
-
-                                    </textarea>
-                                </div>
-
-                            </div>
-                        </div> */}
                     </Card>
                     <Card className='flex  py-10 border-solid  '>
-                        <div className='flex justify-center'>
+                        <div className='font-semibold flex justify-center'>
                             <div className='flex w-3/4 flex-col gap-5' >
-                                <Typography variant="h2">Hình ảnh và video</Typography>
+                            <h2 className='font-semibold text-xl py-4'>Hình ảnh và video</h2>
                                 <div className='flex flex-col gap-0 cursor-default'>
                                     <Typography variant="small"> Cập nhật hình ảnh rõ ràng sẽ cho thuê nhanh hơn</Typography>
                                     <Typography variant="small"> Đăng tối đa 224 ảnh với tất cả loại tin</Typography>
@@ -192,18 +149,16 @@ const CreatePost = () => {
                                         {isLoading
                                             ? <Loading />
                                             : <div className='flex flex-col items-center justify-center'>
-                                                <CameraIcon className='w-[5%]' />
+                                                <CameraIcon className='w-[10%]' />
                                                 <h2 className="text-gray-700 font-bold">Bấm hoặc chọn ảnh cần tải </h2>
                                                 <p className="text-gray-700 italic text-xs">hoặc kéo thả ảnh vào đây </p>
                                         </div>}
-                                        {/* <CameraIcon className='w-[5%]' />
-                                        <h2 className="text-gray-700 font-bold">Bấm hoặc chọn ảnh cần tải </h2>
-                                        <p className="text-gray-700 italic text-xs">hoặc kéo thả ảnh vào đây </p> */}
-
                                     </label>
-                                    <input onChange={handleFiles} hidden type="file" id='file' multiple />
+                                </div>
+                                <div>
+                                <input onChange={handleFiles} hidden type="file" id='file' multiple />
                                         <div className='w-full'>
-                                            <h3 className='font-medium py-4'>Ảnh đã chọn</h3>
+                                            <h3 className='font-semibold py-4'>Ảnh đã chọn</h3>
                                         <div className='flex gap-4 items-center'>
                                             {imagesPreview?.map(item => {
                                                 return (
