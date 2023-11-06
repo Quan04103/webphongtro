@@ -117,6 +117,8 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
         const labelCode = generateCode(body.label)
         const hashtag = `#${Math.floor(Math.random() * Math.pow(10,6))}`
         const currentDate = new Date();
+        const currentMonth = new Date();
+        const currentYear = new Date();
         await db.Post.create({
             id: generateId(),
                 title: body. title,
@@ -152,7 +154,7 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
             area: body.label,
             type: body?.category,
             bonus: 'Tin thường',
-            created: currentDate,
+            created: currentDate.getDate() + ' - ' + (currentMonth.getMonth() + 1) + ' - ' + currentYear.getFullYear(),
             expired: currentDate.setDate(currentDate.getDate() + 10),
         })
         await db.Province.findOrCreate({

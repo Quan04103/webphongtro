@@ -22,7 +22,7 @@ import {
 import {CameraIcon} from "@heroicons/react/24/outline"
 
 const {ImBin } = icons
-    const CreatePost = () => {
+const CreatePost = () => {
     const [payload, setPayload] = useState({
         categoryCode: '',
         title: '',
@@ -78,6 +78,7 @@ const {ImBin } = icons
             label: `${categories?.find(item => item.code === payload?.categoryCode)?.value} ${payload?.address?.split(',')[0]}`
         }
         const response = await apiCreatePost(finalPayload)
+        console.log(finalPayload)
         if(response?.data.err ===0){
             Swal.fire('Thành công', 'Đã thêm bài đăng mới', 'success').then(() => {
                 setPayload({
