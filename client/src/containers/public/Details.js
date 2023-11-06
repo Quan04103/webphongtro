@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPostsLimit } from '../../store/actions'
 import { Item } from '../../components'
-import { Imgs } from '../../components'
+import { Anh } from '../../components'
 import {
     StarIcon
 } from "@heroicons/react/24/solid";
@@ -31,8 +31,8 @@ const Details = () => {
                 </p>
             </div>
             <div>
-                {posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)}
-                <imgs />
+
+                <Anh images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)} />
             </div>
 
             {/* <div>
