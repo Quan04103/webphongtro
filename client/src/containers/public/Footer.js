@@ -3,7 +3,7 @@
 import React from 'react'
 const Footer = () => {
     return (
-        <footer class="rounded-lg bg-neutral-600 text-center text-neutral-600 dark:bg-gray-600 dark:text-neutral-200 lg:text-left">
+        <footer class="rounded-lg bg-[#034DA1] text-center text-neutral-600 dark:bg-gray-600 dark:text-neutral-200 lg:text-left text-white">
             <div class="px-6 border-b-2 border-neutral-400">
                 <ul class="ml-9  flex flex-row justify-items-center" data-te-navbar-nav-ref>
                     <li class="static basis-1/5" data-te-nav-item-ref data-te-dropdown-ref >
@@ -105,7 +105,7 @@ const Footer = () => {
                     <div class="">
                         <h6
                             class="mb-4 flex justify-center font-semibold uppercase md:justify-start">
-                            Về Stayhome
+                            Về BoysHouse
                         </h6>
                         <p class="mb-4">
                             <a href="#!" class="text-neutral-600 dark:text-neutral-200"
@@ -258,7 +258,7 @@ const Footer = () => {
                                 <path d="M14 9.75a3.016 3.016 0 00-4.163.173 2.993 2.993 0 000 4.154A3.016 3.016 0 0014 14.25" />
                             </svg>
                         </span>
-                        <span>STAYHOME.COM.VN</span>
+                        <span>BOYSHOUSE.COM.VN</span>
                     </li>
                     <li class="static basis-1/8" data-te-nav-item-ref data-te-dropdown-ref>
                         <a class="flex items-center whitespace-nowrap py-2 pr-2  transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:px-2"

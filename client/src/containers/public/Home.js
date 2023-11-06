@@ -4,7 +4,7 @@ import Pagination from "./Pagination";
 import { useSearchParams } from "react-router-dom";
 
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/intro.jpg";
+import imageIntro from "../../assets/intro1.jpg";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
@@ -72,12 +72,12 @@ const Home = () => {
         <div style={styles.container}  className="z-50 absolute">
           <div
             className={
-              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
             }
           >
             <div
               className={
-                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
               }
             >
               <ComplexNavbar />
@@ -131,7 +131,7 @@ const styles = {
   },
   search:{
     position: "absolute",
-    top: "400px",
+    top: "250px",
     right: "400px",
     left: "400px",
     
