@@ -39,7 +39,7 @@ export const loginService = ({ phone, password }) => new Promise(async (resolve,
         const token = isCorrectPassword && jwt.sign({ id: response.id, phone: response.phone }, process.env.SECRET_KEY, { expiresIn: '2d' })
         resolve({
             err: token ? 0 : 2,
-            msg: token ? 'Login is successfully !' : response ? 'Password is wrong !' : 'Phone number not found !',
+            msg: token ? 'Login is successfully !' : response ? 'Sai mật khẩu rồi !!!' : 'Số điện thoại không tồn tại !',
             token: token || null
         })
 

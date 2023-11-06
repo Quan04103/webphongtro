@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { getPostsLimit } from '../../store/actions'
 import { Item } from '../../components'
-import { Anh } from '../../components'
+
 import {
     StarIcon
 } from "@heroicons/react/24/solid";
@@ -32,10 +32,10 @@ const Details = () => {
             </div>
             <div>
 
-                <Anh images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)} />
+                {/* <Anh images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)} /> */}
             </div>
 
-            {/* <div>
+            <div>
                 <img class='absolute bg-blue-gray-400  left-[45px] top-[100px] inline-block rounded-l-lg w-[720px] h-[504px] object-cover'
                     images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)}
 
@@ -53,7 +53,7 @@ const Details = () => {
             />
             <img class="absolute bg-black top-[360px] left-[1120px] rounded-t-none rounded-br-mini rounded-bl-none w-[315px] h-[244px] object-cover"
                 src="/image-.png"
-            /> */}
+            />
 
             <div class="absolute top-[515px] left-[1174px] " >
                 <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black" >

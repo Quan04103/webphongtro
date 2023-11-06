@@ -7,6 +7,7 @@ const initState = {
 }
 
 const postReducer = (state = initState, action) => {
+   
     switch (action.type) {
         case actionTypes.GET_POSTS:
             return {
@@ -17,10 +18,10 @@ const postReducer = (state = initState, action) => {
             }
         case actionTypes.GET_POSTS_LIMIT:
             return {
-                ...state,
-                posts: action.posts || [],
-                msg: action.msg || '',
-                count: action.count || 0
+                        ...state,
+                        posts: action.posts || [],
+                        msg: action.msg || '',
+                        count: action.count || 0
             }
         case actionTypes.GET_NEW_POST:
             return {

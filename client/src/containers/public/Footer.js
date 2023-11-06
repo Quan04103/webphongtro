@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-
 const Footer = () => {
     return (
         <footer class="rounded-lg bg-neutral-600 text-center text-neutral-600 dark:bg-gray-600 dark:text-neutral-200 lg:text-left">
@@ -128,10 +127,26 @@ const Footer = () => {
                             <a href="#!" class="text-neutral-600 dark:text-neutral-200"
                             >Chính sách bảo mật</a>
                         </p>
-                        <p>
-                            <a href="#!" class="text-neutral-600 dark:text-neutral-200"
-                            >Liên hệ</a>
-                        </p>
+                        {/* <p>
+                            <NavLink
+                                className={` text-black hover:text-white hover:bg-sky-400 text-sm flex items-center
+                            gap-x-4 cursor-pointer p-4 hover:bg-light-white 
+                            rounded-md  ${item.spacing ? "mt-9" : "mt-2"} `}
+                                key=
+                                to={path.LIENHE}
+                            >
+                                <span className="text-2xl  block float-left">
+                                    {item.icon ? item.icon : <RiDashboardFill />}
+                                </span>
+                                <span
+                                    className={`text-base font-medium flex-1
+        duration-200 ${!open && "hidden"
+                                        }`}
+                                >
+                                    {item.text}
+                                </span>
+                            </NavLink>
+                        </p> */}
                     </div>
                     <div class="">
                         <h6
