@@ -101,6 +101,11 @@ const {ImBin } = icons
     // const goPaypost = useCallback((flag) => {
     //     navigate(path.PAY_POST, { state: { flag } })
     // }, [])
+
+    console.log(payload);
+    useEffect(() => {
+    console.log(payload)
+    },[payload])
     
     
 

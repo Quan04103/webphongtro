@@ -94,11 +94,11 @@ const Home = () => {
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
         <div style={styles.room}>
-          <List />  {/* tang body*/}
-            <div>
+          <List />  {/* tang body*/}           
+          </div>
+          <div>
               <Footer />
             </div>
-          </div>
         </div>
         
       </Context.Provider>
