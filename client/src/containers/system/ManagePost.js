@@ -42,30 +42,59 @@ const ManagePost = () => {
                                         <th scope="col" className="px-6 py-4">Ngày bắt đầu</th>
                                         <th scope="col" className="px-6 py-4">Ngày hết hạng</th>
                                         <th scope="col" className="px-6 py-4">Trạng thái</th>
+                                        <th scope="col" className="px-6 py-4">Tùy chọn</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr className="border-b dark:border-neutral-500">
                                         <td className="whitespace-nowrap  px-6 py-4 font-medium">1</td>
                                         <td className="whitespace-nowrap  px-6 py-4">
-                                            <img class="h-40 w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
+                                            <img class="h-auto w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
                                         </td>
                                         <td className="whitespace-nowrap  px-6 py-4">Cho thuê nhà </td>
                                         <td className="whitespace-nowrap  px-6 py-4">3.000.000đ/thang</td>
                                         <td className="whitespace-nowrap  px-6 py-4">18-10-2023</td>
                                         <td className="whitespace-nowrap  px-6 py-4">18-11-2023</td>
                                         <td className="whitespace-nowrap  px-6 py-4">còn thời hạn</td>
+                                        <td className="whitespace-nowrap  px-6 py-4">
+                                            <div class="h-full flex justify-center items-center">
+
+                                                <Button className='m-1'>
+                                                    Sửa
+                                                </Button>
+                                                <Button>
+                                                    Xóa
+                                                </Button>
+
+
+
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr className="border-b dark:border-neutral-500">
                                         <td className="whitespace-nowrap  px-6 py-4 font-medium">2</td>
                                         <td className="whitespace-nowrap  px-6 py-4">
-                                            <img class="h-40 w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
+                                            <img class="h-auto w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
                                         </td>
                                         <td className="whitespace-nowrap  px-6 py-4">Cho thuê nhà </td>
                                         <td className="whitespace-nowrap  px-6 py-4">3.000.000đ/thang</td>
                                         <td className="whitespace-nowrap  px-6 py-4">18-10-2023</td>
                                         <td className="whitespace-nowrap  px-6 py-4">18-11-2023</td>
                                         <td className="whitespace-nowrap  px-6 py-4">còn thời hạn</td>
+                                        <td className="whitespace-nowrap  px-6 py-4">
+                                            <div class="h-full flex justify-center items-center">
+
+                                                <Button className='m-1'>
+                                                    Sửa
+                                                </Button>
+                                                <Button>
+                                                    Xóa
+                                                </Button>
+
+
+
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -74,7 +103,7 @@ const ManagePost = () => {
                 </div>
             </div>
 
-        </div>
+        </div >
     )
 }
 

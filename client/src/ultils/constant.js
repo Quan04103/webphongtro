@@ -18,6 +18,7 @@ export const path = {
     PAY_POST: 'paypost',
     DETAILS: '/details',
     DEPOSITHISTORY: 'lich-su-thanh-toan',
+    DEPOSIT: 'nap-tien',
 
 }
 
