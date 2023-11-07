@@ -1,11 +1,5 @@
-import { LoginButton } from "./Header";
-import List from "./List";
-import Pagination from "./Pagination";
-import { useSearchParams } from "react-router-dom";
-import { Outlet } from 'react-router-dom';
-
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/Intro.png";
+import imageIntro from "../../assets/intro2.jpg";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
@@ -17,6 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 import Header from "./Header";
 import Fillter from "./Fillter";
+import { getPosts} from '../../store/actions/post'
+import {List} from './index'
+import { useSearchParams } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+
+import { LoginButton } from "./Header";
+import Pagination from "./Pagination";
 
 export const ContextRegiter = createContext();
 export const Context = createContext();
@@ -41,6 +42,7 @@ const Home = () => {
       dispatch(actions.getCategories())
 
   }, [actions.getCategories])
+
 
   return (
     // <<<<<<< HEAD
@@ -70,39 +72,38 @@ const Home = () => {
       value={[isRegisterPopupOpen, setIsRegisterPopupOpen]}
     >
       <Context.Provider value={[isLoginPopupOpen, setIsLoginPopupOpen]}>
-        <div style={styles.container}>
+        <div style={styles.container}  className="z-50 absolute">
           <div
             className={
-              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
             }
           >
             <div
               className={
-                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
               }
             >
               <ComplexNavbar />
               {/* >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1 */}
             </div>
           </div>
-          <><Fillter /></>
+          
+
           <div style={styles.body}>
-            {/* <div style={styles.intro}>
-              <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
-            </div> */}
-            {/* <div className='w-4/5 lg:w-3/5 flex flex-col items-start justify-start mt-3'>
-                <Outlet />
-            </div> */}
-            <div class="p-4 border-2 border-gray-200 rounded-lg shadow-xl shadow-blue-gray-400 dark:border-gray-700 mt-14">
-                    <Outlet />
-                </div>
-            <List page={params.get("page")} />
-            <Pagination page={params.get("page")} />
-            <Qc />
-            <div>
+            </div>
+        <div style={styles.intro}>
+          <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
+        </div>
+        <div style={styles.search1}>
+            <Fillter/>
+
+          </div>
+        <div style={styles.room}>
+          <List />  {/* tang body*/}           
+          </div>
+          <div>
               <Footer />
             </div>
-          </div>
         </div>
         
       </Context.Provider>
@@ -111,9 +112,9 @@ const Home = () => {
   );
 };
 
-// Định nghĩa đối tượng chứa các thuộc tính CSS
 const styles = {
   container: {
+    position: "absolute",
     flexDirection: "column",
     height: "100vh",
   },
@@ -131,10 +132,18 @@ const styles = {
   intro: {
     flex: "10%",
   },
+  search1:{
+    position: "absolute",
+    top: "250px",
+    right: "400px",
+    left: "400px",
+    
+  },
   imageIntro: {
+    position: "relative",
     width: "100%",
-    height: "100%",
-    objectFit: "cover",
+    height: "670px",
+    
   },
   room: {
     flex: "40%",

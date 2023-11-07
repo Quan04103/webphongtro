@@ -50,7 +50,7 @@ const Qc = () => {
                 <p class="mt-7 py-4">Anh Quốc (chủ hệ thống phòng trọ tại Tp.HCM)</p>
                 <h4 class="font-semibold uppercase mt-7 py-3">Bạn đang có phòng trọ / căn hộ cho thuê?</h4>
                 <p>Không phải lo tìm người cho thuê, phòng trống kéo dài</p>
-                <button class="mt-5 mb-6 bg-gray-300 hover:text-gray-200 text-white font-bold py-2 px-4 rounded inline-flex items-center">
+                <button class="mt-5 mb-6 bg-[#034DA1] hover:text-gray-200 text-white font-bold py-2 px-4 rounded inline-flex items-center">
                     Đăng tin ngay
                 </button>
             </div>

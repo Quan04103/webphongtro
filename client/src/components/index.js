@@ -10,4 +10,4 @@ export { default as Loading } from './Loading'
 export {default as ItemRoom} from './ItemRoom'
 export {default as PageNumber} from './PageNumber'
 export {default as Modal} from './Modal'
-
+export { default as Item } from './item'

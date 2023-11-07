@@ -162,7 +162,8 @@ const CreatePost = () => {
                                         <div className='flex gap-4 items-center'>
                                             {imagesPreview?.map(item => {
                                                 return (
-                                                    <div key={item} className='relative w-1/3 h-1/3 '>
+                                                    <div 
+                                                    key={item} className='relative w-1/3 h-1/3 '>
                                                         <img src={item} alt="preview" className='w-full h-full object-cover rounded-md' />
                                                         <span
                                                         title='Xóa'
