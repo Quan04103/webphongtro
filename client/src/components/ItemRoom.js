@@ -15,18 +15,22 @@ const ItemRoom = ( {attributes,images,star,title,user,address} ) => {
         //       <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
         //       <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
         // </div>
-        
-        <div className='w-700px h-500px bg-[#c24040] p-30px'>
+  
+        <div className='w-[500px] h-[400px] bg-[#c24040] p-30px flex justify-end rounded-xl'>
           <div>
-              <img className='w-400px h-300px' src={imageeroom} alt={`Room `} />
-
-          </div>
-          <div >
-            <div className='w-140px h-100px bg-black text-white'>
+              <img style={styles.imageroom} className='w-400px h-300px absolate top-0' src={imageeroom} alt={`Room `} />
+              <div className='w-[140px] h-[100px] bg-[#ffffff] text-white ' style={styles.priceContent}>
+            <div className=''>
             {`Giá: ${attributes?.price}`}
 
             </div>
+            <div className='text-[#FFD700]'>
+            {`★ ${star}`} 
+
+            </div>
           </div>
+          </div>
+          
 
         </div>
 
@@ -42,8 +46,12 @@ const styles = {
     },
     imageFrame: {
     },
+    priceContent:{
+      position :"absolute"
+    },
     imageroom: {
-      width: '400px',
+      position: "relative",
+      width: '500px',
       height: '300px',
       objectFit: 'cover',
       marginBottom: '20px',
