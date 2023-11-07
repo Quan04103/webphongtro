@@ -20,7 +20,6 @@ const Item = ({ images, user, title, star, description, attributes, address, id 
     <div style={styles.imageContainer}>
       <a href={`${path.DETATLS}${formatVietnameseToString(title)}/${id}`}>
         <div style={styles.imageFrame}>
-
           <img style={styles.imageroom} src={imageroom} alt={`Room `} />
         </div>
         <h4 style={styles.h4}>{title}</h4>
