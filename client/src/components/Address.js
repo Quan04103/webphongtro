@@ -100,22 +100,21 @@ const Address = ({payload, setPayload }) => {
 
     }, [province, district])
     return (
-        
-        <div>
-            <div className='flex flex-col gap-4'>
-                <div className='flex items-center gap-4'>
-                    <Select type='province' value={province} setValue={setProvince} options={provinces} label="Tỉnh,Thành Phố"/>
-                    <Select reset={reset} type='district' value={district} setValue={setDistrict} options={districts} label="Quận,Huyện"/>
+                <div>
+                    <h2 className='font-semibold text-xl py-4'>Địa chỉ cho thuê</h2>
+                    <div className='flex flex-col gap-4'>
+                        <div className='flex items-center gap-4'>
+                            <Select type='province' value={province} setValue={setProvince} options={provinces} label='Tỉnh/Thành phố' />
+                            <Select reset={reset} type='district' value={district} setValue={setDistrict} options={districts} label='Quận/Huyện' />
+                        </div>
+                        
+                        <InputReadOnly
+                            label='Địa chỉ chính xác'
+                            value={`${district ? `${districts?.find(item => item.district_id === district)?.district_name},` : ''} ${province ? provinces?.find(item => item.province_id === province)?.province_name : ''}`}
+                        />       
+                    </div>
                 </div>
-                <div className="flex flex-col">
-                    <InputReadOnly
-                        label='Địa chỉ chính xác'
-                        value={`${district ? `${districts?.find(item => item.district_id === district)?.district_name},` : ''} ${province ? provinces?.find(item => item.province_id === province)?.province_name : ''}`}
-                    />     
-                </div>
-            </div>
-        </div>
-    )
+            )
 }
 
 export default memo(Address)
