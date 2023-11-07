@@ -6,7 +6,6 @@ export const path = {
     CHO_THUE_MAT_BANG: 'cho-thue-mat-bang',
     NHA_CHO_THUE: 'nha-cho-thue',
     CHO_THUE_PHONG_TRO: 'cho-thue-phong-tro',
-    DETAL_POST__TITLE__POSTID: 'chi-tiet/:title/:postId',
     SEARCH: 'tim-kiem',
     SYSTEM: '/he-thong/*',
     CREATE_POST: 'tao-moi-bai-dang',
@@ -16,8 +15,9 @@ export const path = {
     EDIT_ACCOUNT: 'sua-thong-tin-ca-nhan',
     LIENHE: 'lienhe',
     PAY_POST: 'paypost',
-    DETAILS: 'details',
     DEPOSITHISTORY: 'lich-su-thanh-toan',
+    DETAILS_POST_TITLE_POSTID: '/details/:title/:postId',
+    DETATLS: '/details/'
 
 }
 

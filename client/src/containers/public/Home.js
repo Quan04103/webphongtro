@@ -1,8 +1,3 @@
-import { LoginButton } from "./Header";
-import List from "./List";
-import Pagination from "./Pagination";
-import { useSearchParams } from "react-router-dom";
-
 import { apiGetProvinces } from "../../services";
 import imageIntro from "../../assets/intro2.jpg";
 import imageroom from "../../assets/room.png";
@@ -16,6 +11,13 @@ import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 import Header from "./Header";
 import Fillter from "./Fillter";
+import { getPosts} from '../../store/actions/post'
+import {List} from './index'
+import { useSearchParams } from "react-router-dom";
+import { Outlet } from 'react-router-dom';
+
+import { LoginButton } from "./Header";
+import Pagination from "./Pagination";
 
 export const ContextRegiter = createContext();
 export const Context = createContext();
@@ -40,6 +42,7 @@ const Home = () => {
       dispatch(actions.getCategories())
 
   }, [actions.getCategories])
+
 
   return (
     // <<<<<<< HEAD
@@ -85,21 +88,22 @@ const Home = () => {
             </div>
           </div>
           
-          {/* <><Fillter /></> */}
+
           <div style={styles.body}>
-            <div style={styles.intro} className="">
-              <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
             </div>
-            <div style={styles.search} >
-          <><Fillter /></>
-            </div>
-            <List page={params.get("page")} />
-            <Pagination page={params.get("page")} />
-            <Qc />
-            <div>
+        <div style={styles.intro}>
+          <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
+        </div>
+        <div style={styles.search1}>
+            <Fillter/>
+
+          </div>
+        <div style={styles.room}>
+          <List />  {/* tang body*/}           
+          </div>
+          <div>
               <Footer />
             </div>
-          </div>
         </div>
         
       </Context.Provider>
@@ -108,7 +112,6 @@ const Home = () => {
   );
 };
 
-// Định nghĩa đối tượng chứa các thuộc tính CSS
 const styles = {
   container: {
     position: "absolute",
@@ -129,7 +132,7 @@ const styles = {
   intro: {
     flex: "10%",
   },
-  search:{
+  search1:{
     position: "absolute",
     top: "250px",
     right: "400px",
@@ -140,7 +143,7 @@ const styles = {
     position: "relative",
     width: "100%",
     height: "670px",
-    objectFit: "cover",
+    
   },
   room: {
     flex: "40%",

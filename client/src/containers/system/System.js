@@ -5,6 +5,7 @@ import Header, { Navbar1, ProfileMenu } from './Header'
 import * as actions from "../../store/actions";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { apiCreatePost } from '../../services';
 
 const System = () => {
     const dispatch = useDispatch()
