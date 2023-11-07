@@ -204,9 +204,10 @@ function NavList() {
             key={key}
             as="a"
             href="#"
-            variant="small"
+            variant=""
             color="blue-gray"
-            className="font-normal"
+            
+            className="font-sans "
           >
             <MenuItem className="flex items-center gap-2 lg:rounded-full">
               {label}
@@ -306,9 +307,9 @@ export function ComplexNavbar() {
   return (
     <Navbar className="mx-auto max-w-screen-3xl p-2 lg:pl-6">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
-        <img className="mr-4 ml-2 cursor-pointer py-1.5 h-20 w-20" src={logo} />
-        <div className="absolute top-2/4 left-1/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
-          <NavList />
+        <img className="cursor-pointer h-24 w-24" src={logo} />
+        <div className="absolute top-2/4 left-1/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block pl-10">
+          <NavList/>
         </div>
         <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
           <IconList />

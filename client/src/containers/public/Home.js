@@ -1,5 +1,5 @@
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/Intro.png";
+import imageIntro from "../../assets/intro2.jpg";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
@@ -72,27 +72,32 @@ const Home = () => {
       value={[isRegisterPopupOpen, setIsRegisterPopupOpen]}
     >
       <Context.Provider value={[isLoginPopupOpen, setIsLoginPopupOpen]}>
-        <div style={styles.container}>
+        <div style={styles.container}  className="z-50 absolute">
           <div
             className={
-              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
             }
           >
             <div
               className={
-                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
+                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
               }
             >
               <ComplexNavbar />
               {/* >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1 */}
             </div>
           </div>
-          <><Fillter /></>
+          
+
           <div style={styles.body}>
             </div>
         <div style={styles.intro}>
           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
         </div>
+        <div style={styles.search1}>
+            <Fillter/>
+
+          </div>
         <div style={styles.room}>
           <List />  {/* tang body*/}           
           </div>
@@ -109,6 +114,7 @@ const Home = () => {
 
 const styles = {
   container: {
+    position: "absolute",
     flexDirection: "column",
     height: "100vh",
   },
@@ -126,10 +132,18 @@ const styles = {
   intro: {
     flex: "10%",
   },
+  search1:{
+    position: "absolute",
+    top: "250px",
+    right: "400px",
+    left: "400px",
+    
+  },
   imageIntro: {
+    position: "relative",
     width: "100%",
-    height: "100%",
-    objectFit: "cover",
+    height: "670px",
+    
   },
   room: {
     flex: "40%",
