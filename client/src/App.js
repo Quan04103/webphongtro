@@ -42,10 +42,10 @@ function App() {
         <Route path={path.HOME} element={<Home />} >
           <Route path={path.LOGIN} element={<Login />} />
           <Route path={path.PROFILE} element={<Profile />} />
-        </Route>
+          </Route>
+        
         <Route path={path.DETAILS_POST_TITLE_POSTID} element={<Details />} />
         <Route path={path.DETAILS_ALL} element={<Details />} />
-
 
 
         <Route path={path.SYSTEM} element={<System />} >
