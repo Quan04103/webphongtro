@@ -43,7 +43,7 @@ const List = ({ categoryCode }) => {
                          address={item?.address}
                          attributes={item?.attributes}
                          description={item?.description}
-                         // images={JSON.parse(item?.images?.image)}
+                         images={JSON.parse(item?.images?.image)}
                          star={+item?.star}
                          title={item?.title}
                          user={item?.user}
