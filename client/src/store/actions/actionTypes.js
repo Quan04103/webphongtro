@@ -24,6 +24,7 @@ const actionTypes = {
     LOGIN_ADMIN_FAIL: 'LOGIN_ADMIN_FAIL',
     LOGOUT_ADMIN: 'LOGOUT_ADMIN',
     GET_ONEPOST: 'GET_ONEPOST',
+    UPDATE_POST:'UPDATE_POST',
 }
 
 export default actionTypes

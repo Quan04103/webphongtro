@@ -25,6 +25,7 @@ export default function Products() {
 
 		const response = await apiDeletePost(id);
 		if(response?.data.err ===0){
+			dispatch(getPosts())
             Swal.fire('Thành công', 'Đã Xoá thành công', 'success').then(() => {
             })
 			

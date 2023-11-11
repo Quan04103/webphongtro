@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Select } from "../components";
 import { path } from "../ultils/constant";
 import { Overview, Address, Loading } from "../components";
-import { apiUploadImages } from "../services";
+import { apiUpdatePost, apiUploadImages } from "../services";
 import icons from "../ultils/icons";
 import { getCodes, getCodesArea } from "../ultils/Common/getCodes";
 import { useSelector } from "react-redux";
@@ -25,9 +25,23 @@ import {
 } from "@material-tailwind/react";
 import * as actions from '../store/actions'
 import { CameraIcon } from "@heroicons/react/24/outline";
+import { getOnePost, updateOnePost } from "../store/actions";
 const { ImBin } = icons;
 
 export default function EditPost() {
+    const [payload, setPayload] = useState({
+        categoryCode: "",
+        title: "",
+        priceNumber: 0,
+        areaNumber: 0,
+        images: "",
+        address: "",
+        priceCode: "",
+        areaCode: "",
+        description: "",
+        province: "",
+      });
+
     const dispatch = useDispatch()
   const { posts } = useSelector((state) => state.post);
   /// Lấy id post
@@ -42,26 +56,35 @@ export default function EditPost() {
   /////
 
   useEffect(() => {
-    dispatch(actions.getOnePost(idpost))
-    console.log(posts)
-  }, []);
+    // Kiểm tra xem dữ liệu đã được gán chưa
+    if (posts && posts.address) {
+      console.log("Địa chỉ của bài viết:", posts.address);
+    }
+  }, [posts]);
+
+useEffect(() => { 
+    dispatch(getOnePost(idpost))
+ },[idpost])
+
+ useEffect(() => { 
+
+ },[posts])
 
   let FirstPayload = {
-    address: "",
+    ...payload,
+    title: posts.title,
+    priceNumber: posts.priceNumber,
+    areaNumber: posts.areaNumber,
+    address: posts.address,
+    description: posts.description,
+    
   };
 
-  const [payload, setPayload] = useState({
-    categoryCode: "",
-    title: "",
-    priceNumber: 0,
-    areaNumber: 0,
-    images: "",
-    address: "",
-    priceCode: "",
-    areaCode: "",
-    description: "",
-    province: "",
-  });
+useEffect(() => { 
+    setPayload(FirstPayload)
+ },[posts])
+ console.log(payload)
+
   const [imagesPreview, setImagesPreview] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const { prices, areas, categories, province } = useSelector(
@@ -98,30 +121,31 @@ export default function EditPost() {
     // }))
   };
   const handleSubmit = async () => {
-    let priceCodeArr = getCodes(
-      +payload.priceNumber / Math.pow(10, 6),
-      prices,
-      1,
-      15
-    );
-    let priceCode = priceCodeArr[priceCodeArr.length - 1]?.code;
-    let areaCodeArr = getCodesArea(+payload.areaNumber, areas, 0, 90);
-    let areaCode = areaCodeArr[0]?.code;
-    let finalPayload = {
-      ...payload,
-      priceCode,
-      areaCode,
-      userId: currentData.id,
-      priceNumber: +payload.priceNumber / Math.pow(10, 6),
-      areaNumber: +payload.areaNumber,
-      label: `${
-        categories?.find((item) => item.code === payload?.categoryCode)?.value
-      } ${payload?.address?.split(",")[0]}`,
-    };
-    const response = await apiCreatePost(finalPayload);
-    console.log(finalPayload);
+    setPayload(FirstPayload)
+    // let priceCodeArr = getCodes(
+    //   +payload.priceNumber / Math.pow(10, 6),
+    //   prices,
+    //   1,
+    //   15
+    // );
+    // let priceCode = priceCodeArr[priceCodeArr.length - 1]?.code;
+    // let areaCodeArr = getCodesArea(+payload.areaNumber, areas, 0, 90);
+    // let areaCode = areaCodeArr[0]?.code;
+    // let finalPayload = {
+    //   ...payload,
+    //   priceCode,
+    //   areaCode,
+    //   userId: currentData.id,
+    //   priceNumber: +payload.priceNumber / Math.pow(10, 6),
+    //   areaNumber: +payload.areaNumber,
+    //   label: `${
+    //     categories?.find((item) => item.code === payload?.categoryCode)?.value
+    //   } ${payload?.address?.split(",")[0]}`,
+    // };
+    const response = await apiUpdatePost(idpost,payload);
+    console.log(payload);
     if (response?.data.err === 0) {
-      Swal.fire("Thành công", "Đã thêm bài đăng mới", "success").then(() => {
+      Swal.fire("Thành công", "Đã sửa bài đăng mới", "success").then(() => {
         setPayload({
           categoryCode: "",
           title: "",
@@ -148,32 +172,7 @@ export default function EditPost() {
     <div className="flex flex-col gap-10 bg-white">
       <div className="flex justify-center">
         <div className="gap-5 flex flex-col w-2/3">
-          <Card className="  py-10 border-solid  ">
-            <div className="flex justify-center">
-              <div className="flex w-3/4 flex-col gap-5">
-                {/* <Typography variant="h2">Thông tin cơ bản</Typography> */}
-                <h2 className="font-semibold text-xl py-4">Thông tin cơ bản</h2>
-                <ButtonGroup variant="text" fullWidth>
-                  <Button className="bg-gray-200">BÁN </Button>
-                  <Button className="bg-gray-200">CHO THUÊ</Button>
-                </ButtonGroup>
-
-                <div className="flex flex-col gap-2">
-                  <Address payload={payload} setPayload={setPayload} />
-                </div>
-                <div className="flex flex-col gap-2">
-                  <label className="font-bold">
-                    Địa chỉ hiển thị trên tin đăng
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Bạn có thể bổ sung hẻm, ngỏ, ngách,..."
-                    className="outline-none border border-gray-500 rounded-[5px] p-2"
-                  ></input>
-                </div>
-              </div>
-            </div>
-          </Card>
+          
           <Card className="flex  py-10 border-solid  ">
             <div className="flex justify-center">
               <div className="flex w-3/4 flex-col gap-5">

@@ -220,12 +220,33 @@ export const getOnePostService = (id) => new Promise(async (resolve, reject) => 
                 { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
                 { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
             ],
-            attributes: ['id', 'title', 'star', 'address', 'description']
+            attributes: ['id', 'title', 'star', 'address', 'description', 'priceNumber', 'areaNumber'],
+            logging: console.log,
         })
         resolve({
             err: response ? 0 : 1,
+            logging: console.log,
             msg: response ? 'OK' : 'Failed to get post.',
             response
+            
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
+export const updatePosts = (id, {title,priceNumber,areaNumber,address,description}) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.update({title,priceNumber,areaNumber,address,description},{
+            where: { id },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to get post.',
+            response
+            
         })
     } catch (error) {
         reject(error)

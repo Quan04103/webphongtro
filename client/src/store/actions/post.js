@@ -122,3 +122,28 @@ export const getOnePost = (id) => async (dispatch) => {
         })
     }
 }
+
+export const updateOnePost = (id,payload) => async (dispatch) => {
+    try {
+        const response = await apiGetOnePost(id, payload)
+        console.log(response)
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.UPDATE_POST,
+                posts: response.data.response
+            })
+        } else {
+            dispatch({
+                type: actionTypes.UPDATE_POST,
+                msg: response.data.msg
+            })
+        }
+        
+
+    } catch (error) {
+        dispatch({
+            type: actionTypes.UPDATE_POST,
+            posts: null
+        })
+    }
+}
