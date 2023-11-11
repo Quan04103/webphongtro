@@ -50,13 +50,13 @@ const Details = () => {
 
                 {/* <Anh images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)} /> */}
                 <div>
-                <img class='absolute bg-blue-gray-400  left-[45px] top-[100px] inline-block rounded-l-lg w-[720px] h-[504px] object-cover'
+                <img class='absolute bg-blue-gray-400  left-[165px] top-[100px] inline-block rounded-l-lg w-[1380px] h-[510px] object-cover'
                     images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)}
 
                     src="{item}" alt=''
                 />
             </div>
-            <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
+            {/* <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
                 src=""
             />
             <img class="absolute bg-blue-50 top-[360px] left-[790px] w-80 h-[244px] object-cover"
@@ -67,12 +67,12 @@ const Details = () => {
             />
             <img class="absolute bg-black top-[360px] left-[1120px] rounded-t-none rounded-br-mini rounded-bl-none w-[315px] h-[244px] object-cover"
                 src="/image-.png"
-            />
+            /> */}
             </div>
             
 
             <div class="absolute top-[515px] left-[1174px] " >
-                <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black" >
+                <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold" >
                     <div>Xem thêm</div>
                 </button>
             </div>
@@ -208,16 +208,19 @@ const Details = () => {
                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
                         <span class="relative inline-flex rounded-full h-4 w-4 bg-red-600"></span>
                     </span>
-                    <div className="absolute top-[3px] left-[95.48px] w-[106.9px] h-8">
-                        <b className="absolute top-[8px] left-[39.44px] inline-block w-[67.46px] text-black">
-                            Nhắn Zalo
-                        </b>
-                        <img
-                            className=" top-[0px] left-[0px] rounded-3xs w-[35px] h-8 object-cover"
-                            alt=""
-                            src={iconZalo}
-                        />
+                    <div className=' cursor-pointer'>
+                        <button className="absolute top-[3px] left-[95.48px] w-[106.9px] h-8 ">
+                            <b className="absolute top-[8px] left-[39.44px] inline-block w-[67.46px] text-black">
+                                Nhắn Zalo
+                            </b>
+                            <img
+                                className=" top-[0px] left-[0px] rounded-3xs w-[35px] h-8 object-cover"
+                                alt=""
+                                src={iconZalo}
+                            />
+                        </button>
                     </div>
+                    
                 </div>
             </div>   
 
@@ -327,4 +330,14 @@ const Details = () => {
 
     )
 }
+
+
+const styles = {
+    container: {
+      position: "absolute",
+      flexDirection: "column",
+      height: "100vh",
+    },
+}
+
 export default Details
