@@ -206,7 +206,6 @@ function NavList() {
             href="#"
             variant=""
             color="blue-gray"
-            
             className="font-sans "
           >
             <MenuItem className="flex items-center gap-2 lg:rounded-full">
@@ -301,7 +300,7 @@ export function ComplexNavbar() {
   useEffect(() => {
     msg && Swal.fire('Oops !', msg, 'error')
   }, [msg, update])
-
+  console.log(isLoggedIn)
    console.log(currentData)
 
   return (

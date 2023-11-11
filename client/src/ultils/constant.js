@@ -1,7 +1,6 @@
 export const path = {
     HOME: '/*',
     HOME__PAGE: ':page',
-    LOGIN: 'login',
     CHO_THUE_CAN_HO: 'cho-thue-can-ho',
     CHO_THUE_MAT_BANG: 'cho-thue-mat-bang',
     NHA_CHO_THUE: 'nha-cho-thue',
@@ -17,8 +16,13 @@ export const path = {
     PAY_POST: 'paypost',
     DEPOSITHISTORY: 'lich-su-thanh-toan',
     DETAILS_POST_TITLE_POSTID: '/details/:title/:postId',
-    DETATLS: '/details/'
+    DETATLS: '/details/',
 
+    //admin
+    ADMIN:'/admin/*',
+    LOGIN_ADMIN:'/logginadmin',
+    DASHBOARD:'dashboard',
+    EDITPOST:'editpost',
 }
 
 

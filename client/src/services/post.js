@@ -79,3 +79,31 @@ export const apiCreatePost = (payload) => new Promise(async (resolve, reject) =>
         reject(error)
     }
 })
+
+export const apiDeletePost = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'delete',
+            url: `/api/v1/post/deletepost/${id}`,
+            data: id,
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiGetOnePost = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/onepost',
+            data: id
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})

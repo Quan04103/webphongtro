@@ -18,6 +18,8 @@ import * as actions from "../../store/actions";
 import Header from "./Header";
 import Fillter from "./Fillter";
 
+
+
 export const ContextRegiter = createContext();
 export const Context = createContext();
 const SearchDetail = () => {
@@ -59,7 +61,7 @@ const SearchDetail = () => {
                 isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm" : ""
               }
             >
-               {/* <ComplexNavbar />  */}
+               <ComplexNavbar /> 
             </div>
           </div>         
           <><Fillter /></>
