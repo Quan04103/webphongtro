@@ -29,6 +29,12 @@ const postReducer = (state = initState, action) => {
                 msg: action.msg || '',
                 newPosts: action.newPosts || []
             }
+        case actionTypes.GET_ONEPOST:
+                return {
+                    ...state,
+                    msg: action.msg || '',
+                    posts: action.posts || []
+                }
         default:
             return state;
     }

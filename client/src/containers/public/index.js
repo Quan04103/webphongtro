@@ -9,5 +9,5 @@ export {default as Details} from './Details'
 export {default as Fillter} from './Fillter'
 export {default as List} from './List'
 export {default as Pagination} from './Pagination'
-
+export {default as LoginAdmin} from './LoginAdmin'
 export {default as SearchDetail} from './SearchDetail'

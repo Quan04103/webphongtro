@@ -110,6 +110,8 @@ export const getPostsPageService = (offset) => new Promise(async (resolve, rejec
     }
 })
 
+
+
 export const createNewPostService = (body, userId) => new Promise(async (resolve, reject) => {
     try {
         const attributesId = generateId()
@@ -183,6 +185,68 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
             msg: 'OK',
         })
 
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
+//Admin
+export const deletePostService = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.destroy({
+            where: {
+              id
+            }
+          });
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Delete posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getOnePostService = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findOne({
+            where: { id },
+            raw: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description', 'priceNumber', 'areaNumber'],
+            logging: console.log,
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to get post.',
+            response
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
+export const updatePosts = (id, {title,priceNumber,areaNumber,address,description}) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.update({title,priceNumber,areaNumber,address,description},{
+            where: { id },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to get post.',
+            response
+            
+        })
     } catch (error) {
         reject(error)
     }
