@@ -23,6 +23,8 @@ const Details = () => {
 
     // }, [postId])
     return (
+
+        
         <div class="relative bg-white w-full h-auto  text-left text-5xl text-black font-inter">
 
             <div class="absolute  left-[45px] text-13xp font-semibold inline-block w-[1000px] h-[70px] bg-white">
@@ -554,6 +556,7 @@ const Details = () => {
 
 
         </div >
+
 
     )
 }

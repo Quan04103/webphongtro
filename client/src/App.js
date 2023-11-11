@@ -44,6 +44,7 @@ function App() {
     dispatch(actions.getProvinces());
   }, []);
 
+
   // const {categories} = useSelector(state => state.app)
   // const dispatch = useDispatch()
 
@@ -70,8 +71,9 @@ function App() {
         <Route path={path.ADMIN} element={<Layout />}>
           
           <Route index element={<Dashboard />} />
-          <Route path="products" element={<Products />} />
-          <Route path="products/editpost" element={<EditPost />} />
+          <Route path={path.PRODUCT} element={<Products />} />
+          <Route path="products/editpost" element={<EditPost />}/>
+
           <Route path="register" element={<Register />} />
         </Route>
 

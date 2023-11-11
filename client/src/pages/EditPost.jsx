@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Select } from "../components";
 import { path } from "../ultils/constant";
@@ -26,9 +26,12 @@ import {
 import * as actions from '../store/actions'
 import { CameraIcon } from "@heroicons/react/24/outline";
 import { getOnePost, updateOnePost } from "../store/actions";
+import { getPosts } from "../store/actions";
+
 const { ImBin } = icons;
 
 export default function EditPost() {
+    const navigate = useNavigate();
     const [payload, setPayload] = useState({
         categoryCode: "",
         title: "",
@@ -64,6 +67,7 @@ export default function EditPost() {
 
 useEffect(() => { 
     dispatch(getOnePost(idpost))
+
  },[idpost])
 
  useEffect(() => { 
@@ -145,7 +149,8 @@ useEffect(() => {
     const response = await apiUpdatePost(idpost,payload);
     console.log(payload);
     if (response?.data.err === 0) {
-      Swal.fire("Thành công", "Đã sửa bài đăng mới", "success").then(() => {
+      Swal.fire("Thành công", "Đã sửa bài đăng mới", "success").then(() => {    
+        navigate(-2);
         setPayload({
           categoryCode: "",
           title: "",
@@ -163,6 +168,8 @@ useEffect(() => {
       Swal.fire("Opps!", "Có lỗi gì đó", "error");
     }
   };
+  useEffect(() => {console.log(posts)
+ },[posts])
   // const CreatePost = () => {
   //     const navigate = useNavigate()
   //     const goPaypost = useCallback((flag) => {

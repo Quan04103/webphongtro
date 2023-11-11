@@ -8,6 +8,7 @@ import {
 	HiOutlineQuestionMarkCircle,
 	HiOutlineCog
 } from 'react-icons/hi'
+import {path} from '../../ultils/constant'
 
 export const DASHBOARD_SIDEBAR_LINKS = [
 	{
@@ -19,7 +20,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'products',
 		label: 'Quản lý phòng',
-		path: 'products',
+		path: path.PRODUCT,
 		icon: <HiOutlineCube />
 	},
 	{

@@ -23,6 +23,8 @@ export const path = {
     LOGIN_ADMIN:'/logginadmin',
     DASHBOARD:'dashboard',
     EDITPOST:'editpost',
+    PRODUCT:'products',
+    
 }
 
 

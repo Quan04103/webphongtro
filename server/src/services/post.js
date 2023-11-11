@@ -228,7 +228,6 @@ export const getOnePostService = (id) => new Promise(async (resolve, reject) => 
             logging: console.log,
             msg: response ? 'OK' : 'Failed to get post.',
             response
-            
         })
     } catch (error) {
         reject(error)

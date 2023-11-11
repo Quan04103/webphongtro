@@ -21,6 +21,9 @@ export default function Products() {
         dispatch(getPosts())
     }, [])
 
+	useEffect(() => {
+        
+    }, [posts])
 	const handleDeleteButton = async (id) => {
 
 		const response = await apiDeletePost(id);
@@ -35,6 +38,7 @@ export default function Products() {
 		console.log(id)
 	}
 
+	
 	return (
 		<div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
 			<strong className="text-gray-700 font-medium">Room List</strong>
@@ -57,7 +61,7 @@ export default function Products() {
 								<td>
 									<Link to={`/order/${posts.id}`}>{posts.id}</Link>
 								</td>
-								<td >
+								<td>
 									<Link to={`/product/${posts.title}`}>{posts.title}</Link>
 								</td>
 								<td >
@@ -65,6 +69,7 @@ export default function Products() {
 								</td>
 								<td>{(posts.attributes.published)}</td>
 								<td>{posts.address}</td>
+
 
 								<td>{(posts.current_order_status)}</td>
 								<td><button class="bg-red-400 hover:bg-red-800 text-white font-bold py-2 px-4 rounded" onClick={() => handleDeleteButton(posts.id)}>
