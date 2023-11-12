@@ -1,60 +1,88 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import * as actions from '../../store/actions'
+import moment from 'moment'
+import { ButtonEdit, Item, UpdatePost } from '../../components'
+
+
+
+
 const ManagePost = () => {
+    const dispatch = useDispatch()
+    const [isEdit, setIsEdit] = useState(false)
+    const { postOfCurrent } = useSelector(state => state.post)
+    useEffect(() => {
+        dispatch(actions.getPostsLimitAdmin())
+    }, [])
+    // useEffect(() => {
+    //     !dataEdit && setIsEdit(false)
+    // }, [dataEdit])
+    const checkStatus = (dateString) => moment(dateString, process.env.REACT_APP_FORMAT_DATE).isAfter(new Date().toDateString())
+
     return (
-        <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen  ">
+        <div className='flex-col gap-6 h-screen relative'>
             <div className='py-4 border-b border-gray-200 flex items-center justify-between'>
-                <h1 className='text-3x1 font-medium ' >Quản lý tin đăng</h1>
+                <h1 className='text-3xl font-medium '>Quản lý tin đăng</h1>
                 <select className='outline-none border p-2 border-gray-200 rounded-md'>
                     <option value="">Lọc theo trạng thái</option>
                 </select>
             </div>
-            <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen ">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div className="overflow-hidden">
-                            <table className="min-w-full text-center text-sm font-light">
-                                <thead
-                                    className="border-b bg-black font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-4">#</th>
-                                        <th scope="col" className="px-6 py-4">Ảnh đại diện</th>
-                                        <th scope="col" className="px-6 py-4">Tiêu đề</th>
-                                        <th scope="col" className="px-6 py-4">Giá</th>
-                                        <th scope="col" className="px-6 py-4">Ngày bắt đầu</th>
-                                        <th scope="col" className="px-6 py-4">Ngày hết hạng</th>
-                                        <th scope="col" className="px-6 py-4">Trạng thái</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap  px-6 py-4 font-medium">1</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">
-                                            <img class="h-40 w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
+                <table className='min-w-full text-center text-sm font-light'>
+                    <thead
+                        className='border-b bg-black font-medium text-white dark:border-neutral-500 dark:bg-neutral-900'>
+                        <tr>
+                            <th scope='col' className='px-6 py-4'>#</th>
+                            <th scope='col'className='px-6 py-4'>Ảnh đại diện</th>
+                            <th scope='col'className='px-6 py-4'>Tiêu đề</th>
+                            <th scope='col'className='px-6 py-4'>Giá</th>
+                            <th scope='col'className='px-6 py-4'>Ngày bắt đầu</th>
+                            <th scope='col'className='px-6 py-4'>Ngày hết hạng</th>
+                            <th scope='col'className='px-6 py-4'>Trạng thái</th>
+                            <th scope='col'className='px-6 py-4'>Tùy chọn</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {!postOfCurrent
+                            ? <tr>
+                                <td>adadada</td>
+                            </tr>
+                            : postOfCurrent?.map(item => {
+                                return (
+                                    <tr key={item.id}>
+                                        <td className='whitespace-nowrap  px-6 py-4 font-medium'>{item?.overviews?.code}</td>
+                                        <td className='whitespace-nowrap flex items-center justify-center px-6 py-4 font-medium'>
+                                            <img src={JSON.parse(item?.images?.image)[0] || ''} alt="avatar-post" className='w-10 h-10 object-cover rounded-md' />
                                         </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">Cho thuê nhà </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">3.000.000đ/thang</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-10-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-11-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">còn thời hạn</td>
-                                    </tr>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap  px-6 py-4 font-medium">2</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">
-                                            <img class="h-40 w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
+                                        <td className='whitespace-nowrap items-center justify-center px-6 py-4'>{item?.title} </td>
+                                        <td className='whitespace-nowrap items-center justify-center px-6 py-4'>{item?.attributes?.price}</td>
+                                        <td className='whitespace-nowrap items-center justify-center px-6 py-4'>{item?.overviews?.created}</td>
+                                        <td className='whitespace-nowrap items-center justify-center px-6 py-4'>{item?.overviews?.expired}</td>
+                                        <td className='whitespace-nowrap items-center justify-center px-6 py-4'>
+                                            {checkStatus(item?.overviews?.expired?.split(' ')[3]) ? 'Đang hoạt động' : 'Đã hết hạn'}
                                         </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">Cho thuê nhà </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">3.000.000đ/thang</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-10-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-11-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">còn thời hạn</td>
+                                        <td className='whitespace-nowrap px-6 py-4 flex items-center justify-center'>
+                                            <ButtonEdit
+                                                text='Sửa'
+                                                bgColor=' bg-green-500 shadow-lg shadow-green-500/50 hover:bg-green-600'
+                                                textColor='text-white'
+                                                onClick={() => {
+                                                      dispatch(actions.editData(item))
+                                                    setIsEdit(true)
+                                                }}
+                                            />
+                                            <ButtonEdit
+                                                text='Xóa'
+                                                bgColor='bg-red-400 shadow-lg shadow-red-500/50 hover:bg-red-700'
+                                                textColor='text-white'
+                                            />
+                                        </td>
                                     </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                                )
 
+                            })}
+                    </tbody>
+                </table>
+            {isEdit && <UpdatePost setIsEdit={setIsEdit}/>}
         </div>
     )
 }

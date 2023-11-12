@@ -35,13 +35,13 @@ const Details = () => {
                 {/* <Anh images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)} /> */}
             </div>
 
-            <div>
+            {/* <div>
                 <img class='absolute bg-blue-gray-400  left-[45px] top-[100px] inline-block rounded-l-lg w-[720px] h-[504px] object-cover'
                     images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)}
 
                     src="{item}" alt=''
                 />
-            </div>
+            </div> */}
             <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
                 src=""
             />
@@ -160,7 +160,7 @@ const Details = () => {
                     Ngày hết hạn
                 </div>
                 <div class="absolute top-[85.28px] left-[333.92px] font-medium inline-block w-[145.9px] h-[32.88px]">
-                    01/10/2023
+                {posts[0]?.overviews?.expired}
                 </div>
 
                 <div class="absolute top-[17.47px] left-[619.55px] text-dimgray inline-block w-[108.91px] h-[33.91px]">

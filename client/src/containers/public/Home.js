@@ -1,5 +1,5 @@
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/intro2.jpg";
+import imageIntro from "../../assets/Intro.png";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";

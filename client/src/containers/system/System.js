@@ -21,7 +21,7 @@ const System = () => {
     return (
         <div>
 
-            <nav class="fixed top-0 z-50 w-full bg-blue-100  rounded-2xl dark:bg-gray-800 dark:border-gray-700">
+            <nav class="fixed top-0 z-50 w-full bg-blue-100 rounded-2xl dark:bg-gray-800 dark:border-gray-700">
                 <div class="px-3 py-3 lg:px-5 lg:pl-3">
                     <div class="flex items-center  w-full">
                         <Navbar1/>
@@ -36,7 +36,7 @@ const System = () => {
             </div>
 
             <div class="p-4 mt-6 sm:ml-64">
-                <div class="p-4 border-2 border-gray-200 rounded-lg shadow-xl shadow-blue-gray-400 dark:border-gray-700 mt-14">
+                <div class="p-4 border-2  rounded-lg shadow-xl shadow-blue-gray-400 dark:border-gray-700 mt-14">
                     <Outlet />
                 </div>
             </div>

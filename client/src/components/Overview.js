@@ -9,10 +9,8 @@ const Overview = ({ payload, setPayload }) => {
     const { categories } = useSelector(state => state.app);
     const { currentData } = useSelector(state => state.user)
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(actions.getCategories())
-        console.log(categories)
     }, [actions.getCategories])
 
     return (
