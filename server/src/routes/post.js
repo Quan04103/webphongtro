@@ -12,6 +12,8 @@ router.get('/new-post', postController.getNewPosts)
 router.get('/onepost', postController.getOnePost)
 router.put('/updatepost', postController.updatePosts)
 
+
+router.use(verifyToken)
 router.post('/create-new', postController.createNewPost)
 
 
