@@ -1,26 +1,36 @@
 import React, { createContext,  useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+
 import { getPostsLimit } from '../../store/actions'
 import { Item } from '../../components'
 import Footer from "./Footer";
 import * as actions from "../../store/actions";
 import anhAvt from "../../assets/anhAvt.jpg"
 import iconZalo from "../../assets/iconZalo1.jpg"
-
-
+import { ComplexNavbar } from './Header'
+import {List} from './index'
+import { useSearchParams } from "react-router-dom";
+import {ComplexNavbarDetail} from './HeaderDetail'
 
 
 import {
     StarIcon
 } from "@heroicons/react/24/solid";
-export const ContextRegiter = createContext();
-export const Context = createContext();
+
+
+export const ContextRegiterDetail = createContext();
+export const ContextLoginDetail = createContext();
+
 const Details = () => {
+    const [params] = useSearchParams()
+
+
     const { postId } = useParams()
     const dispatch = useDispatch();
-    const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
-    const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+    const [isLoginPopupOpenDetail, setIsLoginPopupOpenDetail] = useState(false);
+    const [isRegisterPopupOpenDetail, setIsRegisterPopupOpenDetail] = useState(false);
+
     const { posts } = useSelector(state => state.post)
     
 
@@ -32,9 +42,8 @@ const Details = () => {
     //     postId && dispatch(getPostsLimit({ id: postId }))
 
     // }, [postId])
-    useEffect(() => {
-        // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
-      }, [isLoginPopupOpen]);
+
+
       const {categories} = useSelector(state => state.app)
     
       useEffect(() => {
@@ -42,7 +51,30 @@ const Details = () => {
     
       }, [actions.getCategories])
     return (
-
+        <ContextRegiterDetail.Provider
+        value={[isRegisterPopupOpenDetail, setIsRegisterPopupOpenDetail]}
+      >
+        <ContextLoginDetail.Provider value={[isLoginPopupOpenDetail, setIsLoginPopupOpenDetail]}>
+          <div style={styles.container}  className="z-50 absolute">
+            <div
+              className={
+                isRegisterPopupOpenDetail ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
+              }
+            >
+              <div
+                className={
+                  isLoginPopupOpenDetail ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
+                }
+              >
+                <ComplexNavbarDetail />
+  
+              </div>
+            </div>
+            
+  
+            <div style={styles.body}>
+              </div>
+          <div style={styles.intro}>
         
         <div class="relative flex justify-center bg-[#fc3c3c] w-full   text-left text-5xl text-black font-inter">
            
@@ -327,7 +359,10 @@ const Details = () => {
         
             {/* <div><Footer/> </div>        */}
         </div >
-
+        </div>
+        </div>
+        </ContextLoginDetail.Provider>
+    </ContextRegiterDetail.Provider>
 
     )
 }
