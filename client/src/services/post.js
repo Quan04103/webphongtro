@@ -79,12 +79,131 @@ export const apiCreatePost = (payload) => new Promise(async (resolve, reject) =>
         reject(error)
     }
 })
+<<<<<<< HEAD
 export const apiGetPostsLimitAdmin = (query) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosConfig({
             method: 'get',
             url: `/api/v1/post/limit-admin`,
             params: query
+            resolve(response)
+
+        } catch (error) {
+            reject(error)
+        }
+    })
+=======
+
+export const apiDeletePost = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'delete',
+            url: `/api/v1/post/deletepost/${id}`,
+            data: id
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiGetOnePost = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: `/api/v1/post/onepost?idpost=${id}`,
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiUpdatePost = (id,payload) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'put',
+            url: `/api/v1/post/updatepost?idpost=${id}`,
+            data: payload
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiGetPenPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/allpen',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiUpdateStatus = (id,status) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'put',
+            url: `/api/v1/post/updatestatuspost?idpost=${id}`,
+            data: {status}
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiGetAccPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/allacc',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiGetCountAccPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getcountaccpost',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiGetCountPenPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getcountpenpost',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiGetCountRejPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getcountrejpost',
+>>>>>>> main
         })
         resolve(response)
 

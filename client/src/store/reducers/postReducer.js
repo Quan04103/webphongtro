@@ -32,6 +32,7 @@ const postReducer = (state = initState, action) => {
                 msg: action.msg || '',
                 newPosts: action.newPosts || []
             }
+<<<<<<< HEAD
         case actionTypes.GET_POSTS_ADMIN:
             return {
                 ...state,
@@ -50,6 +51,33 @@ const postReducer = (state = initState, action) => {
                 dataEdit: null
             }
 
+=======
+        case actionTypes.GET_ONEPOST:
+                return {
+                    ...state,
+                    msg: action.msg || '',
+                    posts: action.posts || []
+                }
+        case actionTypes.GET_PENPOST:
+                return {
+                    ...state,
+                    msg: action.msg || '',
+                    posts: action.posts || []
+                }
+        case actionTypes.GET_ACCPOST:
+                return {
+                    ...state,
+                    msg: action.msg || '',
+                    posts: action.posts || []
+                }
+        case actionTypes.GET_REJPOST:
+                 return {
+                        ...state,
+                        msg: action.msg || '',
+                        posts: action.posts || []
+                    }
+                
+>>>>>>> main
         default:
             return state;
     }

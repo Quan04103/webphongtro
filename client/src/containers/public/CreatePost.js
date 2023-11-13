@@ -95,19 +95,17 @@ const {ImBin } = icons
             Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
         }
     }
-    // console.log(payload);
-    // const { prices, areas } = useSelector(state => state.app)
-    //  const navigate = useNavigate()
-    // const goPaypost = useCallback((flag) => {
-    //     navigate(path.PAY_POST, { state: { flag } })
-    // }, [])
-
     console.log(payload);
     useEffect(() => {
     console.log(payload)
     },[payload])
     
-    
+        // console.log(payload);
+    // const { prices, areas } = useSelector(state => state.app)
+    //  const navigate = useNavigate()
+    // const goPaypost = useCallback((flag) => {
+    //     navigate(path.PAY_POST, { state: { flag } })
+    // }, [])
 
     return (
         

@@ -113,6 +113,8 @@ export const getPostsPageService = (offset) => new Promise(async (resolve, rejec
     }
 })
 
+
+
 export const createNewPostService = (body, userId) => new Promise(async (resolve, reject) => {
     try {
         const attributesId = generateId()
@@ -123,6 +125,7 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
         const currentDate = generateDate();
         // const ngayhethan = new Date(currentDate.getTime() + (10 * 24 * 60 * 60 * 1000));
         await db.Post.create({
+<<<<<<< HEAD
             id: generateId(),
             title: body.title,
             labelCode,
@@ -138,6 +141,23 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
             provinceCode: body?.province?.includes('Thành phố ') ? generateCode(body?.province?.replace('Thành phố ', '')) : generateCode(body?.province?.replace('Tỉnh ', '')) || null,
             priceNumber: body.priceNumber,
             areaNumber: body.areaNumber
+=======
+                id: generateId(),
+                title: body. title,
+                labelCode,
+                address: body.address || null,
+                attributesId,
+                categoryCode: body.categoryCode,
+                description: JSON.stringify(body.description) || null,
+                userId,
+                overviewId,
+                imagesId,
+                areaCode: body.areaCode || null,
+                priceCode: body.priceCode || null,
+                provinceCode: body?.province?.includes('Thành phố ')? generateCode(body?.province?.replace('Thành phố ', '')) : generateCode(body?.province?.replace('Tỉnh ', '')) || null,
+                priceNumber: body.priceNumber,
+                areaNumber: body.areaNumber,
+>>>>>>> main
         })
         await db.Attribute.create({
             id: attributesId,
@@ -192,6 +212,7 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
     }
 })
 
+<<<<<<< HEAD
 export const getPostsLimitAdminService = (page, id, query) => new Promise(async (resolve, reject) => {
     try {
         let offset = (!page || +page <= 1) ? 0 : (+page - 1)
@@ -204,19 +225,210 @@ export const getPostsLimitAdminService = (page, id, query) => new Promise(async 
             offset: offset * process.env.LIMIT,
             limit: +process.env.LIMIT,
             order: [['createdAt', 'DESC']],
+=======
+
+//Admin
+export const deletePostService = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.destroy({
+            where: {
+              id
+            }
+          });
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Delete posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getOnePostService = (id) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findOne({
+            where: { id },
+            raw: true,
+>>>>>>> main
             include: [
                 { model: db.Image, as: 'images', attributes: ['image'] },
                 { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
                 { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+<<<<<<< HEAD
                 { model: db.Overview, as: 'overviews' },
             ],
             // attributes: ['id', 'title', 'star', 'address', 'description']
+=======
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description', 'priceNumber', 'areaNumber'],
+            logging: console.log,
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to get post.',
+            response
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
+export const updatePosts = (id, {title,priceNumber,areaNumber,address,description}) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.update({title,priceNumber,areaNumber,address,description},{
+            where: { id },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to get post.',
+            response
+            
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const updateStatusPostsService = (id, status) => new Promise(async (resolve, reject) => {
+    try {
+        
+        const response = await db.Post.update(status,{
+            where: { id },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to update status post.',
+            response
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getPostsPenService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findAll({
+            where: {status : 0},
+            raw: true,
+            nest: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description']
+>>>>>>> main
         })
         resolve({
             err: response ? 0 : 1,
             msg: response ? 'OK' : 'Getting posts is failed.',
             response
         })
+<<<<<<< HEAD
+=======
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getPostsAccService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findAll({
+            where: {status : 1},
+            raw: true,
+            nest: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description']
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
+export const getPostsRejService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findAll({
+            where: {status : 2},
+            raw: true,
+            nest: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description']
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getCountAccPostService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.count({
+            where:{status : 1}
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const getCountPenPostService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.count({
+            where:{status : 0}
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const getCountRejPostService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.count({
+            where:{status : 2}
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+>>>>>>> main
     } catch (error) {
         reject(error)
     }
