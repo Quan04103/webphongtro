@@ -1,8 +1,31 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoBagHandle, IoPieChart, IoPeople, IoCart } from 'react-icons/io5'
+import { useDispatch } from 'react-redux'
+import  {apiGetCountAccPosts, apiGetCountPenPosts, apiGetCountRejPosts} from '../services'
 
 export default function DashboardStatsGrid() {
+	const dispatch = useDispatch()
+	const [responseAcc, setResponseAcc] = useState();
+	const [responsePen, setResponsePen] = useState();
+	const [responseRej, setResponseRej] = useState();
+	const fetchData = async () => {
+		try {
+		  const responseAcc = await apiGetCountAccPosts();
+		  const responsePen = await apiGetCountPenPosts();
+		  const responseRej = await apiGetCountRejPosts();
+		  console.log(responseAcc?.data.response);
+		  setResponseAcc(responseAcc?.data.response);
+		  setResponseRej(responseRej?.data.response);
+		  setResponsePen(responsePen?.data.response);
+		} catch (error) {
+		  console.error('Error fetching data:', error);
+		}
+	  };
 	
+	  useEffect(() => {
+		fetchData();
+	  }, []); 
+
 	return (
 		<div className="flex gap-4">
 			<BoxWrapper>
@@ -10,10 +33,10 @@ export default function DashboardStatsGrid() {
 					<IoBagHandle className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Sales</span>
+					<span className="text-sm text-gray-500 font-light">Total Pending Post</span>
 					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">$54232</strong>
-						<span className="text-sm text-green-500 pl-2">+343</span>
+						<strong className="text-xl text-gray-700 font-semibold">{responsePen}</strong>
+
 					</div>
 				</div>
 			</BoxWrapper>
@@ -22,10 +45,9 @@ export default function DashboardStatsGrid() {
 					<IoPieChart className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Expenses</span>
+					<span className="text-sm text-gray-500 font-light">Total Accepted Post</span>
 					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">$3423</strong>
-						<span className="text-sm text-green-500 pl-2">-343</span>
+						<strong className="text-xl text-gray-700 font-semibold">{responseAcc}</strong>
 					</div>
 				</div>
 			</BoxWrapper>
@@ -34,10 +56,9 @@ export default function DashboardStatsGrid() {
 					<IoPeople className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Customers</span>
+					<span className="text-sm text-gray-500 font-light">Total Rejected Post</span>
 					<div className="flex items-center">
-						<strong className="text-xl text-gray-700 font-semibold">12313</strong>
-						<span className="text-sm text-red-500 pl-2">-30</span>
+						<strong className="text-xl text-gray-700 font-semibold">{responseRej}</strong>
 					</div>
 				</div>
 			</BoxWrapper>
@@ -46,7 +67,7 @@ export default function DashboardStatsGrid() {
 					<IoCart className="text-2xl text-white" />
 				</div>
 				<div className="pl-4">
-					<span className="text-sm text-gray-500 font-light">Total Orders</span>
+					<span className="text-sm text-gray-500 font-light">Total Customer</span>
 					<div className="flex items-center">
 						<strong className="text-xl text-gray-700 font-semibold">16432</strong>
 						<span className="text-sm text-red-500 pl-2">-43</span>

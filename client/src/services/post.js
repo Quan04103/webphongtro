@@ -159,3 +159,40 @@ export const apiGetAccPosts = () => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
+
+export const apiGetCountAccPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getcountaccpost',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiGetCountPenPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getcountpenpost',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiGetCountRejPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getcountrejpost',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})

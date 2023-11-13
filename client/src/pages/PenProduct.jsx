@@ -68,10 +68,10 @@ export default function PenProduct() {
       <thead>
         <tr>
           <th className="border border-black px-4 py-2">ID</th>
-          <th className="border border-black px-4 py-2">Product Name</th>
+          <th className="border border-black px-4 py-2">Post title</th>
           <th className="border border-black px-4 py-2">Customer Name</th>
           <th className="border border-black px-4 py-2">Created Date</th>
-          <th className="border border-black px-4 py-2">Product Address</th>
+          <th className="border border-black px-4 py-2">Post Address</th>
           <th className="border border-black px-4 py-2">Services</th>
         </tr>
       </thead>

@@ -341,3 +341,49 @@ export const getPostsRejService = () => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
+
+export const getCountAccPostService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.count({
+            where:{status : 1}
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const getCountPenPostService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.count({
+            where:{status : 0}
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+export const getCountRejPostService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.count({
+            where:{status : 2}
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})

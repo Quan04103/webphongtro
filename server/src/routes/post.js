@@ -4,6 +4,9 @@ import verifyToken from '../middlewares/verifyToken'
 
 const router = express.Router()
 
+router.get('/getcountaccpost', postController.getCountAccPost)
+router.get('/getcountpenpost', postController.getCountPenPost)
+router.get('/getcountrejpost', postController.getCountRejPost)
 router.put('/updatestatuspost', postController.updateStatusPost)
 router.get('/allpen', postController.getPostsPen)
 router.get('/allacc', postController.getPostsAcc)

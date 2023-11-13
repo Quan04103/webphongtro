@@ -49,10 +49,10 @@ console.log(id)
       <thead>
         <tr>
           <th className="border border-black px-4 py-2">ID</th>
-          <th className="border border-black px-4 py-2">Tên khách hàng</th>
-          <th className="border border-black px-4 py-2">Số điện thoại</th>
-          <th className="border border-black px-4 py-2">Ngày tạo</th>
-          <th className="border border-black px-4 py-2">Services & Actions</th>
+          <th className="border border-black px-4 py-2">Customer name</th>
+          <th className="border border-black px-4 py-2">Phone</th>
+          <th className="border border-black px-4 py-2">Created date</th>
+          <th className="border border-black px-4 py-2">Services</th>
         </tr>
       </thead>
       <tbody>

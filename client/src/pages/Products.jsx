@@ -47,10 +47,10 @@ export default function Products() {
       <thead>
         <tr>
           <th className="border border-black px-4 py-2">ID</th>
-          <th className="border border-black px-4 py-2">Product Name</th>
+          <th className="border border-black px-4 py-2">Post title</th>
           <th className="border border-black relative pl-5 px-4 py-2">Customer Name</th>
           <th className="border border-black px-4 py-2">Created Date</th>
-          <th className="border border-black px-4 py-2">Product Address</th>
+          <th className="border border-black px-4 py-2">Post Address</th>
           <th className="border border-black px-4 py-2 text-center">Services</th>
         </tr>
       </thead>
@@ -70,11 +70,11 @@ export default function Products() {
             <td className="border border-black px-4 py-2">{post.address}</td>
             <td className="border border-black px-4 py-2 text-center">
               <div className="flex">
-                <button className="bg-red-300 hover:bg-red-800 text-white font-bold py-2 px-4 rounded" onClick={() => handleDeleteButton(post.id)}>
+                <button className="bg-red-300 hover:bg-red-800 text-white font-bold py-2 px-4 rounded border border-black" onClick={() => handleDeleteButton(post.id)}>
                   xoá
                 </button>
                 <NavLink to={`${path.EDITPOST}?idpost=${post.id}`}>
-                  <button className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded ml-2">
+                  <button className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded ml-2 border border-black">
                     sửa
                   </button>
                 </NavLink>
