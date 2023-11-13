@@ -1,107 +1,15 @@
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
+import logo from '../../assets/boyshouse.jpg';
 const Footer = () => {
     return (
         <footer class="rounded-lg bg-[#034DA1] text-center text-neutral-600 dark:bg-gray-600 dark:text-neutral-200 lg:text-left text-white">
-            <div class="px-6 border-b-2 border-neutral-400">
-                <ul class="ml-9  flex flex-row justify-items-center" data-te-navbar-nav-ref>
-                    <li class="static basis-1/5" data-te-nav-item-ref data-te-dropdown-ref >
-                        <a class="flex items-center whitespace-nowrap py-2 pr-2  transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:px-2"
-                            href="#"> Cho thuê phòng trọ, nhà trọ
-                            <span class="ml-2 w-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="h-5 w-5">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="static basis-1/5" data-te-nav-item-ref data-te-dropdown-ref>
-                        <a class="flex items-center whitespace-nowrap py-2 pr-2  transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:px-2"
-                            href=""> Cho thuê nhà nguyên căn
-                            <span class="ml-2 w-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="h-5 w-5">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="static basis-1/5" data-te-nav-item-ref data-te-dropdown-ref>
-                        <a class="flex items-center whitespace-nowrap py-2 pr-2  transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:px-2"
-                            href="#"> Cho thuê căn hộ
-                            <span class="ml-2 w-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="h-5 w-5">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="static basis-1/5" data-te-nav-item-ref data-te-dropdown-ref>
-                        <a class="flex items-center whitespace-nowrap py-2 pr-2  transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:px-2"
-                            href="#"> Cho thuê mặt bằng
-                            <span class="ml-2 w-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="h-5 w-5">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="static basis-1/5" data-te-nav-item-ref data-te-dropdown-ref>
-                        <a class="flex items-center whitespace-nowrap py-2 pr-2  transition duration-150 ease-in-out hover:text-neutral-700 focus:text-neutral-700 dark:hover:text-white dark:focus:text-white lg:px-2"
-                            href="#"> Tìm người ở ghép
-                            <span class="ml-2 w-2">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    viewBox="0 0 20 20"
-                                    fill="currentColor"
-                                    class="h-5 w-5">
-                                    <path
-                                        fill-rule="evenodd"
-                                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-
             <div class="py-10 border-b-2 border-neutral-200 text-center md:text-left">
                 <div class="mx-6 grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-                    <div class="">
-                        <div class="mb-6 lg:mb-0">
-                            <img src="assets/" class="w-full rounded-md shadow-lg" />
+                        <div class="mb-6 md:mb-0 flex justify-center">
+                            <img src={logo} class="w-[20rem] rounded-md shadow-lg" />
                         </div>
-                    </div>
                     <div class="">
                         <h6
                             class="mb-4 flex justify-center font-semibold uppercase md:justify-start">

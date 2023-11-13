@@ -11,11 +11,6 @@ const List = ({ categoryCode }) => {
     const [searchParams] = useSearchParams()
     const { posts } = useSelector(state => state.post)
 
-    useEffect(() => {
-
-        dispatch(getPosts())
-
-    }, [])
      
     useEffect(() => {            
         let params = []
@@ -32,10 +27,11 @@ const List = ({ categoryCode }) => {
         })
         if (categoryCode) searchParamsObject.categoryCode = categoryCode
         dispatch(getPostsLimit(searchParamsObject))
+        listRef.current.scrollIntoView({behavior: 'smooth', block: 'start'})
     }, [searchParams, categoryCode])
     return (
         <div>      
-             <div ref={listRef} style={styles.room}>
+             <div ref={listRef} className='grid grid-cols-1 md:grid md:grid-cols-3 md:px-[5rem]' >
                  {posts?.length > 0 && posts.map(item => {
                      return (
                          <Item
