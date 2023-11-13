@@ -49,7 +49,7 @@ const Fillter = () => {
   return (
     <>
     <div className='flex justify-center items-center'>
-        <div className='w-250px h-[70px] p-[10px] bg-[#034DA1] opacity-95 rounded-lg flex items-center justify-around gap-2'>
+        <div className='w-[850px] h-[100px] p-[10px] bg-[#afaeae] bg-opacity-80 rounded-lg flex items-center justify-around gap-2'>
             <span onClick={() => handleShowModal(categories, 'category', 'Tìm tất cả')} className='cursor-pointer flex-1'>
               <SearchItem IconBefor={< GiSpookyHouse/>} fontWeight IconAfter={<BsChevronRight coler='rgb(156, 163, 175 '/>}
                text={queries.category} defaultText ={'Tìm tất cả'}/></span>

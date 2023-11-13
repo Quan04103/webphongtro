@@ -1,3 +1,53 @@
+// import React, { memo } from 'react'
+// import { formatVietnameseToString } from '../ultils/formatVietnameseToString'
+// import imageroom from '../assets/room.png';
+// import { path } from '../ultils/constant';
+// import { Link } from 'react-router-dom';
+// // import {
+// //   StarIcon
+
+// // } from "@heroicons/react/24/outline";
+// import {
+//   StarIcon
+// } from "@heroicons/react/24/solid";
+
+// const indexs = [0]
+
+// const Item = ({ images, user, title, star, description, attributes, address, id }) => {
+  
+//   // const firstImage = images.slice(0, 1);
+//   const imageL = []
+
+//   return (
+//     <div style={styles.imageContainer}>
+//       <a href={`${path.DETATLS}${formatVietnameseToString(title)}/${id}`}>
+                
+//         <div style={styles.imageFrame}>
+//         {/* <img style={styles.imageroom} src={firstImage} alt={`Hinh anh minh hoa`} class="rounded-md ..." /> */}
+//         {/* <img style={styles.imageroom} src={imageroom} alt={`Room `} /> */}
+//           {i. > 0 && images.filter((i, index) => indexs.some(i => i === index))?.map((i, index) => {
+//                     return (
+//                         <img key={index} src={i} alt={`Ảnh minh họa`}  />
+//                     )
+//                 })}
+//         </div>
+//         <h4 style={styles.h4}>{title}</h4>
+//         <p style={styles.p1}> {`${star} ★`} </p>
+//         <p style={styles.p2}>{`Diện tích: ${attributes?.acreage}`}</p>
+//         <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
+//         <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
+//       </a>
+//     </div>
+
+//   );
+// };
+
+
+
+
+
+
+
 import React, { memo } from 'react'
 import { formatVietnameseToString } from '../ultils/formatVietnameseToString'
 import imageroom from '../assets/room.png';
@@ -144,11 +194,6 @@ const styles = {
   },
 };
 export default memo(Item)
-
-
-
-
-
 
 
 

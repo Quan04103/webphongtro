@@ -1,5 +1,5 @@
 import actionTypes from './actionTypes'
-import { apiGetNewPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsPage } from '../../services/post'
+import { apiGetNewPosts, apiGetOnePost, apiGetPosts, apiGetPostsLimit, apiGetPostsPage } from '../../services/post'
 
 export const getPosts = () => async (dispatch) => {
     try {
@@ -94,6 +94,56 @@ export const getNewPosts = () => async (dispatch) => {
         dispatch({
             type: actionTypes.GET_NEW_POST,
             newPosts: null
+        })
+    }
+}
+
+export const getOnePost = (id) => async (dispatch) => {
+    try {
+        const response = await apiGetOnePost(id)
+        console.log(response)
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.GET_ONEPOST,
+                posts: response.data.response
+            })
+        } else {
+            dispatch({
+                type: actionTypes.GET_ONEPOST,
+                msg: response.data.msg
+            })
+        }
+        
+
+    } catch (error) {
+        dispatch({
+            type: actionTypes.GET_ONEPOST,
+            posts: null
+        })
+    }
+}
+
+export const updateOnePost = (id,payload) => async (dispatch) => {
+    try {
+        const response = await apiGetOnePost(id, payload)
+        console.log(response)
+        if (response?.data.err === 0) {
+            dispatch({
+                type: actionTypes.UPDATE_POST,
+                posts: response.data.response
+            })
+        } else {
+            dispatch({
+                type: actionTypes.UPDATE_POST,
+                msg: response.data.msg
+            })
+        }
+        
+
+    } catch (error) {
+        dispatch({
+            type: actionTypes.UPDATE_POST,
+            posts: null
         })
     }
 }

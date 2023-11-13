@@ -70,3 +70,58 @@ export const createNewPost = async (req, res) => {
         })
     }
 }
+
+export const deletePost = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const response = await postService.deletePostService(id)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const getOnePost = async (req, res) => {
+    try {
+        const id = req.query.idpost;
+        if (!id) {
+            return res.status(400).json({
+              err: -1,
+              msg: 'Missing idpost parameter',
+            });
+          }
+        const response = await postService.getOnePostService(id)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const updatePosts = async (req, res) => {
+    try {
+        const id = req.query.idpost;
+        const {title,priceNumber,areaNumber,address,description} = req.body;
+        if (!id || !title || !priceNumber || !areaNumber || !address || !description) {
+            return res.status(400).json({
+              err: -1,
+              msg: 'Missing input parameter',
+            });
+          }
+        const response = await postService.updatePosts(id , {title,priceNumber,areaNumber,address,description})
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}

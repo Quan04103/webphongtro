@@ -34,7 +34,7 @@ import { blobToBase64 } from "../../ultils/Common/tobase64";
 import logo from '../../assets/logo.png';
 import anonavatar from '../../assets/anonavatar.png';
 import {ContextLoginDetail, ContextRegiterDetail} from './Details'
-import { Context, ContextRegiter } from "./Home";
+
 
 
 // profile menu component
@@ -223,7 +223,7 @@ function NavList() {
 }
 
 export function LoginButton() {
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(ContextLoginDetail);
   const handleClosePopup = () => {
     setIsLoginPopupOpen(false);
   };
@@ -239,7 +239,7 @@ export function LoginButton() {
 }
 
 export function RegisterButton() {
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiter);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiterDetail);
   const handleCloseRegisterPopup = () => {
     setIsRegisterPopupOpen(false);
   };
@@ -257,10 +257,10 @@ export function RegisterButton() {
   );
 }
 
-export function ComplexNavbar() {
+export function ComplexNavbarDetail() {
   const dispatch = useDispatch();
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiter);
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiterDetail);
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(ContextLoginDetail);
   const { isLoggedIn, msg, update } = useSelector((state) => state.auth);
   const { currentData } = useSelector(state => state.user)
   const handleClosePopup = () => {
@@ -360,8 +360,8 @@ export function ComplexNavbar() {
     </Navbar>
   );
 }
-const Header = () => {
-  <ComplexNavbar />;
+const HeaderDetail = () => {
+  <ComplexNavbarDetail />;
 };
 
-export default Header;
+export default HeaderDetail;

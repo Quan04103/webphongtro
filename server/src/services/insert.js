@@ -111,8 +111,6 @@ export const insertService = () => new Promise(async (resolve, reject) => {
         labelCodes?.forEach(async (item) => {
             await db.Label.create(item)
         })
-
-
         resolve('Done.')
     } catch (error) {
         reject(error)

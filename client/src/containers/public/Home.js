@@ -1,5 +1,5 @@
 import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/intro2.jpg";
+import imageIntro from "../../assets/intro4.jpg";
 import imageroom from "../../assets/room.png";
 import React, {  createContext, useEffect } from "react";
 import Qc from "./Qc";
@@ -84,7 +84,6 @@ const Home = () => {
               }
             >
               <ComplexNavbar />
-              {/* >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1 */}
             </div>
           </div>
           
@@ -137,7 +136,7 @@ const styles = {
   },
   search1:{
     position: "absolute",
-    top: "250px",
+    top: "350px",
     right: "400px",
     left: "400px",
     

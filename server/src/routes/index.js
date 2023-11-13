@@ -6,8 +6,10 @@ import priceRouter from './price'
 import areaRouter from './area'
 import provinceRouter from './province'
 import userRouter from './user'
+import adminRouter from './admin'
 
 const initRoutes = (app) => {
+    app.use('/api/v1/admin', adminRouter)
     app.use('/api/v1/auth', authRouter)
     app.use('/api/v1/insert', insertRouter)
     app.use('/api/v1/category', categoryRouter)
