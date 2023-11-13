@@ -23,7 +23,7 @@ import {
   Bars2Icon,
 } from "@heroicons/react/24/outline";
 import LoginForm from "../../components/LoginForm";
-
+import { Context, ContextRegiter } from "./Home";
 import RegisterForm from "../../components/RegisterForm";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,11 +31,9 @@ import * as actions from "../../store/actions";
 import Swal from 'sweetalert2'
 import { NavLink } from "react-router-dom";
 import { blobToBase64 } from "../../ultils/Common/tobase64";
-import logo from '../../assets/logo.png';
+import logo from '../../assets/logo1.png';
 import anonavatar from '../../assets/anonavatar.png';
-import {ContextLoginDetail, ContextRegiterDetail} from './Details'
-import { Context, ContextRegiter } from "./Home";
-
+import {path} from '../../ultils/constant'
 
 // profile menu component
 const profileMenuItems = [
@@ -52,7 +50,7 @@ const profileMenuItems = [
     icon: Cog6ToothIcon,
     dispatch:'' ,
     key1:true,
-    link:'',
+    link:'/he-thong/sua-thong-tin-ca-nhan',
   },
   {
     label: "Inbox",
@@ -113,7 +111,6 @@ function ProfileMenu() {
 
           const handleClickOn = async () => {
             (dispatch(dispatchAction))
-
         }
           return (
             <MenuItem
@@ -123,7 +120,7 @@ function ProfileMenu() {
                 ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
                 : ""
                 }`}
-            ><Link>
+            ><Link to={link}>
               <span className="flex" onClick={!key1 ? handleClickOn : ('/he-thong/sua-thong-tin-ca-nhan')}
               >
                 {React.createElement(icon, {
@@ -172,55 +169,54 @@ function IconList() {
 }
 
 // nav list component
-const navListItems = [
-  {
-    label: "Trang chủ",
-    link: "'/profile'",
-    key: '1'
-  },
-  {
-    label: "Cho thuê phòng trọ",
-    link: "'/createpost'",
-    key: '2'
-  },
-  {
-    label: "Nhà cho thuê",
-    link: "'/detail'",
-    key: '3'
-  },
-  {
-    label: "Cho thuê căn hộ",
-    link: '',
-    key: '4'
-  },
-];
+  const navListItems = [
+    {
+      label: "Trang chủ",
+      link: 'http://localhost:3000',
+      key: '1'
+    },
+    {
+      label: "Cho thuê phòng trọ",
+      link: '/tim-kiem?categoryCode=CTPT',
+      key: '2'
+    },
+    {
+      label: "Nhà cho thuê",
+      link: '/tim-kiem?categoryCode=NCT',
+      key: '3'
+    },
+    {
+      label: "Cho thuê căn hộ",
+      link: '/tim-kiem?categoryCode=CTCH',
+      key: '4'
+    },
+  ];
+  function NavList() {
 
-function NavList() {
-
-
-  return (
-
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
-      {navListItems.map(({ label }, link, { key }) => (
-        <NavLink to={link}>
+    const handleLinkClick = (link) => {
+      window.location.assign(link);
+    };
+  
+    return (
+      <ul className="mb-4 mt-2 flex flex-col gap-7 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+        {navListItems.map(({ label, link, key }) => (
           <Typography
             key={key}
             as="a"
-            href="#"
+            href={link}
             variant=""
             color="blue-gray"
-            className="font-sans "
+            className="font-semibold"
+            onClick={() => handleLinkClick(link)}
           >
-            <MenuItem className="flex items-center gap-2 lg:rounded-full">
-              {label}
+            <MenuItem className="flex items-center gap-2 lg:rounded-full ">
+              {label.toUpperCase()}
             </MenuItem>
           </Typography>
-        </NavLink>
-      ))}
-    </ul>
-
-  );
-}
+        ))}
+      </ul>
+    );
+  }
 
 export function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
@@ -230,7 +226,9 @@ export function LoginButton() {
   return (
     <div>
       {/* Button hoặc sự kiện mở khung popup */}
-      <button onClick={() => {setIsLoginPopupOpen(true)}}>Đăng nhập</button>
+      <button onClick={() => setIsLoginPopupOpen(true) } 
+        style={{ fontWeight: "700", textTransform: "uppercase"}}
+      >Đăng nhập</button>
 
       {/* Render khung popup nếu isLoginPopupOpen là true */}
       {isLoginPopupOpen && <LoginForm onClose={handleClosePopup} />}
@@ -239,7 +237,9 @@ export function LoginButton() {
 }
 
 export function RegisterButton() {
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiter);
+  const [isRegisterPopupOpen, setIsRegisterPopupOpen] =
+    useContext(ContextRegiter);
+
   const handleCloseRegisterPopup = () => {
     setIsRegisterPopupOpen(false);
   };
@@ -247,7 +247,9 @@ export function RegisterButton() {
   return (
     <div>
       {/* Button hoặc sự kiện mở khung popup */}
-      <button onClick={() => {setIsRegisterPopupOpen(true)}}>Đăng ký</button>
+      <button onClick={() => setIsRegisterPopupOpen(true)}
+        style={{ fontWeight: "700", textTransform: "uppercase", marginRight: "32px"}}
+      >Đăng ký</button>
 
       {/* Render khung popup nếu isLoginPopupOpen là true */}
       {isRegisterPopupOpen && (
@@ -259,7 +261,7 @@ export function RegisterButton() {
 
 export function ComplexNavbar() {
   const dispatch = useDispatch();
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiter);
+
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(Context);
   const { isLoggedIn, msg, update } = useSelector((state) => state.auth);
   const { currentData } = useSelector(state => state.user)
@@ -301,14 +303,14 @@ export function ComplexNavbar() {
   useEffect(() => {
     msg && Swal.fire('Oops !', msg, 'error')
   }, [msg, update])
-  console.log(isLoggedIn)
+
    console.log(currentData)
 
   return (
     <Navbar className="mx-auto max-w-screen-3xl p-2 lg:pl-6">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
-        <img className="cursor-pointer h-24 w-24" src={logo} />
-        <div className="absolute top-2/4 left-1/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block pl-10">
+        <img className="cursor-pointer h-20 w-20" src={logo} />
+        <div className="absolute top-2/4 left-[470px] left-1/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block pl-10">
           <NavList/>
         </div>
         <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
@@ -317,7 +319,7 @@ export function ComplexNavbar() {
         {isLoggedIn && (
           <>
             {" "}
-            <div className="absolute items-center right-[100px]">Xin chào {currentData.name}</div>
+            <div className="absolute items-center right-[90px] ">Xin chào {currentData.name}</div>
             <ProfileMenu />
           </>
 
@@ -325,10 +327,10 @@ export function ComplexNavbar() {
 
         {!isLoggedIn && (
           <>
-            <div className="absolute right-[210px] ">
+            <div className="absolute right-[160px] ">
               <RegisterButton />
             </div>
-            <div className="absolute right-[100px] ml-[500px]">
+            <div className="absolute right-[50px] ml-[500px]">
               <LoginButton />
             </div>
           </>
@@ -341,7 +343,7 @@ export function ComplexNavbar() {
           <LoginButton />
         </div> */}
         <NavLink className="absolute top-2/4 left-3/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block" to={'/he-thong/tao-moi-bai-dang'}>
-          <Button variant="outlined">Đăng tin</Button>
+          <Button variant="outlined" style={{ fontSize: "15px" }}>Đăng tin</Button>
         </NavLink>
         <IconButton
           size="sm"

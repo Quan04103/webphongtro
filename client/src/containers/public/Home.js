@@ -99,7 +99,7 @@ const Home = () => {
           </div>
           <div>
               {/* <List page={params.get("page")} />
-              <Pagination page={params.get("page")} />           */}
+              <Pagination page={params.get("page")} />*/}
               <List/>
               <Pagination/>
           </div>

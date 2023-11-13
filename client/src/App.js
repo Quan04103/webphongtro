@@ -89,9 +89,8 @@ function App() {
         <Route path={path.ADMIN} element={<test />} />
 
         <Route path={path.SYSTEM} element={<System />}>
-          <Route path={path.CREATE_POST} element={<CreatePost />}>
+          <Route path={path.CREATE_POST} element={<CreatePost />}/>
             {/* <Route path={path.PAY_POST} element={<PayPost />} /> */}
-          </Route>
           <Route path={path.MANAGE_POST} element={<ManagePost />} />
           <Route path={path.EDIT_ACCOUNT} element={<EditAccount />} />
           <Route path={path.DEPOSITHISTORY} element={<DepositHistory />} />
