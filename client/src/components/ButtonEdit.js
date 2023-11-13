@@ -5,7 +5,7 @@ const ButtonEdit = ({ text, textColor, bgColor, IcAfter, onClick, fullwidth, wid
         <button
             type='button'
             className={`p-2 ${textColor} ${bgColor} ${fullwidth && 'w-full'} ${width} 
-                     inline-block rounded-full px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out ]`}
+                     inline-block rounded-full px-6 pb-2 pt-2.5 mx-1 text-xs font-medium uppercase leading-normal transition duration-150 ease-in-out ]`}
             onClick={onClick}
         >
             <span>

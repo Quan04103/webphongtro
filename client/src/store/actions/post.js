@@ -4,7 +4,6 @@ import { apiGetNewPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsPage, apiGetP
 export const getPosts = () => async (dispatch) => {
     try {
         const response = await apiGetPosts()
-        console.log(response)
         if (response?.data.err === 0) {
             dispatch({
                 type: actionTypes.GET_POSTS,
@@ -124,5 +123,9 @@ export const getPostsLimitAdmin = (query) => async (dispatch) => {
 export const editData = (dataEdit) => ({
     type: actionTypes.EDIT_DATA,
     dataEdit
+})
+export const resetDataEdit = () => ({
+    type: actionTypes.RESET_DATAEDIT,
+    
 })
 

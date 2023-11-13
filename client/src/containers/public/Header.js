@@ -42,7 +42,8 @@ const profileMenuItems = [
     icon: UserCircleIcon,
     dispatch: '',
     key1:true,
-    link:'/he-thong/sua-thong-tin-ca-nhan',
+    Link: '/he-thong/sua-thong-tin-ca-nhan'
+
   },
   {
     label: "Edit Profile",
