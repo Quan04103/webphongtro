@@ -75,7 +75,7 @@ const Details = () => {
           
         <div className=' flex flex-col justify-center'>
             {/* Ảnh */}
-            <div class="relative p-7 flex justify-center xl:bg-green-900 sm:bg-purple-900 md:bg-[#034DA1] bg-[#fc3c3c] w-full h-auto text-5xl text-black font-inter">
+            <div class="relative p-7 flex justify-center w-full h-auto text-5xl text-black font-inter">
             
                 
 
@@ -84,6 +84,11 @@ const Details = () => {
                     <img className='round-lg'
                         src="https://lh4.googleusercontent.com/-z5CcCibG3q0/Wj4C50bTGJI/AAAAAAAAAXk/D9wmm6Qa5qMv9aVhLA4wG_MFNn-i31NyQCLcBGAs/s1600/hinh-anh-phong-khach-cua-hinode-city.jpg" alt=''
                     />
+                    <div class="absolute bottom-0 right-0 p-4" >
+                        <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold" >
+                            <div>Xem thêm</div>
+                        </button>
+                    </div>
                 </div>
                 {/* <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
                     src=""
@@ -100,15 +105,11 @@ const Details = () => {
                 
                 
 
-                <div class="absolute bottom-0 right-0 p-4" >
-                    <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold" >
-                        <div>Xem thêm</div>
-                    </button>
-                </div>
+                
 
                 </div>
                 {/* Tiêu đề */}
-                <div className='flex items-center justify-center'>
+                <div className='flex items-center justify-center pl-[100px]'>
                     <div class="xl:text-[40px] text-[30px]   text-[#034DA1] font-semibold font-sans inline-block  ">
                         <p class="left-[30px] m-0">
                             {posts[0]?.title}
@@ -118,10 +119,11 @@ const Details = () => {
                 
                 
             
-            <div className='flex justify-center pl-[250px] pt-[20px]'>
+            <div className='flex flex-col pl-[100px] pt-[20px] xl:flex-row xl:pl-[250px]'>
 
-                <div class="flex-1   left-[100px] w-[500px] ">
-                    <table class=" border border-solid border-[#034DA1] rounded-xl h-[400px] bg-[#ee4343] text-xxl text-left text-[#034DA1] dark:text-gray-400 ">
+                <div className="">
+                    <table class=" border border-solid border-[#034DA1] rounded-xl xl:w-[940px] w-[600px]  
+                    h-[400px] bg-[#ee4343] xl:text-[25px] text-[20px] text-left text-[#034DA1] dark:text-gray-400 ">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         
                         </thead>
@@ -210,8 +212,8 @@ const Details = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className="  w-[336px] h-[351px] text-smi text-[#e4e2e2] flex-1 pl-[100px]">
-                    <div className="rounded-3xs bg-[#034DA1] w-[200px] xl:w-[340px] xl:bg-green-900 h-[351px] flex items-center flex-col p-2 pt-3">  
+                <div className="  w-[336px] h-[351px] text-smi text-[#e4e2e2] pl-[100px] pt-[20px]">
+                    <div className="rounded-3xs bg-[#034DA1] w-[340px] h-[351px] flex items-center flex-col p-2 pt-3">  
                         <img
                             className="rounded-[50%] w-[104px] h-[104px] object-cover"
                             alt="avt"
@@ -262,13 +264,13 @@ const Details = () => {
                 {/* Thông tin người đăng */}
                 
 
-                <div class="text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 pl-[250px] ">
+                <div class="text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 xl:pl-[250px] pl-[100px]">
                     <b>
                         Thông tin mô tả
                     </b>
                 </div>
-                <div className='pl-[250px]'>
-                <div class=" inline-block text-xxl border border-solid border-[#034DA1] p-4 rounded-2xl w-[500px] h-auto">
+                <div className='xl:pl-[250px] pl-[100px] pt-5'>
+                <div class=" inline-block xl:text-[25px] text-[20px] border border-solid border-[#034DA1] p-4 rounded-2xl xl:w-[940px] w-[600px]  h-auto">
                     <div className='flex flex-col gap-5'>
                         {posts[0]?.description && JSON.parse(posts[0]?.description)?.map((item, index) => {
                             return (
@@ -278,14 +280,14 @@ const Details = () => {
                         )}</div>
                 </div>
                 </div>
-                <div class="  text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 pl-[250px] ">
+                <div class="  text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 xl:pl-[250px] pl-[100px] ">
                     <b>
                         Thông tin liên hệ
                     </b>
                 </div>
 
-                <div class="flex pl-[250px] pt-[20px]">
-                    <table class="border border-solid border-[#034DA1] p-4 rounded-2xl w-[840px] h-[400px] bg-[#ee4343] text-xxl text-left text-[#034DA1] dark:text-gray-400 ">
+                <div class="flex xl:pl-[250px] pl-[100px] pt-[20px]">
+                    <table class="border border-solid border-[#034DA1] p-4 rounded-2xl w-[940px] h-[400px] bg-[#ee4343] xl:text-[25px] text-[20px] text-left text-[#034DA1] dark:text-gray-400 ">
                         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                         
                         </thead>
@@ -327,7 +329,12 @@ const Details = () => {
                         </tbody>
                     </table>
                 </div>
-                <div className=' w-full '><Footer/></div>
+                <div className='flex justify-center pt-10'>
+                    <button className='rounded-mini border-[#034DA1] bg-white box-border w-56 h-[66px] border-[1px] text-[25px] hover:bg-[#034DA1] hover:text-white border-solid  font-sans font-semibold'>
+                        Xem Thêm Tin
+                    </button>
+                </div>
+                <div className=' w-full pt-[200px]'><Footer/></div>
             
             </div>
 
