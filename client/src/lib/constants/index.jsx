@@ -33,6 +33,15 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		key: 'customers',
 		label: 'Quản lý người dùng',
 		path: '/customers',
+		key: 'penProduct',
+		label: 'Duyệt tin',
+		path: path.PENPOST,
+		icon: <HiOutlineShoppingCart />
+	},
+	{
+		key: 'userManagement',
+		label: 'Quản lý người dùng',
+		path: path.USERMANAGEMENT,
 		icon: <HiOutlineUsers />
 	},
 	{

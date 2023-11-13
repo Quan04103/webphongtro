@@ -97,8 +97,11 @@ const Home = () => {
             <Fillter/>
 
           </div>
-        <div style={styles.room}>
-          <List />  {/* tang body*/}           
+          <div>
+              {/* <List page={params.get("page")} />
+              <Pagination page={params.get("page")} />           */}
+              <List/>
+              <Pagination/>
           </div>
           <div>
               <Footer />

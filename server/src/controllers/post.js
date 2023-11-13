@@ -55,7 +55,7 @@ export const getNewPosts = async (req, res) => {
 export const createNewPost = async (req, res) => {
     try {
         const { categoryCode, title, priceNumber, areaNumber, label  } = req.body
-        const {id} = req.user
+        const {id} = req.user || {}
         if ( !categoryCode || !id || !title || !priceNumber || !areaNumber || !label) return res.status(400).json({
             err:1,
             msg: 'Missing inputs'
@@ -116,6 +116,102 @@ export const updatePosts = async (req, res) => {
             });
           }
         const response = await postService.updatePosts(id , {title,priceNumber,areaNumber,address,description})
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const updateStatusPost = async (req, res) => {
+    try {
+        const id = req.query.idpost;
+        const status = req.body;
+        if (!id || !status) {
+            return res.status(400).json({
+              err: -1,
+              msg: 'Missing input parameter',
+            });
+          }
+        const response = await postService.updateStatusPostsService(id, status)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const getPostsPen = async (req, res) => {
+    try {
+        const response = await postService.getPostsPenService()
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+export const getPostsAcc = async (req, res) => {
+    try {
+        const response = await postService.getPostsAccService()
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const getPostsRej = async (req, res) => {
+    try {
+        const response = await postService.getPostsRejService()
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const getCountAccPost = async (req, res) => {
+    try {
+        const response = await postService.getCountAccPostService()
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+export const getCountRejPost = async (req, res) => {
+    try {
+        const response = await postService.getCountRejPostService()
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+export const getCountPenPost = async (req, res) => {
+    try {
+        const response = await postService.getCountPenPostService()
         return res.status(200).json(response)
 
     } catch (error) {
