@@ -26,7 +26,10 @@ import Layout from "./components/shared/Layout";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
+import PenProduct from "./pages/PenProduct"
 import EditPost from "./pages/EditPost";
+import UserManagement from "./pages/UserManagement";
+import EditUser from "./pages/EditUser";
 
 
 function App() {
@@ -71,8 +74,12 @@ function App() {
         <Route path={path.ADMIN} element={<Layout />}>
           
           <Route index element={<Dashboard />} />
+          
           <Route path={path.PRODUCT} element={<Products />} />
+          <Route path={path.PENPOST} element={<PenProduct />} />
+          <Route path={path.USERMANAGEMENT} element={<UserManagement />} />
           <Route path="products/editpost" element={<EditPost />}/>
+          <Route path="usermanagement/edituser" element={<EditUser />}/>
 
           <Route path="register" element={<Register />} />
         </Route>

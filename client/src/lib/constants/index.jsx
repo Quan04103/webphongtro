@@ -24,15 +24,15 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineCube />
 	},
 	{
-		key: 'noti',
-		label: 'Notification',
-		path: '/noti',
+		key: 'penProduct',
+		label: 'Duyệt tin',
+		path: path.PENPOST,
 		icon: <HiOutlineShoppingCart />
 	},
 	{
-		key: 'customers',
+		key: 'userManagement',
 		label: 'Quản lý người dùng',
-		path: '/customers',
+		path: path.USERMANAGEMENT,
 		icon: <HiOutlineUsers />
 	},
 	{

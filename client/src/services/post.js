@@ -120,3 +120,42 @@ export const apiUpdatePost = (id,payload) => new Promise(async (resolve, reject)
         reject(error)
     }
 })
+export const apiGetPenPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/allpen',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiUpdateStatus = (id,status) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'put',
+            url: `/api/v1/post/updatestatuspost?idpost=${id}`,
+            data: {status}
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiGetAccPosts = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/allacc',
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})

@@ -122,7 +122,7 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
         const currentDate = new Date();
         const ngayhethan = new Date(currentDate.getTime() + (10 * 24 * 60 * 60 * 1000));
         await db.Post.create({
-            id: generateId(),
+                id: generateId(),
                 title: body. title,
                 labelCode,
                 address: body.address || null,
@@ -136,7 +136,7 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
                 priceCode: body.priceCode || null,
                 provinceCode: body?.province?.includes('Thành phố ')? generateCode(body?.province?.replace('Thành phố ', '')) : generateCode(body?.province?.replace('Tỉnh ', '')) || null,
                 priceNumber: body.priceNumber,
-                areaNumber: body.areaNumber
+                areaNumber: body.areaNumber,
         })
         await db.Attribute.create({
             id: attributesId,
@@ -247,6 +247,96 @@ export const updatePosts = (id, {title,priceNumber,areaNumber,address,descriptio
             response
             
         })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const updateStatusPostsService = (id, status) => new Promise(async (resolve, reject) => {
+    try {
+        
+        const response = await db.Post.update(status,{
+            where: { id },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to update status post.',
+            response
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getPostsPenService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findAll({
+            where: {status : 0},
+            raw: true,
+            nest: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description']
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const getPostsAccService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findAll({
+            where: {status : 1},
+            raw: true,
+            nest: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description']
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+
+export const getPostsRejService = () => new Promise(async (resolve, reject) => {
+    try {
+        const response = await db.Post.findAll({
+            where: {status : 2},
+            raw: true,
+            nest: true,
+            include: [
+                { model: db.Image, as: 'images', attributes: ['image'] },
+                { model: db.Attribute, as: 'attributes', attributes: ['price', 'acreage', 'published', 'hashtag'] },
+                { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
+            ],
+            attributes: ['id', 'title', 'star', 'address', 'description']
+        })
+        resolve({
+            err: response ? 0 : 1,
+            msg: response ? 'OK' : 'Getting posts is failed.',
+            response
+        })
+
     } catch (error) {
         reject(error)
     }

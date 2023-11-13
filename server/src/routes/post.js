@@ -4,6 +4,10 @@ import verifyToken from '../middlewares/verifyToken'
 
 const router = express.Router()
 
+router.put('/updatestatuspost', postController.updateStatusPost)
+router.get('/allpen', postController.getPostsPen)
+router.get('/allacc', postController.getPostsAcc)
+router.get('/allrej', postController.getPostsRej)
 router.delete('/deletepost/:id', postController.deletePost)
 router.get('/all', postController.getPosts)
 router.get('/limit', postController.getPostsLimit)
@@ -12,6 +16,8 @@ router.get('/new-post', postController.getNewPosts)
 router.get('/onepost', postController.getOnePost)
 router.put('/updatepost', postController.updatePosts)
 
+
+router.use(verifyToken)
 router.post('/create-new', postController.createNewPost)
 
 

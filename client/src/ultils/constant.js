@@ -24,7 +24,9 @@ export const path = {
     DASHBOARD:'dashboard',
     EDITPOST:'editpost',
     PRODUCT:'products',
-    
+    PENPOST:'penpost',
+    USERMANAGEMENT:'usermanagement',
+    EDITUSER:'edituser',
 }
 
 

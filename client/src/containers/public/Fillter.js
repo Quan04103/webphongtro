@@ -75,7 +75,7 @@ const Fillter = () => {
             </button>
         </div>
     </div>
-    {isShowModal && <Modal 
+    {isShowModal && <Modal
     handleSubmit={handleSubmit}
      queries={queries} 
      content={content} 
