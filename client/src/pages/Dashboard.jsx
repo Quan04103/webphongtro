@@ -24,8 +24,6 @@ export default function Dashboard() {
 				<BuyerProfilePieChart />
 			</div>
 			<div className="flex flex-row gap-4 w-full">
-				<RecentOrders />
-				<PopularProducts />
 			</div>
 		</div>
 

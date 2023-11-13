@@ -4,6 +4,13 @@ import * as userController from '../controllers/user'
 
 const router = express.Router()
 
+router.get('/getoneuser', userController.getOneUser)
+router.get('/getuser', userController.getUser)
+router.delete('/deleteuser/:id', userController.deleteUser)
+
+
+
+
 router.use(verifyToken)
 router.get('/get-current', userController.getCurrent)
 router.put('/', userController.updateUser)

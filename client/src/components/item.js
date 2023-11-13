@@ -65,7 +65,7 @@ const indexs = [0]
 const { GrStar } = icons
 const Item = ({ images, user, title, star, description, attributes, address, id }) => {
 
-  const firstImage = images.slice(0, 1);
+  const firstImage = images.slice(0,1);
 
   const handleStar = (star) => {
     let stars = []

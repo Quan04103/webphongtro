@@ -31,3 +31,50 @@ export const updateUser = async (req, res) => {
         })
     }
 }
+
+export const getUser = async (req, res) => {
+    try {
+        const response = await services.getUserService()
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at category controller: ' + error
+        })
+    }
+}
+
+export const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const response = await services.deleteUserService(id)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const getOneUser = async (req, res) => {
+    try {
+        const id = req.query.iduser;
+        if (!id) {
+            return res.status(400).json({
+              err: -1,
+              msg: 'Missing iduser parameter',
+            });
+          }
+        const response = await services.getOneUserService(id)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}

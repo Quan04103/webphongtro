@@ -35,6 +35,25 @@ const postReducer = (state = initState, action) => {
                     msg: action.msg || '',
                     posts: action.posts || []
                 }
+        case actionTypes.GET_PENPOST:
+                return {
+                    ...state,
+                    msg: action.msg || '',
+                    posts: action.posts || []
+                }
+        case actionTypes.GET_ACCPOST:
+                return {
+                    ...state,
+                    msg: action.msg || '',
+                    posts: action.posts || []
+                }
+        case actionTypes.GET_REJPOST:
+                 return {
+                        ...state,
+                        msg: action.msg || '',
+                        posts: action.posts || []
+                    }
+                
         default:
             return state;
     }
