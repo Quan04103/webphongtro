@@ -15,6 +15,7 @@ import { ComplexNavbarDetail } from "./HeaderDetail";
 import { Anh } from "../../components";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { apiGetPostsLimit } from "../../services";
+import { Carousel } from "@material-tailwind/react";
 
 export const ContextRegiterDetail = createContext();
 export const ContextLoginDetail = createContext();
@@ -56,6 +57,21 @@ const Details = () => {
   }, [posts]);
 
   console.log(imgRes);
+  
+  const parseDescription = (description) => {
+    try {
+      const parsedDescription = JSON.parse(description);
+      if (Array.isArray(parsedDescription)) {
+        return parsedDescription.map((item, index) => (
+          <span key={index}>{item}</span>
+        ));
+      } else {
+        return <span>{parsedDescription}</span>;
+      }
+    } catch (error) {
+      return <span>{description}</span>;
+    }
+  };
 
   const { categories } = useSelector((state) => state.app);
 
@@ -94,16 +110,22 @@ const Details = () => {
 
         <div className=" flex flex-col justify-center">
           {/* Ảnh */}
-          <div class="relative p-7 flex justify-center w-full h-auto text-5xl text-black font-inter">
-            {/* <Anh images={posts && posts.lenght > 0 && JSON.parse(`${posts[0]?.images.image}`)} /> */}
-            <div>
-              {imgRes &&
-                imgRes.map((link, index) => (
-                  <img key={index} src={link} alt={`Image ${index}`} />
-                ))}
-            </div>
+          <div class="relative p-7 flex justify-center w-full h-full text-5xl text-black font-inter">
 
-            <div className=" w-full xl:w-3/4 rounded-xl">
+
+            <div className=" w-full xl:w-1/4 rounded-xl">
+            <Carousel className="rounded-xl ">
+    {imgRes &&
+      imgRes.map((link, index) => (
+        <img
+          key={index}
+          src={link}
+          alt={`Image ${index}`}
+          className="h-full w-full object-cover"
+        />
+      ))}
+    </Carousel>
+
               <div class="absolute bottom-0 right-0 p-4">
                 <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold">
                   <div>Xem thêm</div>
@@ -269,10 +291,11 @@ const Details = () => {
           <div className="xl:pl-[250px] pl-[100px] pt-5">
             <div class=" inline-block xl:text-[25px] text-[20px] border border-solid border-[#034DA1] p-4 rounded-2xl xl:w-[940px] w-[600px]  h-auto">
               <div className="flex flex-col gap-5">
-                {posts[0]?.description &&
+                {/* {posts[0]?.description &&
                   JSON.parse(posts[0]?.description)?.map((item, index) => {
                     return <span key={index}>{item}</span>;
-                  })}
+                  })} */}
+                  {posts[0]?.description && parseDescription(posts[0]?.description)}
               </div>
             </div>
           </div>

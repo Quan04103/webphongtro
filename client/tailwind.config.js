@@ -75,6 +75,7 @@ module.exports = withMT({
       gray: "#d1d5db",
     }
   },
-  plugins: [],
+  plugins: [require("tw-elements/dist/plugin.cjs")],
+  darkMode: "class"
 });
 
