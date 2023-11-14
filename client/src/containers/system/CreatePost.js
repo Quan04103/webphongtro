@@ -3,14 +3,15 @@ import { useNavigate } from 'react-router-dom'
 import { ButtonEdit, Select } from '../../components';
 import { path } from '../../ultils/constant'
 import { Overview, Address, Loading } from '../../components'
-import { apiUploadImages } from '../../services'
+import { apiUploadImages, apiUpdatePost } from '../../services'
 import icons from '../../ultils/icons'
 import { getCodes, getCodesArea } from '../../ultils/Common/getCodes'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { apiCreatePost } from '../../services'
-import validate from '../../ultils/Common/validateFields'
 import Swal from 'sweetalert2'
+import validate from '../../ultils/Common/validateFields'
 // import Footer from './Footer'
+import { resetDataEdit } from '../../store/actions';
 import {
     Card,
     Input,
@@ -24,35 +25,36 @@ import { CameraIcon } from "@heroicons/react/24/outline"
 
 const { ImBin } = icons
 const CreatePost = ({ isEdit }) => {
-    
-     const {dataEdit} = useSelector(state => state.post)
+    const dispatch = useDispatch()
+    const { dataEdit } = useSelector(state => state.post)
     const [payload, setPayload] = useState(() => {
+
         const initData = {
             categoryCode: dataEdit?.categoryCode || '',
             title: dataEdit?.title || '',
-            priceNumber: dataEdit?.priceNumber *100000 || 0,
-            areaNumber:  dataEdit?.areaNumber || 0,
-            images: JSON.parse(dataEdit?.images?.image) || '',
+            priceNumber: dataEdit?.priceNumber * 100000 || 0,
+            areaNumber: dataEdit?.areaNumber || 0,
+            images: dataEdit?.images?.image ? JSON.parse(dataEdit?.images?.image) : '',
             address: dataEdit?.address || '',
             priceCode: dataEdit?.priceCode || '',
             areaCode: dataEdit?.areaCode || '',
-            description: JSON.parse( dataEdit?.description) || '',
+            description: dataEdit?.description ? JSON.parse(dataEdit?.description) : '',
             province: dataEdit?.province || ''
         }
         return initData
     })
-    
+
     const [imagesPreview, setImagesPreview] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const { prices, areas, categories, province } = useSelector(state => state.app)
     const { currentData } = useSelector(state => state.user)
 
-    // useEffect (() =>{
-    //     if(dataEdit){
-    //         let images = JSON.parse(dataEdit?.images?.image)
-    //         images && setImagesPreview(images)
-    //     }
-    // }, [dataEdit])
+    useEffect(() => {
+        if (dataEdit) {
+            let images = JSON.parse(dataEdit?.images?.image)
+            images && setImagesPreview(images)
+        }
+    }, [dataEdit])
     const handleFiles = async (e) => {
         e.stopPropagation()
         setIsLoading(true)
@@ -67,14 +69,14 @@ const CreatePost = ({ isEdit }) => {
         }
         setIsLoading(false)
         setImagesPreview(prev => [...prev, ...images])
-        //setPayload(prev => ({ ...prev, images: [...prev.images, ...images] }))
+        setPayload(prev => ({ ...prev, images: [...prev.images, ...images] }))
     }
     const handleDeleteImage = (image) => {
         setImagesPreview(prev => prev?.filter(item => item !== image))
-        // setPayload(prev => ({
-        //     ...prev,
-        //     images: prev.images?.filter(item => item !== image)
-        // }))
+        setPayload(prev => ({
+            ...prev,
+            images: prev.images?.filter(item => item !== image)
+        }))
     }
     const handleSubmit = async () => {
         let priceCodeArr = getCodes(+payload.priceNumber / Math.pow(10, 6), prices, 1, 15)
@@ -90,26 +92,50 @@ const CreatePost = ({ isEdit }) => {
             areaNumber: +payload.areaNumber,
             label: `${categories?.find(item => item.code === payload?.categoryCode)?.value} ${payload?.address?.split(',')[0]}`
         }
-        const response = await apiCreatePost(finalPayload)
-        if (response?.data.err === 0) {
-            Swal.fire('Thành công', 'Đã thêm bài đăng mới', 'success').then(() => {
-                setPayload({
-                    categoryCode: '',
-                    title: '',
-                    priceNumber: 0,
-                    areaNumber: 0,
-                    images: '',
-                    address: '',
-                    priceCode: '',
-                    areaCode: '',
-                    description: '',
-                    province: ''
+        if (dataEdit) {
+            finalPayload.postId = dataEdit?.id
+            finalPayload.attributesId = dataEdit?.attributesId
+            finalPayload.imagesId = dataEdit?.imagesId
+            finalPayload.overviewId = dataEdit?.overviewId
+
+            const response = await apiUpdatePost(finalPayload)
+            if (response?.data.err === 0) {
+                Swal.fire('Thành công', 'Đã cập nhật bài đăng', 'success').then(() => {
+                    resetPayload()
+                    dispatch(resetDataEdit())
                 })
-            })
-        } else {
-            Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+            } else {
+                Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+            }
+        }
+        else {
+
+            console.log(finalPayload)
+            const response = await apiCreatePost(finalPayload)
+            if (response?.data.err === 0) {
+                Swal.fire('Thành công', 'Đã thêm bài đăng mới', 'success').then(() => {
+                    resetPayload()
+                })
+            } else {
+                Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+            }
         }
     }
+    const resetPayload = () => {
+        setPayload({
+            categoryCode: '',
+            title: '',
+            priceNumber: 0,
+            areaNumber: 0,
+            images: '',
+            address: '',
+            priceCode: '',
+            areaCode: '',
+            description: '',
+            province: ''
+        })
+    }
+
     // const CreatePost = () => {
     //     const navigate = useNavigate()
     //     const goPaypost = useCallback((flag) => {
@@ -198,9 +224,9 @@ const CreatePost = ({ isEdit }) => {
 
                         <ButtonEdit
                             className=' bg-orange-400 hover:bg-orange-600 text-white w-[9em] h-[3em] rounded-[30em] text-[15px] drop-shadow-[6px_6px_10px_#c5c5c5]'
-                            onClick={handleSubmit} 
-                            text={isEdit ? 'Cập nhật' : 'Tạo mới'}  
-                            bgColor='bg-green-600' 
+                            onClick={handleSubmit}
+                            text={isEdit ? 'Cập nhật' : 'Tạo mới'}
+                            bgColor='bg-green-600'
                             textColor='text-white'>
                         </ButtonEdit>
                     </div>

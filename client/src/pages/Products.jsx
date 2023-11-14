@@ -5,7 +5,7 @@ import { getOrderStatus } from '../lib/helpers'
 import { useDispatch, useSelector } from 'react-redux'
 import { getPosts, getAccPost} from '../store/actions/post'
 import { useEffect, useState } from 'react'
-import { apiDeletePost } from '../services'
+import { apiDeletePostAdmin } from '../services'
 import Swal from 'sweetalert2'
 import { CreatePost } from '../containers/public'
 import EditPost from './EditPost'
@@ -26,7 +26,7 @@ export default function Products() {
     }, [posts])
 	const handleDeleteButton = async (id) => {
 
-		const response = await apiDeletePost(id);
+		const response = await apiDeletePostAdmin(id);
 		if(response?.data.err ===0){
 			dispatch(getAccPost())
             Swal.fire('Thành công', 'Đã Xoá thành công', 'success').then(() => {

@@ -54,17 +54,10 @@ export const getNewPosts = async (req, res) => {
 }
 export const createNewPost = async (req, res) => {
     try {
-<<<<<<< HEAD
-        const { categoryCode, title, priceNumber, areaNumber, label } = req.body
-        const { id } = req.user
-        if (!categoryCode || !id || !title || !priceNumber || !areaNumber || !label) return res.status(400).json({
-            err: 1,
-=======
         const { categoryCode, title, priceNumber, areaNumber, label  } = req.body
         const {id} = req.user || {}
         if ( !categoryCode || !id || !title || !priceNumber || !areaNumber || !label) return res.status(400).json({
             err:1,
->>>>>>> main
             msg: 'Missing inputs'
         })
         const response = await postService.createNewPostService(req.body, id)
@@ -95,6 +88,7 @@ export const getPostsLimitAdmin = async (req, res) => {
         })
     }
 }
+
 export const updatePost = async (req, res) => {
     const {postId, overviewId, imagesId, attributesId, ...payload} = req.body
     const {id } = req.user
@@ -113,8 +107,26 @@ export const updatePost = async (req, res) => {
         })
     }
 }
-
 export const deletePost = async (req, res) => {
+    const { postId } = req.query
+    const { id } = req.user
+    try {
+        if (!postId || !id) return res.status(400).json({
+            err: 1,
+            msg: 'Missing inputs'
+        })
+        const response = await postService.deletePost(postId)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at post controller: ' + error
+        })
+    }
+}
+
+export const deletePostAdmin = async (req, res) => {
     try {
         const { id } = req.params;
         const response = await postService.deletePostService(id)

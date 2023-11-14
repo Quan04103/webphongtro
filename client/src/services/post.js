@@ -79,22 +79,47 @@ export const apiCreatePost = (payload) => new Promise(async (resolve, reject) =>
         reject(error)
     }
 })
-<<<<<<< HEAD
 export const apiGetPostsLimitAdmin = (query) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosConfig({
             method: 'get',
             url: `/api/v1/post/limit-admin`,
             params: query
-            resolve(response)
+        })
+        resolve(response)
 
-        } catch (error) {
-            reject(error)
-        }
-    })
-=======
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiUpdatePost = (payload) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'put',
+            url: `/api/v1/post/update`,
+            data: payload
+        })
+        resolve(response)
 
-export const apiDeletePost = (id) => new Promise(async (resolve, reject) => {
+    } catch (error) {
+        reject(error)
+    }
+})
+export const apiDeletePost = (postId) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'delete',
+            url: `/api/v1/post/delete`,
+            params: { postId }
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})
+
+export const apiDeletePostAdmin = (id) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosConfig({
             method: 'delete',
@@ -121,7 +146,7 @@ export const apiGetOnePost = (id) => new Promise(async (resolve, reject) => {
     }
 })
 
-export const apiUpdatePost = (id,payload) => new Promise(async (resolve, reject) => {
+export const apiUpdatePostAdmin = (id,payload) => new Promise(async (resolve, reject) => {
     try {
         const response = await axiosConfig({
             method: 'put',
@@ -203,7 +228,6 @@ export const apiGetCountRejPosts = () => new Promise(async (resolve, reject) => 
         const response = await axiosConfig({
             method: 'get',
             url: '/api/v1/post/getcountrejpost',
->>>>>>> main
         })
         resolve(response)
 

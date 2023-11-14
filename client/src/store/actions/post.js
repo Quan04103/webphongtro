@@ -1,9 +1,5 @@
 import actionTypes from './actionTypes'
-<<<<<<< HEAD
-import { apiGetNewPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsPage, apiGetPostsLimitAdmin } from '../../services/post'
-=======
-import { apiGetAccPosts, apiGetNewPosts, apiGetOnePost, apiGetPenPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsPage, apiUpdateStatus } from '../../services/post'
->>>>>>> main
+import { apiGetAccPosts, apiGetNewPosts, apiGetOnePost, apiGetPenPosts, apiGetPosts, apiGetPostsLimit, apiGetPostsPage,apiGetPostsLimitAdmin, apiUpdateStatus } from '../../services/post'
 
 export const getPosts = () => async (dispatch) => {
     try {
@@ -101,7 +97,6 @@ export const getNewPosts = () => async (dispatch) => {
         })
     }
 }
-<<<<<<< HEAD
 export const getPostsLimitAdmin = (query) => async (dispatch) => {
     try {
         const response = await apiGetPostsLimitAdmin(query)
@@ -122,7 +117,18 @@ export const getPostsLimitAdmin = (query) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: actionTypes.GET_POSTS_ADMIN,
-=======
+            posts: null
+        })
+    }
+}
+export const editData = (dataEdit) => ({
+    type: actionTypes.EDIT_DATA,
+    dataEdit
+})
+export const resetDataEdit = () => ({
+    type: actionTypes.RESET_DATAEDIT,
+    
+})
 
 export const getOnePost = (id) => async (dispatch) => {
     try {
@@ -144,18 +150,10 @@ export const getOnePost = (id) => async (dispatch) => {
     } catch (error) {
         dispatch({
             type: actionTypes.GET_ONEPOST,
->>>>>>> main
             posts: null
         })
     }
 }
-<<<<<<< HEAD
-export const editData = (dataEdit) => ({
-    type: actionTypes.EDIT_DATA,
-    dataEdit
-})
-
-=======
 
 export const updateOnePost = (id,payload) => async (dispatch) => {
     try {
@@ -256,4 +254,3 @@ export const getAccPost = () => async (dispatch) => {
         })
     }
 }
->>>>>>> main
