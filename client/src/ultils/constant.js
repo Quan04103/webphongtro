@@ -17,7 +17,7 @@ export const path = {
     DEPOSITHISTORY: 'lich-su-thanh-toan',
     DETAILS_POST_TITLE_POSTID: '/details/:title/:postId',
     DETATLS: '/details/',
-
+    
     //admin
     ADMIN:'/admin/*',
     LOGIN_ADMIN:'/logginadmin',

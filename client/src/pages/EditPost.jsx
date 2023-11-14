@@ -150,7 +150,7 @@ useEffect(() => {
     console.log(payload);
     if (response?.data.err === 0) {
       Swal.fire("Thành công", "Đã sửa bài đăng mới", "success").then(() => {    
-        navigate(-2);
+        navigate('/admin');
         setPayload({
           categoryCode: "",
           title: "",

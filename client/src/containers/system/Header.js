@@ -34,6 +34,7 @@ import {
 } from "tw-elements";
 import { blobToBase64 } from "../../ultils/Common/tobase64";
 import { Link} from "react-router-dom";
+import {path} from '../../ultils/constant'
 
 
 const profileMenuItems = [
@@ -42,26 +43,31 @@ const profileMenuItems = [
         label: "Trang chủ",
         icon: UserCircleIcon,
         dispatch: "",
+        link:`${path.HOME}`,
     },
     {
         label: "Tin yêu thích",
         icon: Cog6ToothIcon,
         dispatch: "",
+        link:"",
     },
     {
         label: "Thông báo",
         icon: InboxArrowDownIcon,
         dispatch: "",
+        link:"",
     },
     {
         label: "Liên hệ ",
         icon: LifebuoyIcon,
         dispatch: "",
+        link:"",
     },
     {
         label: "Đăng xuất",
         icon: PowerIcon,
         dispatchAction: actions.logout(),
+        link:"",
     },
 ];
 
@@ -116,12 +122,13 @@ function ProfileMenu() {
                     </div>
                 </a>
                 <hr />
-                {profileMenuItems.map(({ label, icon, dispatchAction }, key) => {
+                {profileMenuItems.map(({ label, icon, dispatchAction,link }, key) => {
                     const isLastItem = key === profileMenuItems.length - 1;
                     const handleClickOn = async () => {
                         dispatch(dispatchAction);
                     }
                     return (
+                        <Link to={link}>
                         <MenuItem
                             key={label}
                             onClick={closeMenu}
@@ -147,6 +154,7 @@ function ProfileMenu() {
                                 </Typography>
                             </span>
                         </MenuItem>
+                        </Link>
                     );
                 })}
             </MenuList>
