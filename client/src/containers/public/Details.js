@@ -1,96 +1,116 @@
-import React, { createContext,  useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { useSelector, useDispatch } from 'react-redux'
+import React, { createContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 
-import { getPostsLimit } from '../../store/actions'
-import { Item } from '../../components'
+import { getPostsLimit } from "../../store/actions";
+import { Item } from "../../components";
 import Footer from "./Footer";
 import * as actions from "../../store/actions";
-import anhAvt from "../../assets/anhAvt.jpg"
-import iconZalo from "../../assets/iconZalo1.jpg"
-import { ComplexNavbar } from './Header'
-import {List} from './index'
+import anhAvt from "../../assets/anhAvt.jpg";
+import iconZalo from "../../assets/iconZalo1.jpg";
+import { ComplexNavbar } from "./Header";
+import { List } from "./index";
 import { useSearchParams } from "react-router-dom";
-import {ComplexNavbarDetail} from './HeaderDetail'
-
-
-import {
-    StarIcon
-} from "@heroicons/react/24/solid";
-
+import { ComplexNavbarDetail } from "./HeaderDetail";
+import { Anh } from "../../components";
+import { StarIcon } from "@heroicons/react/24/solid";
+import { apiGetPostsLimit } from "../../services";
 
 export const ContextRegiterDetail = createContext();
 export const ContextLoginDetail = createContext();
 
 const Details = () => {
-    const [params] = useSearchParams()
+  const [params] = useSearchParams();
+  const { postId } = useParams();
+  const dispatch = useDispatch();
+  const [isLoginPopupOpenDetail, setIsLoginPopupOpenDetail] = useState(false);
+  const [isRegisterPopupOpenDetail, setIsRegisterPopupOpenDetail] =
+    useState(false);
+  const { posts } = useSelector((state) => state.post);
+  const [imgRes, setImgRes] = useState([]);
 
+  useEffect(() => {
+    postId && dispatch(getPostsLimit({ id: postId }));
+  }, [postId]);
+  // useEffect(() => {
+  //     postId && dispatch(getPostsLimit({ id: postId }))
 
-    const { postId } = useParams()
-    const dispatch = useDispatch();
-    const [isLoginPopupOpenDetail, setIsLoginPopupOpenDetail] = useState(false);
-    const [isRegisterPopupOpenDetail, setIsRegisterPopupOpenDetail] = useState(false);
+  // }, [postId])
 
-    const { posts } = useSelector(state => state.post)
-    
+  //   useEffect(() => {
 
-    useEffect(() => {
-        postId && dispatch(getPostsLimit({ id: postId }))
+  //       console.log("Phần tử mảng ảnh", posts[0]?.images.image);
+  //       const dataFromDB = `${posts[0]?.images.image}`;
 
-    }, [postId])
-    // useEffect(() => {
-    //     postId && dispatch(getPostsLimit({ id: postId }))
+  //       const imageArray = JSON.parse(dataFromDB);
+  //       setImgRes(imageArray);
 
-    // }, [postId])
+  //   }, []);
 
+  useEffect(() => {
+    const imageData = posts[0]?.images.image;
+    if (imageData) {
+      const imageArray = JSON.parse(imageData);
+      setImgRes(imageArray);
+    }
+  }, [posts]);
 
-      const {categories} = useSelector(state => state.app)
-    
-      useEffect(() => {
-          dispatch(actions.getCategories())
-    
-      }, [actions.getCategories])
-    return (
-        <ContextRegiterDetail.Provider
-        value={[isRegisterPopupOpenDetail, setIsRegisterPopupOpenDetail]}
+  console.log(imgRes);
+
+  const { categories } = useSelector((state) => state.app);
+
+  useEffect(() => {
+    dispatch(actions.getCategories());
+  }, [actions.getCategories]);
+  return (
+    <ContextRegiterDetail.Provider
+      value={[isRegisterPopupOpenDetail, setIsRegisterPopupOpenDetail]}
+    >
+      <ContextLoginDetail.Provider
+        value={[isLoginPopupOpenDetail, setIsLoginPopupOpenDetail]}
       >
-        <ContextLoginDetail.Provider value={[isLoginPopupOpenDetail, setIsLoginPopupOpenDetail]}>
-          <div style={styles.container}  className="z-50 flex-col flex justify-center">
+        <div
+          style={styles.container}
+          className="z-50 flex-col flex justify-center"
+        >
+          <div
+            className={
+              isRegisterPopupOpenDetail
+                ? "fixed inset-0 backdrop-blur-sm absolute z-30"
+                : ""
+            }
+          >
             <div
               className={
-                isRegisterPopupOpenDetail ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
+                isLoginPopupOpenDetail
+                  ? "fixed inset-0 backdrop-blur-sm absolute z-30"
+                  : ""
               }
             >
-              <div
-                className={
-                  isLoginPopupOpenDetail ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
-                }
-              >
-                <ComplexNavbarDetail />
-  
+              <ComplexNavbarDetail />
+            </div>
+          </div>
+        </div>
+
+        <div className=" flex flex-col justify-center">
+          {/* Ảnh */}
+          <div class="relative p-7 flex justify-center w-full h-auto text-5xl text-black font-inter">
+            {/* <Anh images={posts && posts.lenght > 0 && JSON.parse(`${posts[0]?.images.image}`)} /> */}
+            <div>
+              {imgRes &&
+                imgRes.map((link, index) => (
+                  <img key={index} src={link} alt={`Image ${index}`} />
+                ))}
+            </div>
+
+            <div className=" w-full xl:w-3/4 rounded-xl">
+              <div class="absolute bottom-0 right-0 p-4">
+                <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold">
+                  <div>Xem thêm</div>
+                </button>
               </div>
             </div>
-        </div>
-           
-          
-        <div className=' flex flex-col justify-center'>
-            {/* Ảnh */}
-            <div class="relative p-7 flex justify-center w-full h-auto text-5xl text-black font-inter">
-            
-                
-
-                    {/* <Anh images={posts && posts.lenght > 0 && JSON.parse(posts[0]?.images?.image)} /> */}
-                    <div className=' w-full xl:w-3/4 rounded-xl'>
-                    <img className='round-lg'
-                        src="https://lh4.googleusercontent.com/-z5CcCibG3q0/Wj4C50bTGJI/AAAAAAAAAXk/D9wmm6Qa5qMv9aVhLA4wG_MFNn-i31NyQCLcBGAs/s1600/hinh-anh-phong-khach-cua-hinode-city.jpg" alt=''
-                    />
-                    <div class="absolute bottom-0 right-0 p-4" >
-                        <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold" >
-                            <div>Xem thêm</div>
-                        </button>
-                    </div>
-                </div>
-                {/* <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
+            {/* <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
                     src=""
                 />
                 <img class="absolute bg-blue-50 top-[360px] left-[790px] w-80 h-[244px] object-cover"
@@ -102,243 +122,215 @@ const Details = () => {
                 <img class="absolute bg-black top-[360px] left-[1120px] rounded-t-none rounded-br-mini rounded-bl-none w-[315px] h-[244px] object-cover"
                     src="/image-.png"
                 /> */}
-                
-                
-
-                
-
-                </div>
-                {/* Tiêu đề */}
-                <div className='flex items-center justify-center pl-[100px]'>
-                    <div class="xl:text-[40px] text-[30px]   text-[#034DA1] font-semibold font-sans inline-block  ">
-                        <p class="left-[30px] m-0">
-                            {posts[0]?.title}
-                        </p>
-                    </div>
-                </div>
-                
-                
-            
-            <div className='flex flex-col pl-[100px] pt-[20px] xl:flex-row xl:pl-[250px]'>
-
-                <div className="">
-                    <table class=" border border-solid border-[#034DA1] rounded-xl xl:w-[940px] w-[600px]  
-                    h-[400px] bg-[#ee4343] xl:text-[25px] text-[20px] text-left text-[#034DA1] dark:text-gray-400 ">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        
-                        </thead>
-                        <tbody >
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Địa chỉ
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                        {posts[0]?.address}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Giá
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                        Khoảng {posts[0]?.attributes?.price}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Diện tích
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                        {posts[0]?.attributes?.acreage}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Ngày cập nhật
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                        {posts[0]?.attributes?.published}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Điều kiện
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                        Sạch sẽ, giữ vệ sinh chung
-                                    </b>
-                                </td>
-                                
-                            </tr>
-
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Mã
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                    {posts[0]?.attributes?.hashtag}
-
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white ">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Đánh giá
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                        {posts[0]?.star}/5
-                                        
-                                    </b>
-                                
-                                </td>
-                                
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div className="  w-[336px] h-[351px] text-smi text-[#e4e2e2] pl-[100px] pt-[20px]">
-                    <div className="rounded-3xs bg-[#034DA1] w-[340px] h-[351px] flex items-center flex-col p-2 pt-3">  
-                        <img
-                            className="rounded-[50%] w-[104px] h-[104px] object-cover"
-                            alt="avt"
-                            src={anhAvt}
-                        />
-                        <div className="inline-block w-[102.75px]">
-                            Được đăng bởi
-                        </div>
-                        <b className="text-2xl inline-block text-[#ffffff] ">
-                            {posts[0]?.user?.name}
-                        </b>
-                    <div className="w-[118.83px] h-4 flex flex-row">
-                        <div className="inline-block w-[102.75px]">Đang hoạt động</div>
-                        <div
-                            className="rounded-8xs w-[8.3px] h-2 bg-green-600"
-                        />
-                    </div>
-                    <div className="xl:w-[304px] w-[150px] h-10 text-2xl text-black pt-3">
-                        <div className="rounded-3xs bg-[#ffffff] w-[150px] xl:w-[304px] h-[40px] flex items-center justify-center" >
-                            <b className="inline-block">
-                                {posts[0]?.user?.zalo}
-                            </b>
-                        </div>
-                    </div>
-                    <div className=" xl:w-[304px] w-[150px] h-[40px] pt-4">
-                        <div className="rounded-3xs bg-gray-100 box-border xl:w-[304px] w-[150px] h-[38px] border-[1px] border-solid border-black">
-                        
-                            <div className=' cursor-pointer flex flex-row justify-center items-center '>
-                                <button className="xl:w-[304px] w-[150px] h-8 flex flex-row justify-center items-center ">
-                                    <b className="inline-block w-[67.46px] text-black">
-                                        Nhắn Zalo
-                                    </b>
-                                    <img
-                                        className="rounded-3xs w-[35px] h-8 object-cover"
-                                        alt=""
-                                        src={iconZalo}
-                                    />
-                                </button>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>   
-        </div>
-            
-
-                {/* Thông tin người đăng */}
-                
-
-                <div class="text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 xl:pl-[250px] pl-[100px]">
-                    <b>
-                        Thông tin mô tả
-                    </b>
-                </div>
-                <div className='xl:pl-[250px] pl-[100px] pt-5'>
-                <div class=" inline-block xl:text-[25px] text-[20px] border border-solid border-[#034DA1] p-4 rounded-2xl xl:w-[940px] w-[600px]  h-auto">
-                    <div className='flex flex-col gap-5'>
-                        {posts[0]?.description && JSON.parse(posts[0]?.description)?.map((item, index) => {
-                            return (
-                                <span key={index}>{item}</span>
-                            )
-                        }
-                        )}</div>
-                </div>
-                </div>
-                <div class="  text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 xl:pl-[250px] pl-[100px] ">
-                    <b>
-                        Thông tin liên hệ
-                    </b>
-                </div>
-
-                <div class="flex xl:pl-[250px] pl-[100px] pt-[20px]">
-                    <table class="border border-solid border-[#034DA1] p-4 rounded-2xl w-[940px] h-[400px] bg-[#ee4343] xl:text-[25px] text-[20px] text-left text-[#034DA1] dark:text-gray-400 ">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                        
-                        </thead>
-                        <tbody >
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Liên hệ
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                    {posts[0]?.user?.name}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Số điện thoại
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                    {posts[0]?.user?.phone}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            <tr class="bg-white  dark:bg-gray-800 dark:border-gray-700">
-                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Zalo
-                                </th>
-                                <td class="px-6 py-4">
-                                    <b>
-                                    {posts[0]?.user?.zalo}
-                                    </b>
-                                </td>
-                                
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-                <div className='flex justify-center pt-10'>
-                    <button className='rounded-mini border-[#034DA1] bg-white box-border w-56 h-[66px] border-[1px] text-[25px] hover:bg-[#034DA1] hover:text-white border-solid  font-sans font-semibold'>
-                        Xem Thêm Tin
-                    </button>
-                </div>
-                <div className=' w-full pt-[200px]'><Footer/></div>
-            
+          </div>
+          {/* Tiêu đề */}
+          <div className="flex items-center justify-center pl-[100px]">
+            <div class="xl:text-[40px] text-[30px]   text-[#034DA1] font-semibold font-sans inline-block  ">
+              <p class="left-[30px] m-0">{posts[0]?.title}</p>
             </div>
+          </div>
 
-            {/* <div class="absolute top-[2265px] left-[50px] w-[1011px] h-[142.81px]">
+          <div className="flex flex-col pl-[100px] pt-[20px] xl:flex-row xl:pl-[250px]">
+            <div className="">
+              <table
+                class=" border border-solid border-[#034DA1] rounded-xl xl:w-[940px] w-[600px]  
+                    h-[400px] bg-[#ee4343] xl:text-[25px] text-[20px] text-left text-[#034DA1] dark:text-gray-400 "
+              >
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></thead>
+                <tbody>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Địa chỉ
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>{posts[0]?.address}</b>
+                    </td>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Giá
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>Khoảng {posts[0]?.attributes?.price}</b>
+                    </td>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Diện tích
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>{posts[0]?.attributes?.acreage}</b>
+                    </td>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Ngày cập nhật
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>{posts[0]?.attributes?.published}</b>
+                    </td>
+                  </tr>
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Điều kiện
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>Sạch sẽ, giữ vệ sinh chung</b>
+                    </td>
+                  </tr>
+
+                  <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Mã
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>{posts[0]?.attributes?.hashtag}</b>
+                    </td>
+                  </tr>
+                  <tr class="bg-white ">
+                    <th
+                      scope="row"
+                      class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                    >
+                      Đánh giá
+                    </th>
+                    <td class="px-6 py-4">
+                      <b>{posts[0]?.star}/5</b>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="  w-[336px] h-[351px] text-smi text-[#e4e2e2] pl-[100px] pt-[20px]">
+              <div className="rounded-3xs bg-[#034DA1] w-[340px] h-[351px] flex items-center flex-col p-2 pt-3">
+                <img
+                  className="rounded-[50%] w-[104px] h-[104px] object-cover"
+                  alt="avt"
+                  src={anhAvt}
+                />
+                <div className="inline-block w-[102.75px]">Được đăng bởi</div>
+                <b className="text-2xl inline-block text-[#ffffff] ">
+                  {posts[0]?.user?.name}
+                </b>
+                <div className="w-[118.83px] h-4 flex flex-row">
+                  <div className="inline-block w-[102.75px]">
+                    Đang hoạt động
+                  </div>
+                  <div className="rounded-8xs w-[8.3px] h-2 bg-green-600" />
+                </div>
+                <div className="xl:w-[304px] w-[150px] h-10 text-2xl text-black pt-3">
+                  <div className="rounded-3xs bg-[#ffffff] w-[150px] xl:w-[304px] h-[40px] flex items-center justify-center">
+                    <b className="inline-block">{posts[0]?.user?.zalo}</b>
+                  </div>
+                </div>
+                <div className=" xl:w-[304px] w-[150px] h-[40px] pt-4">
+                  <div className="rounded-3xs bg-gray-100 box-border xl:w-[304px] w-[150px] h-[38px] border-[1px] border-solid border-black">
+                    <div className=" cursor-pointer flex flex-row justify-center items-center ">
+                      <button className="xl:w-[304px] w-[150px] h-8 flex flex-row justify-center items-center ">
+                        <b className="inline-block w-[67.46px] text-black">
+                          Nhắn Zalo
+                        </b>
+                        <img
+                          className="rounded-3xs w-[35px] h-8 object-cover"
+                          alt=""
+                          src={iconZalo}
+                        />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Thông tin người đăng */}
+
+          <div class="text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 xl:pl-[250px] pl-[100px]">
+            <b>Thông tin mô tả</b>
+          </div>
+          <div className="xl:pl-[250px] pl-[100px] pt-5">
+            <div class=" inline-block xl:text-[25px] text-[20px] border border-solid border-[#034DA1] p-4 rounded-2xl xl:w-[940px] w-[600px]  h-auto">
+              <div className="flex flex-col gap-5">
+                {posts[0]?.description &&
+                  JSON.parse(posts[0]?.description)?.map((item, index) => {
+                    return <span key={index}>{item}</span>;
+                  })}
+              </div>
+            </div>
+          </div>
+          <div class="  text-[30px]  text-[#034DA1] font-semibold font-sans inline-block pt-10 xl:pl-[250px] pl-[100px] ">
+            <b>Thông tin liên hệ</b>
+          </div>
+
+          <div class="flex xl:pl-[250px] pl-[100px] pt-[20px]">
+            <table class="border border-solid border-[#034DA1] p-4 rounded-2xl w-[940px] h-[400px] bg-[#ee4343] xl:text-[25px] text-[20px] text-left text-[#034DA1] dark:text-gray-400 ">
+              <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"></thead>
+              <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Liên hệ
+                  </th>
+                  <td class="px-6 py-4">
+                    <b>{posts[0]?.user?.name}</b>
+                  </td>
+                </tr>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Số điện thoại
+                  </th>
+                  <td class="px-6 py-4">
+                    <b>{posts[0]?.user?.phone}</b>
+                  </td>
+                </tr>
+                <tr class="bg-white  dark:bg-gray-800 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    Zalo
+                  </th>
+                  <td class="px-6 py-4">
+                    <b>{posts[0]?.user?.zalo}</b>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div className="flex justify-center pt-10">
+            <button className="rounded-mini border-[#034DA1] bg-white box-border w-56 h-[66px] border-[1px] text-[25px] hover:bg-[#034DA1] hover:text-white border-solid  font-sans font-semibold">
+              Xem Thêm Tin
+            </button>
+          </div>
+          <div className=" w-full pt-[200px]">
+            <Footer />
+          </div>
+        </div>
+
+        {/* <div class="absolute top-[2265px] left-[50px] w-[1011px] h-[142.81px]">
                 <div class="absolute top-[0px] left-[0px] rounded-3xs bg-whitesmoke w-[1011px] h-[142.81px]" />
                 <div class="absolute top-[17.47px] left-[59.59px] text-dimgray inline-block w-[148.98px] h-[35.96px]">
                     Ngày đăng
@@ -368,22 +360,13 @@ const Details = () => {
                     {posts[0]?.attributes?.hashtag}
                 </div>
             </div> */}
-
-            
-        
-        </ContextLoginDetail.Provider>
+      </ContextLoginDetail.Provider>
     </ContextRegiterDetail.Provider>
-
-    )
-}
-
+  );
+};
 
 const styles = {
-    container: {
-      
-      
-      
-    },
-}
+  container: {},
+};
 
-export default Details
+export default Details;
