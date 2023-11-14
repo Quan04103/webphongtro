@@ -43,14 +43,14 @@ const profileMenuItems = [
     icon: UserCircleIcon,
     dispatch: '',
     key1:true,
-    link:'/he-thong/sua-thong-tin-ca-nhan',
+    link:'/he-thong',
   },
   {
     label: "Edit Profile",
     icon: Cog6ToothIcon,
     dispatch:'' ,
     key1:true,
-    link:'/he-thong/sua-thong-tin-ca-nhan',
+    link:'he-thong/sua-thong-tin-ca-nhan',
   },
   {
     label: "Inbox",
