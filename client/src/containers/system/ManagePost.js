@@ -1,61 +1,156 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
+import * as actions from '../../store/actions'
+import moment from 'moment'
+import { ButtonEdit, UpdatePost } from '../../components'
+import { apiDeletePost } from '../../services';
+import Swal from 'sweetalert2';
+
 const ManagePost = () => {
+    const dispatch = useDispatch()
+    const [isEdit, setIsEdit] = useState(false)
+    const { postOfCurrent, dataEdit } = useSelector(state => state.post)
+    const [updateData, setUpdateData] = useState(false)
+    const [status, setStatus] = useState('0')
+    const [posts, setposts] = useState([])
+    useEffect(() => {
+        !dataEdit && dispatch(actions.getPostsLimitAdmin())
+    }, [dataEdit, updateData])
+
+    useEffect(() => {
+        setposts(postOfCurrent)
+    }, [postOfCurrent])
+
+    useEffect(() => {
+        !dataEdit && setIsEdit(false)
+    }, [dataEdit])
+
+
+    const checkStatus = (dateString) => moment(dateString, process.env.REACT_APP_FORMAT_DATE).isAfter(new Date().toDateString())
+
+
+    const handleDeletePost = async (postId) => {
+        const response = await apiDeletePost(postId)
+        console.log(response)
+        if (response?.data.err === 0) {
+            setUpdateData(prev => !prev)
+        } else {
+            Swal.fire('Oops!', 'Xóa tin đăng thất bại', 'error')
+        }
+
+    }
+    useEffect(() => {
+        if (status === 1) {
+            const activePost = postOfCurrent?.filter(item => checkStatus(item?.overviews?.expired?.split(' ')[3]))
+            setposts(activePost)
+        } else if (status === 2) {
+            const expiredPost = postOfCurrent?.filter(item => !checkStatus(item?.overviews?.expired?.split(' ')[3]))
+            setposts(expiredPost)
+        } else {
+            setposts(postOfCurrent)
+        }
+    }, [status])
     return (
-        <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen  ">
+
+
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg h-screen">
             <div className='py-4 border-b border-gray-200 flex items-center justify-between'>
-                <h1 className='text-3x1 font-medium ' >Quản lý tin đăng</h1>
-                <select className='outline-none border p-2 border-gray-200 rounded-md'>
-                    <option value="">Lọc theo trạng thái</option>
+                <h1 className='text-13xl font-medium '>Quản lý tin đăng</h1>
+                <select onChange={e => setStatus(+e.target.value)} value={status} className='outline-none border p-2 border-gray-200 rounded-md'>
+                    <option value="0">Lọc theo trạng thái</option>
+                    <option value="1">Đang hoạt dộng </option>
+                    <option value="2">Đã hết hạn</option>
                 </select>
             </div>
-            <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen ">
-                <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-                    <div className="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-                        <div className="overflow-hidden">
-                            <table className="min-w-full text-center text-sm font-light">
-                                <thead
-                                    className="border-b bg-black font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-                                    <tr>
-                                        <th scope="col" className="px-6 py-4">#</th>
-                                        <th scope="col" className="px-6 py-4">Ảnh đại diện</th>
-                                        <th scope="col" className="px-6 py-4">Tiêu đề</th>
-                                        <th scope="col" className="px-6 py-4">Giá</th>
-                                        <th scope="col" className="px-6 py-4">Ngày bắt đầu</th>
-                                        <th scope="col" className="px-6 py-4">Ngày hết hạng</th>
-                                        <th scope="col" className="px-6 py-4">Trạng thái</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap  px-6 py-4 font-medium">1</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">
-                                            <img class="h-40 w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
-                                        </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">Cho thuê nhà </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">3.000.000đ/thang</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-10-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-11-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">còn thời hạn</td>
-                                    </tr>
-                                    <tr className="border-b dark:border-neutral-500">
-                                        <td className="whitespace-nowrap  px-6 py-4 font-medium">2</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">
-                                            <img class="h-40 w-auto m-auto" src="https://xaynhachothue.vn/wp-content/uploads/2019/10/Nh%C3%A0-C%E1%BB%A7a-M%C3%ACnh-Thi%E1%BA%BFt-k%E1%BA%BF-c%C4%83n-h%E1%BB%99-mini-cho-thu%C3%AA-Anh-H%E1%BA%ADu-Qu%E1%BA%ADn-10-2-1024x768.jpg" alt="Your Company"></img>
-                                        </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">Cho thuê nhà </td>
-                                        <td className="whitespace-nowrap  px-6 py-4">3.000.000đ/thang</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-10-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">18-11-2023</td>
-                                        <td className="whitespace-nowrap  px-6 py-4">còn thời hạn</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <table class="w-full text-sm text-left rtl:text-right text-center text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-white uppercase bg-black dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            #
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tiêu đề
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Hình
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Giá
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Ngày bắt đầu
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Ngày hết hạn
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Trạng thái
+                        </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tùy chọn
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {!posts
+                        ? <tr>
+                            <td>adadada</td>
+                        </tr> : posts?.map(item => {
+                            return (
+                                <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={item.id}>
+                                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >
+                                        {item?.overviews?.code}
+                                    </th>
+                                    <td class="px-6 py-4">
+                                        {item?.title}
+                                    </td>
+                                    <td class="px-6 py-4 flex items-center justify-center">
+                                        <img src={JSON.parse(item?.images?.image)[0] || ''} alt="avatar-post" className='w-10 h-10 object-cover rounded-md' />
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        {item?.attributes?.price}
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{item?.overviews?.created}</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{item?.overviews?.expired}</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{checkStatus(item?.overviews?.expired?.split(' ')[3]) ? 'Đang hoạt động' : 'Đã hết hạn'}</a>
+                                    </td>
+                                    <td class="px-6 py-4">
+                                        <ButtonEdit
+                                            text='Sửa'
+                                            bgColor=' bg-green-500 shadow-lg shadow-green-500/50 hover:bg-green-600'
+                                            className='mx-6'
+                                            textColor='text-white'
+                                            onClick={() => {
+                                                dispatch(actions.editData(item))
+                                                setIsEdit(true)
+                                            }}
+                                        />
+                                        <ButtonEdit
+                                            text='Xóa'
+                                            bgColor='bg-red-400 shadow-lg shadow-red-500/50 hover:bg-red-700'
+                                            textColor='text-white'
+                                            onClick={() => handleDeletePost(item.id)}
+                                        />
+                                    </td>
+                                </tr>
 
+                            )
+
+
+                        })}
+
+
+
+                </tbody>
+            </table>
+            {isEdit && <UpdatePost setIsEdit={setIsEdit} />}
         </div>
+
     )
 }
 

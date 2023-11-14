@@ -352,7 +352,7 @@ const Details = () => {
                     Ngày hết hạn
                 </div>
                 <div class="absolute top-[85.28px] left-[333.92px] font-medium inline-block w-[145.9px] h-[32.88px]">
-                    01/10/2023
+                {posts[0]?.overviews?.expired}
                 </div>
 
                 <div class="absolute top-[17.47px] left-[619.55px] text-dimgray inline-block w-[108.91px] h-[33.91px]">

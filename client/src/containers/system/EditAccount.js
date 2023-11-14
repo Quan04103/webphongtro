@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import anonavatar from "../../assets/anonavatar.png"
-import { InputReadOnly, InputFormV2, Button } from '../../components'
+import { SystemInputReadOnly, SystemInputFormV2, ButtonEdit } from '../../components'
 import { useSelector, useDispatch } from 'react-redux'
 import { apiUpdateUser } from '../../services'
 import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
@@ -42,29 +42,23 @@ const EditAccount = () => {
             <h1 className='text-13xl font-bold py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
             <div className='w-1/2 flex items-center justify-center flex-auto'>
                 <div className=' py-6 flex flex-1/3 flex-col gap-5 w-full'>
-                    <InputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
-                    <InputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" />
+                    <SystemInputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
+                    <SystemInputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" />
 
-                    <InputFormV2
+                    <SystemInputFormV2
                         name='name'
                         setValue={setPayload}
                         direction='flex-row'
                         value={payload.name}
                         label='Tên hiển thị' />
-                    {/* <InputFormv2
-                        name='Email'
-                        // setValue={}
-                        direction='flex-row'
-                        label='Email' /> */}
-
-                    <InputFormV2
+                    <SystemInputFormV2
                         name='zalo'
                         setValue={setPayload}
                         direction='flex-row'
                         value={payload.zalo}
                         label='Zalo' />
 
-                    <InputFormV2
+                    <SystemInputFormV2
                         name='fbUrl'
                         setValue={setPayload}
                         direction='flex-row'
@@ -82,11 +76,10 @@ const EditAccount = () => {
                             <input onChange={handleUploadFile} type="file" className="appearance-none my-4" id="avatar" />
                         </div>
                     </div>
-
-                    <Button text='Cập nhật'
-                        bgColor='bg-blue-600'
+                    <ButtonEdit text='Cập nhật'
+                        bgColor='bg-blue-600 shadow-lg shadow-blue-500/50 hover:bg-blue-800'
                         textColor='text-white'
-                        onClick={handleSubmit}></Button>
+                        onClick={handleSubmit}></ButtonEdit>
                 </div>
             </div>
         </div>

@@ -99,6 +99,9 @@ const Item = ({ images, user, title, star, description, attributes, address, id 
         <p style={styles.p2}>{`Diện tích: ${attributes?.acreage}`}</p>
         <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
         <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
+        <span className='flex-3 whitespace-nowrap overflow-hidden text-ellipsis'>
+          {`${address.split(',')[address.split(',').length - 2]}${address.split(',')[address.split(',').length - 1]}`}
+        </span>
       </a>
     </div>
 

@@ -20,7 +20,7 @@ import { Card,
 } from '@material-tailwind/react';
  import {CameraIcon} from "@heroicons/react/24/outline"
 const {ImBin } = icons
-    const CreatePost = () => {
+    const CreatePost = (isEdit) => {
     const [payload, setPayload] = useState({
         categoryCode: '',
         title: '',
@@ -115,7 +115,7 @@ const {ImBin } = icons
                         <Card className='  py-10 border-solid border-2'>
                             <div className='flex justify-center'>                                
                                 <div className='flex w-3/4 flex-col gap-5' >          
-                                    <Typography variant="h2">Thông tin cơ bản</Typography>
+                                    <Typography variant="h2">{isEdit ?  'Chỉnh sửa tin đăng' : 'Đăng tin mới'}</Typography>
                                     <ButtonGroup variant="text" fullWidth >
                                         <Button className='bg-gray-200'>BÁN </Button>
                                         <Button className='bg-gray-200'>CHO THUÊ</Button>

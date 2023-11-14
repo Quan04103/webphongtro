@@ -6,4 +6,4 @@ export { default as ManagePost } from './ManagePost'
 export { default as EditAccount } from './EditAccount'
 export { default as PayPost } from './PayPost'
 export { default as DepositHistory } from './DepositHistory'
-
+export { default as PaymentHistory } from './PaymentHistory'

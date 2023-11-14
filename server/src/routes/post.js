@@ -22,6 +22,7 @@ router.put('/updatepost', postController.updatePosts)
 
 router.use(verifyToken)
 router.post('/create-new', postController.createNewPost)
-
-
+router.get('/limit-admin', postController.getPostsLimitAdmin)
+router.put('/update', postController.updatePost)
+router.delete('/delete', postController.deletePost)
 export default router

@@ -3,8 +3,11 @@ require('dotenv').config()
 import cors from 'cors'
 import initRoutes from './src/routes'
 import connectDatabase from './src/config/connectDatabase'
-
+import genarateDate from './src/ultis/genarateDate'
 const app = express()
+
+// console.log(genarateDate());
+
 app.use(cors({
     origin: process.env.CLIENT_URL,
     methods: ["POST", 'GET', 'PUT', "DELETE"]
