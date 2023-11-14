@@ -2,9 +2,7 @@ import React from 'react'
 import { CreatePost } from '../containers/system'
 
 
-
-
-const UpdatePost = ({ setIsEdit,  }) => {
+const UpdatePost = ({ setIsEdit }) => {
   return (
     <div
       className='absolute bg-overlay-30 top-0 left-0 right-0 bottom-0 flex justify-center'

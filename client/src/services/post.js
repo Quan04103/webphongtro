@@ -19,7 +19,7 @@ export const apiGetPostsPage = (page) => new Promise(async (resolve, reject) => 
         const response = await axiosConfig({
             method: 'get',
             url: `/api/v1/post/limitpage?page=${page}`,
-           
+
         })
         resolve(response)
 

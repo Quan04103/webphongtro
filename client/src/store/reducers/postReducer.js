@@ -5,7 +5,7 @@ const initState = {
     count: 0,
     newPosts: [],
     postOfCurrent: [],
-    dataEdit: {}
+    dataEdit: null
 
 }
 
@@ -49,6 +49,7 @@ const postReducer = (state = initState, action) => {
                 ...state,
                 dataEdit: null
             }
+            
 
         case actionTypes.GET_ONEPOST:
                 return {

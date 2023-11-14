@@ -178,7 +178,7 @@ export function Navbar1 () {
                         <div class="hidden sm:ml-60 py-4 sm:block">
                             <div class="flex-auto w-full px-1 mt-9">
                                 <nav class="bg-grey-light w-full rounded-md flex-1" aria-label="breadcrumb">
-                                    <ol class="list-reset flex">
+                                    {/* <ol class="list-reset flex">
                                         <li>
                                             <a href="http://localhost:3000/" class="hover:bg-blue-gray-50 hover:bg-opacity-80
                                              focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
@@ -212,7 +212,7 @@ export function Navbar1 () {
                                                 active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium"
                                             >Quản lí tin đăng</a>
                                         </li>
-                                    </ol>
+                                    </ol> */}
                                 </nav>
                             </div>
                         </div>

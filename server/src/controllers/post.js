@@ -70,6 +70,12 @@ export const createNewPost = async (req, res) => {
         })
     }
 }
+
+
+
+
+
+// Quoc
 export const getPostsLimitAdmin = async (req, res) => {
     const { page, ...query } = req.query
     const { id } = req.user
@@ -90,12 +96,12 @@ export const getPostsLimitAdmin = async (req, res) => {
 }
 
 export const updatePost = async (req, res) => {
-    const {postId, overviewId, imagesId, attributesId, ...payload} = req.body
-    const {id } = req.user
+    const { postId, overviewId, imagesId, attributesId, ...payload } = req.body
+    const { id } = req.user
     try {
-        if (!postId || !id || !overviewId || !imagesId || !attributesId ) return res.status(400).json({
+        if (!postId || !id || !overviewId || !imagesId || !attributesId) return res.status(400).json({
             err: 1,
-            msg: 'Missing postId'
+            msg: 'Missing inputs'
         })
         const response = await postService.updatePost(req.body)
         return res.status(200).json(response)
