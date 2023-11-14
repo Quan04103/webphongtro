@@ -76,6 +76,7 @@ const profileMenuItems = [
 ];
 
 function ProfileMenu() {
+  const navigate = useNavigate()
   const { currentData } = useSelector(state => state.user)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -110,7 +111,7 @@ function ProfileMenu() {
           const isLastItem = key === profileMenuItems.length - 1;
 
           const handleClickOn = async () => {
-            (dispatch(dispatchAction))
+            dispatch(dispatchAction)
         }
           return (
             <MenuItem
@@ -342,9 +343,14 @@ export function ComplexNavbar() {
         <div className="absolute right-[100px] ml-[500px]">
           <LoginButton />
         </div> */}
+        {isLoggedIn && (
+          <>
         <NavLink className="absolute top-2/4 left-3/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block" to={'/he-thong/tao-moi-bai-dang'}>
           <Button variant="outlined" style={{ fontSize: "15px" }}>Đăng tin</Button>
         </NavLink>
+          </>
+        )}
+
         <IconButton
           size="sm"
           color="blue-gray"
