@@ -96,6 +96,8 @@ export const getNewPosts = () => async (dispatch) => {
         })
     }
 }
+
+
 export const getPostsLimitAdmin = (query) => async (dispatch) => {
     try {
         const response = await apiGetPostsLimitAdmin(query)

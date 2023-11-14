@@ -192,6 +192,25 @@ export const createNewPostService = (body, userId) => new Promise(async (resolve
     }
 })
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Quoc
 export const getPostsLimitAdminService = (page, id, query) => new Promise(async (resolve, reject) => {
     try {
         let offset = (!page || +page <= 1) ? 0 : (+page - 1)

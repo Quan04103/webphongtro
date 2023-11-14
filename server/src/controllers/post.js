@@ -70,6 +70,12 @@ export const createNewPost = async (req, res) => {
         })
     }
 }
+
+
+
+
+
+// Quoc
 export const getPostsLimitAdmin = async (req, res) => {
     const { page, ...query } = req.query
     const { id } = req.user
