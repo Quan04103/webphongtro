@@ -78,3 +78,24 @@ export const getOneUser = async (req, res) => {
         })
     }
 }
+
+export const plusMoney = async (req, res) => {
+    try {
+        const {id} = req.user;
+        const money = req.body;
+        if (!id || !money) {
+            return res.status(400).json({
+              err: -1,
+              msg: 'Missing input parameter',
+            });
+          }
+        const response = await services.plusMoneyService(id, money)
+        return res.status(200).json(response)
+
+    } catch (error) {
+        return res.status(500).json({
+            err: -1,
+            msg: 'Failed at user controller: ' + error
+        })
+    }
+}

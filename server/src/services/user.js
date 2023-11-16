@@ -83,3 +83,21 @@ export const getOneUserService = (id) => new Promise(async (resolve, reject) => 
         reject(error)
     }
 })
+
+export const plusMoneyService = (id, money) => new Promise(async (resolve, reject) => {
+    try {
+        
+        const response = await db.User.update(money ,{
+            where: { id },
+        })
+        resolve({
+            err: response ? 0 : 1,
+            logging: console.log,
+            msg: response ? 'OK' : 'Failed to update status post.',
+            response
+        })
+    } catch (error) {
+        reject(error)
+    }
+})
+

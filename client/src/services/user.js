@@ -64,3 +64,17 @@ export const apiGetOneUser = (id) => new Promise(async (resolve, reject) => {
         reject(error)
     }
 })
+
+export const apiPlusMoney = (money) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axios({
+            method: 'put',
+            url: `/api/v1/user/plusmoney`,
+            data: {money}
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})

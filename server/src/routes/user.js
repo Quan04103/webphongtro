@@ -12,6 +12,7 @@ router.delete('/deleteuser/:id', userController.deleteUser)
 
 
 router.use(verifyToken)
+router.put('/plusmoney', userController.plusMoney)
 router.get('/get-current', userController.getCurrent)
 router.put('/', userController.updateUser)
 
