@@ -84,7 +84,6 @@ const Home = () => {
               }
             >
               <ComplexNavbar />
-              {/* >>>>>>> 95afce74c407c433eaa39b55c25749631eca25f1 */}
             </div>
           </div>
           

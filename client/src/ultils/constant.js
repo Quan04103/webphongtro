@@ -17,14 +17,19 @@ export const path = {
     DEPOSITHISTORY: 'lich-su-thanh-toan',
     DETAILS_POST_TITLE_POSTID: '/details/:title/:postId',
     DETATLS: '/details/',
-
+    VNPAY:'vnpay',
+    
     //admin
     ADMIN:'/admin/*',
     LOGIN_ADMIN:'/logginadmin',
     DASHBOARD:'dashboard',
     EDITPOST:'editpost',
     PRODUCT:'products',
-    
+    PENPOST:'penpost',
+    USERMANAGEMENT:'usermanagement',
+    EDITUSER:'edituser',
+
+    THANK:'thank',
 }
 
 

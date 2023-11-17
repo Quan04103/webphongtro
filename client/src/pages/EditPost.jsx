@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Select } from "../components";
 import { path } from "../ultils/constant";
 import { Overview, Address, Loading } from "../components";
-import { apiUpdatePost, apiUploadImages } from "../services";
+import { apiUpdatePostAdmin, apiUploadImages } from "../services";
 import icons from "../ultils/icons";
 import { getCodes, getCodesArea } from "../ultils/Common/getCodes";
 import { useSelector } from "react-redux";
@@ -146,11 +146,11 @@ useEffect(() => {
     //     categories?.find((item) => item.code === payload?.categoryCode)?.value
     //   } ${payload?.address?.split(",")[0]}`,
     // };
-    const response = await apiUpdatePost(idpost,payload);
+    const response = await apiUpdatePostAdmin(idpost,payload);
     console.log(payload);
     if (response?.data.err === 0) {
       Swal.fire("Thành công", "Đã sửa bài đăng mới", "success").then(() => {    
-        navigate(-2);
+        navigate('/admin');
         setPayload({
           categoryCode: "",
           title: "",

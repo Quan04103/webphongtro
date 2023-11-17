@@ -14,40 +14,39 @@ const { GrStar,BiMap } = icons
 const Item = ({ images, user, title, star, attributes, address, id }) => {
  
 
-  const firstImage = images.slice(1, 2);
+  const firstImage = images.slice(0, 1);
 
 
   return (
-      <a href={`${path.DETATLS}${formatVietnameseToString(title)}/${id}`}>
-       <div 
-        className='md:grid md:grid-flow-row md:rounded-md flex flex-rows transform  hover:scale-[1.02] md:hover:scale-[1.02]  ' 
-        style={styles.imageContainer}
-        >
-          <div className='basis-[30%]' >
-            <img  src={firstImage} alt={`Hinh anh minh hoa`} className='h-[15rem] w-full lg:h-[25rem] md:w-[90%]'  style={styles.imageFrame}/>
-          </div>
-          <div className='basis-[70%]' style={styles.content}>
-              <h5 style={styles.h5} className='flex flex-row gap-1 w-full'>
-                <BiMap size={20} color='gray'/>
-                {`${address.split(',')[address.split(',').length - 1]}`}
-                
-              </h5>
-              <h4 style={styles.h4} className='md:flex hidden'>
-                
-                {`${title.split(' ',10).join(' ')} ...`}         
-              </h4>
-              <h4 style={styles.h4} className='md:hidden flex'>
-                {title}
-                         
-              </h4>
+    <a href={`${path.DETATLS}${formatVietnameseToString(title)}/${id}`}>
+    <div 
+     className='md:grid md:grid-flow-row md:rounded-md flex flex-rows transform  hover:scale-[1.02] md:hover:scale-[1.02]  ' 
+     style={styles.imageContainer}
+     >
+       <div className='basis-[30%]' >
+         <img  src={firstImage} alt={`Hinh anh minh hoa`} className='h-[15rem] w-full lg:h-[25rem] md:w-[90%]'  style={styles.imageFrame}/>
+       </div>
+       <div className='basis-[70%]' style={styles.content}>
+           <h5 style={styles.h5} className='flex flex-row gap-1 w-full'>
+             <BiMap size={20} color='gray'/>
+             {`${address.split(',')[address.split(',').length - 1]}`}
+             
+           </h5>
+           <h4 style={styles.h4} className='md:flex hidden'>
+             
+             {`${title.split(' ',10).join(' ')} ...`}         
+           </h4>
+           <h4 style={styles.h4} className='md:hidden flex'>
+             {title}
+                      
+           </h4>
 
-              <p style={styles.p2}>{`Diện tích: ${attributes?.acreage}`}</p>
-              <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
-              <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
-          </div>
-        </div>
-      </a>
-    
+           <p style={styles.p2}>{`Diện tích: ${attributes?.acreage}`}</p>
+           <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
+           <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
+       </div>
+     </div>
+   </a>
 
   );
 };
