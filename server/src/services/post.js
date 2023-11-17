@@ -48,7 +48,7 @@ export const getPostsLimitService = (page, { limitPost, order, ...query }, { pri
                 { model: db.User, as: 'user', attributes: ['name', 'zalo', 'phone'] },
                 { model: db.Overview, as: 'overviews' },
             ],
-            attributes: ['id', 'title', 'star', 'address', 'description']
+            attributes: ['id', 'title', 'star', 'address', 'description','status']
         })
         resolve({
             err: response ? 0 : 1,
