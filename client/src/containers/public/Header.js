@@ -39,14 +39,14 @@ import {path} from '../../ultils/constant'
 const profileMenuItems = [
 
   {
-    label: "My Profile",
+    label: "Quản lý tin",
     icon: UserCircleIcon,
     dispatch: '',
     key1:true,
     link:'/he-thong/quan-ly-bai-dang',
   },
   {
-    label: "Edit Profile",
+    label: "Hệ thống",
     icon: Cog6ToothIcon,
     dispatch:'' ,
     key1:true,
@@ -60,14 +60,7 @@ const profileMenuItems = [
     link:'',
   },
   {
-    label: "Help",
-    icon: LifebuoyIcon,
-    dispatch: "",
-    key1:true,
-    link:'',
-  },
-  {
-    label: "Sign Out",
+    label: "Đăng xuất",
     icon: PowerIcon,
     dispatchAction: actions.logout(),
     key1:false,

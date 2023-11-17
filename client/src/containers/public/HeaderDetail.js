@@ -41,18 +41,18 @@ import {ContextLoginDetail, ContextRegiterDetail} from './Details'
 const profileMenuItems = [
 
   {
-    label: "My Profile",
+    label: "Quản lý tin",
     icon: UserCircleIcon,
     dispatch: '',
     key1:true,
-    link:'/he-thong/sua-thong-tin-ca-nhan',
+    link:'/he-thong/quan-ly-bai-dang',
   },
   {
-    label: "Edit Profile",
+    label: "Hệ thống",
     icon: Cog6ToothIcon,
     dispatch:'' ,
     key1:true,
-    link:'',
+    link:'/he-thong',
   },
   {
     label: "Inbox",
@@ -62,22 +62,15 @@ const profileMenuItems = [
     link:'',
   },
   {
-    label: "Help",
-    icon: LifebuoyIcon,
-    dispatch: "",
-    key1:true,
-    link:'',
-  },
-  {
-    label: "Sign Out",
+    label: "Đăng xuất",
     icon: PowerIcon,
     dispatchAction: actions.logout(),
     key1:false,
     link:'',
   },
 ];
-
 function ProfileMenu() {
+  const navigate = useNavigate()
   const { currentData } = useSelector(state => state.user)
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -112,8 +105,7 @@ function ProfileMenu() {
           const isLastItem = key === profileMenuItems.length - 1;
 
           const handleClickOn = async () => {
-            (dispatch(dispatchAction))
-
+            dispatch(dispatchAction)
         }
           return (
             <MenuItem
@@ -123,7 +115,7 @@ function ProfileMenu() {
                 ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
                 : ""
                 }`}
-            ><Link>
+            ><Link to={link}>
               <span className="flex" onClick={!key1 ? handleClickOn : ('/he-thong/sua-thong-tin-ca-nhan')}
               >
                 {React.createElement(icon, {
@@ -175,53 +167,52 @@ function IconList() {
 const navListItems = [
   {
     label: "Trang chủ",
-    link: "'/profile'",
+    link: 'http://localhost:3000',
     key: '1'
   },
   {
     label: "Cho thuê phòng trọ",
-    link: "'/createpost'",
+    link: '/tim-kiem?categoryCode=CTPT',
     key: '2'
   },
   {
     label: "Nhà cho thuê",
-    link: "'/detail'",
+    link: '/tim-kiem?categoryCode=NCT',
     key: '3'
   },
   {
     label: "Cho thuê căn hộ",
-    link: '',
+    link: '/tim-kiem?categoryCode=CTCH',
     key: '4'
   },
 ];
 
 function NavList() {
 
+  const handleLinkClick = (link) => {
+    window.location.assign(link);
+  };
 
   return (
-
-    <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
-      {navListItems.map(({ label }, link, { key }) => (
-        <NavLink to={link}>
-          <Typography
-            key={key}
-            as="a"
-            href="#"
-            variant=""
-            color="blue-gray"
-            className="font-sans "
-          >
-            <MenuItem className="flex items-center gap-2 lg:rounded-full">
-              {label}
-            </MenuItem>
-          </Typography>
-        </NavLink>
+    <ul className="mb-4 mt-2 flex flex-col gap-7 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+      {navListItems.map(({ label, link, key }) => (
+        <Typography
+          key={key}
+          as="a"
+          href={link}
+          variant=""
+          color="blue-gray"
+          className="font-semibold"
+          onClick={() => handleLinkClick(link)}
+        >
+          <MenuItem className="flex items-center gap-2 lg:rounded-full ">
+            {label.toUpperCase()}
+          </MenuItem>
+        </Typography>
       ))}
     </ul>
-
   );
 }
-
 export function LoginButton() {
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(ContextLoginDetail);
   const handleClosePopup = () => {
@@ -259,8 +250,8 @@ export function RegisterButton() {
 
 export function ComplexNavbarDetail() {
   const dispatch = useDispatch();
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useContext(ContextRegiterDetail);
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(ContextLoginDetail);
+
+  const [isLoginPopupOpen, setIsLoginPopupOpen] = useContext(ContextRegiterDetail);
   const { isLoggedIn, msg, update } = useSelector((state) => state.auth);
   const { currentData } = useSelector(state => state.user)
   const handleClosePopup = () => {
@@ -301,14 +292,14 @@ export function ComplexNavbarDetail() {
   useEffect(() => {
     msg && Swal.fire('Oops !', msg, 'error')
   }, [msg, update])
-  console.log(isLoggedIn)
+
    console.log(currentData)
 
   return (
     <Navbar className="mx-auto max-w-screen-3xl p-2 lg:pl-6">
       <div className="relative mx-auto flex items-center text-blue-gray-900">
-        <img className="cursor-pointer h-24 w-24" src={logo} />
-        <div className="absolute top-2/4 left-1/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block pl-10">
+        <img className="cursor-pointer h-20 w-20" src={logo} />
+        <div className="absolute top-2/4 left-[470px] left-1/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block pl-10">
           <NavList/>
         </div>
         <div className="absolute top-2/4 left-2/3 hidden -translate-x-2/4 -translate-y-2/4 lg:block">
@@ -317,7 +308,7 @@ export function ComplexNavbarDetail() {
         {isLoggedIn && (
           <>
             {" "}
-            <div className="absolute items-center right-[100px]">Xin chào {currentData.name}</div>
+            <div className="absolute items-center right-[90px] ">Xin chào {currentData.name}</div>
             <ProfileMenu />
           </>
 
@@ -325,10 +316,10 @@ export function ComplexNavbarDetail() {
 
         {!isLoggedIn && (
           <>
-            <div className="absolute right-[210px] ">
+            <div className="absolute right-[160px] ">
               <RegisterButton />
             </div>
-            <div className="absolute right-[100px] ml-[500px]">
+            <div className="absolute right-[50px] ml-[500px]">
               <LoginButton />
             </div>
           </>
@@ -340,9 +331,14 @@ export function ComplexNavbarDetail() {
         <div className="absolute right-[100px] ml-[500px]">
           <LoginButton />
         </div> */}
+        {isLoggedIn && (
+          <>
         <NavLink className="absolute top-2/4 left-3/4 hidden -translate-x-2/4 -translate-y-2/4 lg:block" to={'/he-thong/tao-moi-bai-dang'}>
-          <Button variant="outlined">Đăng tin</Button>
+          <Button variant="outlined" style={{ fontSize: "15px" }}>Đăng tin</Button>
         </NavLink>
+          </>
+        )}
+
         <IconButton
           size="sm"
           color="blue-gray"

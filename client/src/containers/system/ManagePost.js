@@ -13,6 +13,8 @@ const ManagePost = () => {
     const [updateData, setUpdateData] = useState(false)
     const [status, setStatus] = useState('0')
     const [posts, setposts] = useState([])
+
+
     useEffect(() => {
         !dataEdit && dispatch(actions.getPostsLimitAdmin())
     }, [dataEdit, updateData])
@@ -39,17 +41,18 @@ const ManagePost = () => {
         }
 
     }
-    useEffect(() => {
-        if (status === 1) {
-            const activePost = postOfCurrent?.filter(item => checkStatus(item?.overviews?.expired?.split(' ')[3]))
-            setposts(activePost)
-        } else if (status === 2) {
-            const expiredPost = postOfCurrent?.filter(item => !checkStatus(item?.overviews?.expired?.split(' ')[3]))
-            setposts(expiredPost)
-        } else {
-            setposts(postOfCurrent)
-        }
-    }, [status])
+    // useEffect(() => {
+    //     if (postOfCurrent[0]?.status === 1) {
+    //         const a
+    //         setposts(activePost)
+    //     } else if (postOfCurrent[0]?.status === 2) {
+    //         const expiredPost = postOfCurrent?.filter(item => !checkStatus(item?.overviews?.expired?.split(' ')[3]))
+    //         setposts(expiredPost)
+    //     } else {
+    //         setposts(postOfCurrent)
+    //     }
+    // }, [status])
+    console.log(postOfCurrent[0]?.status)
     return (
 
 
@@ -96,6 +99,10 @@ const ManagePost = () => {
                         ? <tr>
                             <td>adadada</td>
                         </tr> : posts?.map(item => {
+                            let statusText = '';
+                            if (item?.status === 0) statusText = 'Đang chờ duyệt';
+                            else if (item?.status === 1) statusText = 'Đã chấp nhận';
+                            else if (item?.status === 2) statusText = 'Đã từ chối';
                             return (
                                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700" key={item.id}>
                                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white" >
@@ -117,7 +124,7 @@ const ManagePost = () => {
                                         <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{item?.overviews?.expired}</a>
                                     </td>
                                     <td class="px-6 py-4">
-                                        <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{checkStatus(item?.overviews?.expired?.split(' ')[3]) ? 'Đang hoạt động' : 'Đã hết hạn'}</a>
+                                    <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{statusText}</a>
                                     </td>
                                     <td class="px-6 py-4">
                                         <ButtonEdit
