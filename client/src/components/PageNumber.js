@@ -36,9 +36,11 @@ const PageNumber = ({text,  currentPage, icon,setCurrentPage}) => {
             });
         }
    }
+   
     return (
-        <IconButton className={+text === +currentPage ? active : notActive}
-        onClick={() => handleChangePage()}
+        <IconButton 
+        className={+text === +currentPage ? active : notActive}
+        onClick={ handleChangePage}
         >
             {icon || text}
         </IconButton>

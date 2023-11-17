@@ -26,6 +26,7 @@ import {
 } from "react-icons/ai";
 import { RiDashboardFill } from "react-icons/ri";
 
+import {BiMap } from "react-icons/bi"
 
 const icons = {
     FiDollarSign,
@@ -60,6 +61,7 @@ const icons = {
     TbBuildingWarehouse,
     BiSolidBuildingHouse,
     GiSpookyHouse,
+    BiMap
 }
 
 export default icons
