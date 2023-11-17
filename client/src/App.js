@@ -31,7 +31,7 @@ import PenProduct from "./pages/PenProduct"
 import EditPost from "./pages/EditPost";
 import UserManagement from "./pages/UserManagement";
 import EditUser from "./pages/EditUser";
-import Thank from "./containers/public/Thank";
+import Thank from './containers/system/Thank'
 
 
 function App() {
@@ -73,7 +73,7 @@ function App() {
         </Route>
 
         <Route path={path.LOGIN_ADMIN} element={<LoginAdmin />} />
-        <Route path={path.THANK} element={<Thank />} />
+
         <Route path={path.ADMIN} element={<Layout />}>
           
           <Route index element={<Dashboard />} />
@@ -98,6 +98,7 @@ function App() {
           <Route path={path.MANAGE_POST} element={<ManagePost />} />
           <Route path={path.EDIT_ACCOUNT} element={<EditAccount />} />
           <Route path={path.DEPOSITHISTORY} element={<DepositHistory />} />
+          <Route path={path.THANK} element={<Thank />} />
         </Route>
       </Routes>
     </div>

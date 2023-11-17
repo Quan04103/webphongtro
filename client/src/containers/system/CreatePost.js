@@ -12,6 +12,7 @@ import Swal from 'sweetalert2'
 import validate from '../../ultils/Common/validateFields'
 // import Footer from './Footer'
 import { resetDataEdit } from '../../store/actions';
+import { apiPlusMoney } from '../../services';
 import {
     Card,
     Input,
@@ -25,10 +26,10 @@ import { CameraIcon } from "@heroicons/react/24/outline"
 
 const { ImBin } = icons
 const CreatePost = ({ isEdit }) => {
+    
     const dispatch = useDispatch()
     const { dataEdit } = useSelector(state => state.post)
     const [payload, setPayload] = useState(() => {
-
         const initData = {
             categoryCode: dataEdit?.categoryCode || '',
             title: dataEdit?.title || '',
@@ -43,7 +44,6 @@ const CreatePost = ({ isEdit }) => {
         }
         return initData
     })
-
     const [imagesPreview, setImagesPreview] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const { prices, areas, categories, province } = useSelector(state => state.app)
@@ -79,6 +79,7 @@ const CreatePost = ({ isEdit }) => {
         }))
     }
     const handleSubmit = async () => {
+        const currentMoney = parseInt(currentData.money,10) || 0;
         let priceCodeArr = getCodes(+payload.priceNumber / Math.pow(10, 6), prices, 1, 15)
         let priceCode = priceCodeArr[priceCodeArr.length - 1]?.code
         let areaCodeArr = getCodesArea(+payload.areaNumber, areas, 0, 90)
@@ -98,27 +99,40 @@ const CreatePost = ({ isEdit }) => {
             finalPayload.imagesId = dataEdit?.imagesId
             finalPayload.overviewId = dataEdit?.overviewId
 
-            const response = await apiUpdatePost(finalPayload)
-            if (response?.data.err === 0) {
-                Swal.fire('Thành công', 'Đã cập nhật bài đăng', 'success').then(() => {
-                    resetPayload()
-                    dispatch(resetDataEdit())
-                })
-            } else {
-                Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+            if ( currentMoney > 3000){
+                const responseMoney = await apiPlusMoney(currentMoney - 3000);
+                const response = await apiUpdatePost(finalPayload)
+                if (response?.data.err === 0) {
+    
+                    Swal.fire('Thành công', 'Đã cập nhật bài đăng', 'success').then(() => {
+                        resetPayload()
+                        dispatch(resetDataEdit())
+                    })
+                } else {
+                    Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+                }
             }
+            else {
+                Swal.fire('Opps!', 'Tài khoản của bạn không đủ để thanh toán', 'error')
+            }
+
         }
         else {
-
-            console.log(finalPayload)
-            const response = await apiCreatePost(finalPayload)
-            if (response?.data.err === 0) {
-                Swal.fire('Thành công', 'Đã thêm bài đăng mới', 'success').then(() => {
-                    resetPayload()
-                })
-            } else {
-                Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+            if ( currentMoney > 3000){
+                const responseMoney = await apiPlusMoney(currentMoney - 3000);
+                const response = await apiCreatePost(finalPayload)
+                if (response?.data.err === 0) {
+                    Swal.fire('Thành công', 'Đã thêm bài đăng mới', 'success').then(() => {
+                        resetPayload()
+                    })
+                } else {
+                    Swal.fire('Opps!', 'Có lỗi gì đó', 'error')
+                }
             }
+            else{
+                Swal.fire('Opps!', 'Tài khoản của bạn không đủ để thanh toán', 'error')
+            }
+            
         }
     }
     const resetPayload = () => {

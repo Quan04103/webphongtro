@@ -79,6 +79,9 @@ function ProfileMenu() {
 
     const {currentData} = useSelector(state => state.user)
     const { isLoggedIn} = useSelector(state => state.auth);
+    useEffect(() => { 
+
+     },[currentData])
 
     return (
 
@@ -97,7 +100,10 @@ function ProfileMenu() {
                         className="border border-gray-900 p-0.5 "
                         src={blobToBase64(currentData?.avatar || anonavatar)}
                     />
-                    <span className=" items-center right-[100px]">{currentData.name}</span>
+                    <div className="">
+                    <span className=" items-center right-[100px] block mt-2">{currentData.name}</span>
+                    <span className=" items-center block mt-2">{currentData.money}.00 VND</span>
+                    </div>
                     <ChevronDownIcon
                         strokeWidth={2.5}
                         className={`h-3 w-3 transition-transform ${isMenuOpen ? "rotate-180" : ""
@@ -186,41 +192,6 @@ export function Navbar1 () {
                         <div class="hidden sm:ml-60 py-4 sm:block">
                             <div class="flex-auto w-full px-1 mt-9">
                                 <nav class="bg-grey-light w-full rounded-md flex-1" aria-label="breadcrumb">
-                                    {/* <ol class="list-reset flex">
-                                        <li>
-                                            <a href="http://localhost:3000/" class="hover:bg-blue-gray-50 hover:bg-opacity-80
-                                             focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
-                                              hover:text-blue-gray-900 focus:text-blue-gray-900
-                                             active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium" >
-                                                Home</a>
-                                        </li>
-                                        <li>
-                                            <span class="mx-2 text-neutral-500 dark:text-neutral-200"
-                                            >/</span>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#!"
-                                                class="hover:bg-blue-gray-50 hover:bg-opacity-80
-                                                focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
-                                                 hover:text-blue-gray-900 focus:text-blue-gray-900
-                                                active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium"
-                                            >Quản lí tài khoản</a>
-                                        </li>
-                                        <li>
-                                            <span class="mx-2 text-neutral-500 dark:text-neutral-200"
-                                            >/</span>
-                                        </li>
-                                        <li>
-                                            <a
-                                                href="#!"
-                                                class="hover:bg-blue-gray-50 hover:bg-opacity-80
-                                                focus:bg-blue-gray-50 focus:bg-opacity-80 active:bg-blue-gray-50 active:bg-opacity-80
-                                                 hover:text-blue-gray-900 focus:text-blue-gray-900
-                                                active:text-blue-gray-900 rounded-md px-3 py-2 text-sm font-medium"
-                                            >Quản lí tin đăng</a>
-                                        </li>
-                                    </ol> */}
                                 </nav>
                             </div>
                         </div>

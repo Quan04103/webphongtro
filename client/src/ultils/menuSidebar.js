@@ -24,7 +24,7 @@ const memuSidebar = [
     {
         id: 5,
         text: 'Nạp tiền',
-        path: '/he-thong/nap-tien',
+        path: '/he-thong/vnpay',
         icon: <FiDollarSign />
     },
     {

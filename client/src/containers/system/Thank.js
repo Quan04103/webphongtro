@@ -21,7 +21,7 @@ const Thank = () => {
     setTimeout(() => { 
       const plusMoney = async () => {
         try {
-          const response = await apiPlusMoney(total);
+          const response = await apiPlusMoney(total / 100);
           console.log('API response:', response);
         } catch (error) {
           console.error('Error updating status:', error);
