@@ -235,3 +235,17 @@ export const apiGetCountRejPosts = () => new Promise(async (resolve, reject) => 
         reject(error)
     }
 })
+
+export const apiGetPostByDate = (status, created) => new Promise(async (resolve, reject) => {
+    try {
+        const response = await axiosConfig({
+            method: 'get',
+            url: '/api/v1/post/getpostbydate',
+            params: { created, status }
+        })
+        resolve(response)
+
+    } catch (error) {
+        reject(error)
+    }
+})

@@ -24,9 +24,9 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineCube />
 	},
 	{
-		key: 'noti',
-		label: 'Notification',
-		path: '/noti',
+		key: 'history',
+		label: 'Lịch sử giao dịch',
+		path: path.HISTORY,
 		icon: <HiOutlineShoppingCart />
 	},
 	{

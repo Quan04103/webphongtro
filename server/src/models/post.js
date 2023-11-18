@@ -2,6 +2,7 @@
 const {
     Model
 } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class Post extends Model {
         /**
@@ -35,6 +36,10 @@ module.exports = (sequelize, DataTypes) => {
         priceNumber: DataTypes.FLOAT,
         areaNumber: DataTypes.FLOAT,
         status: DataTypes.INTEGER,
+        createdAt: {
+            type: DataTypes.DATEONLY,
+            defaultValue: Sequelize.fn('now'),
+        } 
     }, {
         sequelize,
         modelName: 'Post',

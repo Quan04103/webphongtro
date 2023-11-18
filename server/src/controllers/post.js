@@ -282,3 +282,23 @@ export const getCountPenPost = async (req, res) => {
         })
     }
 }
+
+export const getAccPostByDate = async (req, res) => {
+    try {
+      const {created} = req.query;
+      const {status} = req.query;
+      if (!created || !status) {
+        return res.status(400).json({
+          err: -1,
+          msg: 'Missing input parameter',
+        });
+      }
+      const response = await postService.getPostsAccServiceByDate(status, created);
+      return res.status(200).json(response);
+    } catch (error) {
+      return res.status(500).json({
+        err: -1,
+        msg: "Failed at historyTransaction controller: " + error,
+      });
+    }
+  };

@@ -18,7 +18,7 @@ router.get('/limitpage', postController.getPostsPage)
 router.get('/new-post', postController.getNewPosts)
 router.get('/onepost', postController.getOnePost)
 router.put('/updatepost', postController.updatePosts)
-
+router.get('/getpostbydate', postController.getAccPostByDate)
 
 router.use(verifyToken)
 router.post('/create-new', postController.createNewPost)

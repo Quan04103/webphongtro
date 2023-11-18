@@ -29,13 +29,13 @@ const memuSidebar = [
     },
     {
         id: 6,
-        text: 'Lịch sử nạp tiền',
+        text: 'Lịch sử thanh toán',
         path: '/he-thong/lich-su-nap-tien',
         icon: <AiOutlineBarChart />
     },
     {
         id: 7,
-        text: 'Lịch sử thanh toán',
+        text: 'Lịch sử nạp tiền',
         path: '/he-thong/lich-su-thanh-toan',
         icon: <AiOutlineBarChart />
     }

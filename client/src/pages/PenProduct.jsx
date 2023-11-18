@@ -12,17 +12,74 @@ import EditPost from "./EditPost";
 import { path } from "../ultils/constant";
 import { useNavigate } from "react-router-dom";
 import { NavLink } from "react-router-dom";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { apiGetPenPosts } from "../services";
+import { apiGetPostByDate } from "../services";
 
 export default function PenProduct() {
+  const [selectedDate, setSelectedDate] = useState(null);
+  const [searchResults, setSearchResults] = useState([]);
+  const handleDateChange = (date) => {
+    setSelectedDate(date);
+  };
+
+  const handleSearch = () => {
+    const year = selectedDate.getFullYear();
+    const month = selectedDate.getMonth() + 1;
+    const day = selectedDate.getDate();
+  
+    // Tạo chuỗi ngày mới
+    const created = `${year}-${month.toString().padStart(2, "0")}-${day
+      .toString()
+      .padStart(2, "0")}`;
+  
+    console.log(created);
+
+    setTimeout(() => { 
+      const getAccByDate = async () => {
+        try{
+          const response = await apiGetPostByDate(0,created);
+          console.log('API response:', response);
+          setPost(response?.data?.response);
+        } catch (error) {
+          console.error('Error updating status:', error);
+        }
+      };
+    getAccByDate();
+    }, 2000)
+  };
+
+  const [post, setPost] = useState([]);
+  useEffect(() => {
+    setTimeout(() => {
+      const getPenPost = async () => {
+        try {
+          const response = await apiGetPenPosts();
+          console.log("API response:", response);
+          //console.log(response?.data?.response[0])
+          setPost(response?.data?.response);
+        } catch (error) {
+          console.error("Error updating status:", error);
+        }
+      };
+      getPenPost();
+    }, 2000);
+  }, []);
+  useEffect(() => {
+    console.log('post',post)
+   },[post])
+
+
   const [status, setStatus] = useState();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { posts } = useSelector((state) => state.post);
-  useEffect(() => {
-    dispatch(getPenPosts());
-  }, []);
+  // const { posts } = useSelector((state) => state.post);
+  // useEffect(() => {
+  //   dispatch(getPenPosts());
+  // }, []);
 
-  useEffect(() => {}, [posts]);
+  // useEffect(() => {}, [posts]);
 
   const handleAcceptButton = async (id) => {
     setStatus(1);
@@ -64,9 +121,22 @@ export default function PenProduct() {
 <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
   <strong className="font-semibold text-4xl">Duyệt bài đăng</strong>
   <div className="border-x border-gray-200 rounded-sm mt-3">
+  <div className="p-4">
+          <DatePicker
+            selected={selectedDate}
+            onChange={handleDateChange}
+            className="border border-gray-300 p-2 rounded focus:outline-none focus:border-blue-500"
+          />
+          <button
+            className="ml-2 bg-blue-500 text-white p-2 rounded"
+            onClick={handleSearch}
+          >
+            Tìm kiếm theo ngày
+          </button>
+        </div>
     <table className="w-full text-gray-700 border border-black">
       <thead>
-        <tr>
+        <tr className="bg-gray-200">
           <th className="border border-black px-4 py-2">ID</th>
           <th className="border border-black px-4 py-2">Post title</th>
           <th className="border border-black px-4 py-2">Customer Name</th>
@@ -76,7 +146,7 @@ export default function PenProduct() {
         </tr>
       </thead>
       <tbody>
-        {posts.map((post) => (
+        {post.map((post) => (
           <tr key={post.id}>
             <td className="border border-black px-4 py-2">
               <Link to={`/order/${post.id}`}>{post.id}</Link>

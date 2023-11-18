@@ -30,6 +30,7 @@ export const path = {
     EDITUSER:'edituser',
 
     THANK:'thank',
+    HISTORY:'history',
 }
 
 

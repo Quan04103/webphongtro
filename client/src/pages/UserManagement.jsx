@@ -47,7 +47,7 @@ console.log(id)
   <div className="border-x border-gray-200 rounded-sm mt-3">
     <table className="w-full text-gray-700 border border-black">
       <thead>
-        <tr>
+        <tr className="bg-gray-200">
           <th className="border border-black px-4 py-2">ID</th>
           <th className="border border-black px-4 py-2">Customer name</th>
           <th className="border border-black px-4 py-2">Phone</th>

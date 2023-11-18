@@ -29,6 +29,7 @@ import Dashboard from "./pages/Dashboard";
 import Products from "./pages/Products";
 import PenProduct from "./pages/PenProduct"
 import EditPost from "./pages/EditPost";
+import History from "./pages/History";
 import UserManagement from "./pages/UserManagement";
 import EditUser from "./pages/EditUser";
 import Thank from './containers/system/Thank'
@@ -77,7 +78,7 @@ function App() {
         <Route path={path.ADMIN} element={<Layout />}>
           
           <Route index element={<Dashboard />} />
-          
+          <Route path={path.HISTORY} element={<History />} />
           <Route path={path.PRODUCT} element={<Products />} />
           <Route path={path.PENPOST} element={<PenProduct />} />
           <Route path={path.USERMANAGEMENT} element={<UserManagement />} />
