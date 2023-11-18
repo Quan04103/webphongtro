@@ -209,7 +209,7 @@ function NavList() {
             href="#"
             variant=""
             color="blue-gray"
-            className="font-sans "
+            className="font-semibold text-[#034DA1] "
           >
             <MenuItem className="flex items-center gap-2 lg:rounded-full">
               {label}

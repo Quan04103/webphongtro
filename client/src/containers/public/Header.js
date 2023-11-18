@@ -90,7 +90,7 @@ function ProfileMenu() {
         <Button
           variant="text"
           color="blue-gray"
-          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto"
+          className="flex items-center gap-1 rounded-full py-0.5 pr-2 pl-0.5 lg:ml-auto "
         >
           <Avatar
             variant="circular"
@@ -199,7 +199,7 @@ function IconList() {
     };
   
     return (
-      <ul className="mb-4 mt-2 flex flex-col gap-7 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
+      <ul className="mb-4 mt-2 flex flex-col gap-7 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center ">
         {navListItems.map(({ label, link, key }) => (
           <Typography
             key={key}
@@ -207,10 +207,10 @@ function IconList() {
             href={link}
             variant=""
             color="blue-gray"
-            className="font-semibold"
+            className="font-semibold "
             onClick={() => handleLinkClick(link)}
           >
-            <MenuItem className="flex items-center gap-2 lg:rounded-full ">
+            <MenuItem className="flex items-center gap-2 lg:rounded-full  ">
               {label.toUpperCase()}
             </MenuItem>
           </Typography>
