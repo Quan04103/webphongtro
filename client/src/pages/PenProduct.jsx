@@ -86,6 +86,10 @@ export default function PenProduct() {
     console.log(status);
     const response = await apiUpdateStatus(id, status);
     console.log(response);
+    const response1 = await apiGetPenPosts();
+    console.log("API response:", response1);
+    //console.log(response?.data?.response[0])
+    setPost(response1?.data?.response);
     setTimeout(() => {
       if (response?.data.err === 0) {
         dispatch(getPenPosts());
@@ -104,6 +108,10 @@ export default function PenProduct() {
     console.log(status);
     const response = await apiUpdateStatus(id, status);
     console.log(response);
+    const response1 = await apiGetPenPosts();
+    console.log("API response:", response1);
+    //console.log(response?.data?.response[0])
+    setPost(response1?.data?.response);
     setTimeout(() => {
       if (response?.data.err === 0) {
         dispatch(getPenPosts());

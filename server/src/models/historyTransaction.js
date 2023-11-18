@@ -2,6 +2,7 @@
 const {
     Model
 } = require('sequelize');
+const { Sequelize, DataTypes } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
     class HistoryTransaction extends Model {
         /**
@@ -18,7 +19,10 @@ module.exports = (sequelize, DataTypes) => {
         transaction_id:DataTypes.STRING,
         user_id: DataTypes.STRING,
         amount: DataTypes.INTEGER,
-        createdAt: DataTypes.STRING
+        createdAt: {
+            type: DataTypes.DATEONLY,
+            defaultValue: Sequelize.fn('now'),
+        } 
     }, {
         sequelize,
         modelName: 'HistoryTransaction',
