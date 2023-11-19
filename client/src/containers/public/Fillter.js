@@ -37,14 +37,22 @@ const Fillter = () => {
   console.log(isShowModal);
 
   const handleSearch = () => {
+    //const specificValue = "CUID";
     const queryCodes = Object.entries(queries).filter(item => item[0].includes('Code')).filter(item => item[1])
+    //const queryCodes = Object.entries(queries).filter(item => item[1] === specificValue);
+
     let queryCodesObj = {}
     queryCodes.forEach(item => {queryCodesObj[item[0]] = item[1] })
      console.log(queryCodesObj)
      navigate({
       pathname: path.SEARCH,
       search: createSearchParams(queryCodesObj).toString(),
-  })
+  }
+  
+  )
+
+  
+
   } 
   return (
     <>

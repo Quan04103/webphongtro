@@ -11,6 +11,8 @@ import { BiUserPin } from 'react-icons/bi'
 import {TbBuildingWarehouse} from 'react-icons/tb'
 import {BiSolidBuildingHouse} from 'react-icons/bi'
 import {GiSpookyHouse} from 'react-icons/gi'
+import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa";
 import {
     FiDollarSign
 } from "react-icons/fi"
@@ -29,6 +31,8 @@ import { RiDashboardFill } from "react-icons/ri";
 import {BiMap } from "react-icons/bi"
 
 const icons = {
+    FaHeart,
+    CiHeart,
     FiDollarSign,
     BsArrowLeftShort,
     BsFillPersonPlusFill,
