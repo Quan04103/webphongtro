@@ -17,7 +17,7 @@ import {
     MenuItem,
     Avatar,
     IconButton,
-  } from "@material-tailwind/react";
+} from "@material-tailwind/react";
 import {
     UserCircleIcon,
     ChevronDownIcon,
@@ -33,8 +33,8 @@ import {
     initTE
 } from "tw-elements";
 import { blobToBase64 } from "../../ultils/Common/tobase64";
-import { Link} from "react-router-dom";
-import {path} from '../../ultils/constant'
+import { Link } from "react-router-dom";
+import { path } from '../../ultils/constant'
 
 
 const profileMenuItems = [
@@ -42,32 +42,30 @@ const profileMenuItems = [
     {
         label: "Trang chủ",
         icon: UserCircleIcon,
-        dispatch: "",
-        link:`${path.HOME}`,
+        dispatch: '',
+        key1: true,
+        link: '/',
     },
     {
-        label: "Tin yêu thích",
+        label: "Liên hệ",
         icon: Cog6ToothIcon,
-        dispatch: "",
-        link:"",
+        dispatch: '',
+        key1: true,
+        link: '/lienhe',
     },
     {
-        label: "Thông báo",
+        label: "Tin đã lưu",
         icon: InboxArrowDownIcon,
         dispatch: "",
-        link:"",
-    },
-    {
-        label: "Liên hệ ",
-        icon: LifebuoyIcon,
-        dispatch: "",
-        link:"",
+        key1: true,
+        link: '/tin-da-luu',
     },
     {
         label: "Đăng xuất",
         icon: PowerIcon,
         dispatchAction: actions.logout(),
-        link:"",
+        key1: false,
+        link: '/',
     },
 ];
 
@@ -77,11 +75,11 @@ function ProfileMenu() {
 
     const dispatch = useDispatch();
 
-    const {currentData} = useSelector(state => state.user)
-    const { isLoggedIn} = useSelector(state => state.auth);
-    useEffect(() => { 
+    const { currentData } = useSelector(state => state.user)
+    const { isLoggedIn } = useSelector(state => state.auth);
+    useEffect(() => {
 
-     },[currentData])
+    }, [currentData])
 
     return (
 
@@ -101,8 +99,8 @@ function ProfileMenu() {
                         src={blobToBase64(currentData?.avatar || anonavatar)}
                     />
                     <div className="">
-                    <span className=" items-center right-[100px] block mt-2">{currentData.name}</span>
-                    <span className=" items-center block mt-2">{currentData.money}.00 VND</span>
+                        <span className=" items-center right-[100px] block mt-2">{currentData.name}</span>
+                        <span className=" items-center block mt-2">{currentData.money}.00 VND</span>
                     </div>
                     <ChevronDownIcon
                         strokeWidth={2.5}
@@ -128,38 +126,38 @@ function ProfileMenu() {
                     </div>
                 </a>
                 <hr />
-                {profileMenuItems.map(({ label, icon, dispatchAction,link }, key) => {
+                {profileMenuItems.map(({ label, icon, dispatchAction, link }, key) => {
                     const isLastItem = key === profileMenuItems.length - 1;
                     const handleClickOn = async () => {
                         dispatch(dispatchAction);
                     }
                     return (
                         <Link to={link}>
-                        <MenuItem
-                            key={label}
-                            onClick={closeMenu}
-                            className={`flex items-center gap-2 rounded ${isLastItem
-                                ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
-                                : ""
-                                }`}
-                        >
-                            <span className="flex" onClick={handleClickOn}>
-                                {React.createElement(icon, {
-                                    className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
-                                    strokeWidth: 2,
-                                })}
-                                <Typography
+                            <MenuItem
+                                key={label}
+                                onClick={closeMenu}
+                                className={`flex items-center gap-2 rounded ${isLastItem
+                                    ? "hover:bg-red-500/10 focus:bg-red-500/10 active:bg-red-500/10"
+                                    : ""
+                                    }`}
+                            >
+                                <span className="flex" onClick={handleClickOn}>
+                                    {React.createElement(icon, {
+                                        className: `h-4 w-4 mt-0.5 ${isLastItem ? "text-red-500" : ""}`,
+                                        strokeWidth: 2,
+                                    })}
+                                    <Typography
 
-                                    as="span"
-                                    variant="small"
-                                    className="font-normal ml-6"
-                                    color={isLastItem ? "red" : "inherit"}
-                                >
-                                    {label}
+                                        as="span"
+                                        variant="small"
+                                        className="font-normal ml-6"
+                                        color={isLastItem ? "red" : "inherit"}
+                                    >
+                                        {label}
 
-                                </Typography>
-                            </span>
-                        </MenuItem>
+                                    </Typography>
+                                </span>
+                            </MenuItem>
                         </Link>
                     );
                 })}
@@ -169,7 +167,7 @@ function ProfileMenu() {
 }
 
 
-export function Navbar1 () {
+export function Navbar1() {
     // nav list component
     initTE({ Dropdown, Ripple, Input });
     const { currentData } = useSelector(state => state.user)
@@ -206,6 +204,6 @@ export function Navbar1 () {
 
 const Header = () => {
     <Navbar1 />;
-  };
-  
+};
+
 export default Header
