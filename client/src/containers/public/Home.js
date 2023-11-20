@@ -33,6 +33,7 @@ const Home = () => {
     dispatch(actions.getProvinces());
     dispatch(actions.getCategories());
   },[]);
+
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
   }, [isLoginPopupOpen]);
@@ -45,29 +46,6 @@ const Home = () => {
 
 
   return (
-    // <<<<<<< HEAD
-    //     <div style={styles.container}>
-
-    //       <div className={isLoginPopupOpen ? 'fixed inset-0 bg-black opacity-50' : ""}>
-    //         <ComplexNavbar />
-    //       </div>
-    //       {/* Nội dung của Header */}
-    //       <div style={styles.body}>
-    //         <div style={styles.intro}>
-    //           <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
-    //         </div>
-    //         <div style={styles.room}>
-    //           {Array.from({ length: 12 }).map((_, index) => (
-    //             <div key={index} style={styles.imageContainer}>
-    //               <div style={styles.imageFrame}>
-    //                 <img style={styles.imageroom} src={imageroom} alt={`Room ${index + 1}`} />
-    //               </div>
-    //               <h4 style={styles.h4}>Quận 9, Tp. Hồ Chí Minh</h4>
-    //               <p style={styles.p1}> ★ 4.86</p>
-    //               <p style={styles.p2}>Diện tích: 300m vuông</p>
-    //               <p style={styles.p3}>Đăng tin bởi: Minh Quốc</p>
-    //               <h3 style={styles.h3}>Giá: 4,7 triệu/tháng</h3>
-    // =======
     <ContextRegiter.Provider
       value={[isRegisterPopupOpen, setIsRegisterPopupOpen]}
     >
@@ -75,12 +53,12 @@ const Home = () => {
         <div style={styles.container}  className="z-50 absolute">
           <div
             className={
-              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
+              isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm z-30" : ""
             }
           >
             <div
               className={
-                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm absolute z-30" : ""
+                isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm z-30" : ""
               }
             >
               <ComplexNavbar />

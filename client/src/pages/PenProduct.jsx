@@ -78,7 +78,6 @@ export default function PenProduct() {
   // useEffect(() => {
   //   dispatch(getPenPosts());
   // }, []);
-
   // useEffect(() => {}, [posts]);
 
   const handleAcceptButton = async (id) => {

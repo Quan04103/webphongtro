@@ -27,21 +27,19 @@ const EditAccount = () => {
         }
     }
 
-
     const handleUploadFile = async (e) => {
         const imageBase64 = await fileToBase64(e.target.files[0])
         setPayload(pre => ({
             ...pre,
             avatar: imageBase64
         }))
-
     }
 
     return (
         <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen">
             <h1 className='text-13xl font-bold py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
             <div className='w-1/2 flex items-center justify-center flex-auto'>
-                <div className=' py-6 flex flex-1/3 flex-col gap-5 w-full'>
+                <div className='py-6 flex flex-1/3 flex-col gap-5 w-full'>
                     <SystemInputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
                     <SystemInputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" />
 
@@ -57,18 +55,6 @@ const EditAccount = () => {
                         direction='flex-row'
                         value={payload.zalo}
                         label='Zalo' />
-
-                    <SystemInputFormV2
-                        name='fbUrl'
-                        setValue={setPayload}
-                        direction='flex-row'
-                        value={payload.fbUrl}
-                        label='Facebook' />
-
-                    <div className='flex'>
-                        <label className='w-48 flex-none' htmlFor="Password">Mật khẩu</label>
-                        <small className='flex-auto text-blue-500 h-12 cursor-pointer'>Đổi mật khẩu</small>
-                    </div>
                     <div className='flex mb-6 '>
                         <label className='w-48 flex-none' htmlFor="avatar">Ảnh đại diện</label>
                         <div>

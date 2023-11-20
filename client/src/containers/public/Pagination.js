@@ -33,7 +33,6 @@ const Pagination =({page}) => {
         
     },[count, posts,currentPage])
     
-    
     return (
         <div className='flex items-center justify-center gap-3'>
             {!isHideStart && <PageNumber setCurrentPage={setCurrentPage} text={1} />}

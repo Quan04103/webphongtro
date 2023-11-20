@@ -4,6 +4,7 @@ import { v4 as generateId } from 'uuid'
 import generateCode from '../ultis/generateCode';
 import moment from 'moment'
 import generateDate from '../ultis/genarateDate';
+
 export const getPostsService = () => new Promise(async (resolve, reject) => {
     try {
         const response = await db.Post.findAll({

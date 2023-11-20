@@ -7,22 +7,39 @@ import { fileToBase64, blobToBase64 } from "../ultils/Common/tobase64"
 import { getCurrent } from '../store/actions'
 import Swal from "sweetalert2"
 import { useLocation } from "react-router-dom"
+import { apiGetOneUser } from "../services"
 
 const EditUser = () => {
-    // const location = useLocation();
-    // const searchParams = new URLSearchParams(location.search);
-    // const iduser = searchParams.get("iduser");
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+    const iduser = searchParams.get("iduser");
     
-    // useEffect(() => {
-    //     // Thực hiện các công việc cần thiết với idpost
-    //     console.log("Id của bài viết:", iduser);
-    //   }, [iduser]);
+    useEffect(() => {
+        // Thực hiện các công việc cần thiết với idpost
+        console.log("Id của bài viết:", iduser);
+      }, [iduser]);
 
-    const { currentData } = useSelector(state => state.user)
+
+      useEffect(() => {
+        const handleGetUser = async () => {
+            const response = await apiGetOneUser(iduser)
+            if (response?.data.err === 0) {
+                console.log(response)
+            }
+            else {
+                console.log('fail')
+            }
+        }
+        handleGetUser();
+      }, []);
+
+
+    const [currentData, setCurrentData] = useState()
     const dispatch = useDispatch()
+    
     const [payload, setPayload] = useState({
         name: currentData?.name || '',
-        avatar: blobToBase64(currentData?.avatar) || '',
+        // avatar: blobToBase64(currentData?.avatar) || '',
         fbUrl: currentData?.fbUrl || '',
         zalo: currentData?.zalo || ''
     })

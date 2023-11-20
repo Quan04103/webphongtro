@@ -26,7 +26,6 @@ import { CameraIcon } from "@heroicons/react/24/outline"
 
 const { ImBin } = icons
 const CreatePost = ({ isEdit }) => {
-    
     const dispatch = useDispatch()
     const { dataEdit } = useSelector(state => state.post)
     const [payload, setPayload] = useState(() => {
@@ -150,11 +149,6 @@ const CreatePost = ({ isEdit }) => {
         })
     }
 
-    // const CreatePost = () => {
-    //     const navigate = useNavigate()
-    //     const goPaypost = useCallback((flag) => {
-    //         navigate(path.PAY_POST, { state: { flag } })
-    //     }, [])
     return (
         <div className='flex flex-col gap-10 bg-white'>
             <div className='flex justify-center'>
@@ -165,7 +159,6 @@ const CreatePost = ({ isEdit }) => {
                                 {/* <Typography variant="h2">Thông tin cơ bản</Typography> */}
                                 <h2 className='font-semibold text-xl py-4'>{isEdit ? 'Chỉnh sửa tin đăng' : 'Đăng tin mới'}</h2>
                                 <ButtonGroup variant="text" fullWidth >
-                                    <Button className='bg-gray-200'>BÁN </Button>
                                     <Button className='bg-gray-200'>CHO THUÊ</Button>
                                 </ButtonGroup>
 
@@ -174,7 +167,7 @@ const CreatePost = ({ isEdit }) => {
                                 </div>
                                 <div className="flex flex-col gap-2">
                                     <label className="font-bold" >Địa chỉ hiển thị trên tin đăng</label>
-                                    <input type="text" placeholder="Bạn có thể bổ sung hẻm, ngỏ, ngách,..." className="outline-none border border-gray-300 rounded-[5px] p-2"></input>
+                                    <input type="text" className="outline-none border border-gray-700 rounded-[5px] p-2" />
                                 </div>
                             </div>
                         </div>

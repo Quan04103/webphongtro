@@ -18,7 +18,8 @@ export default function UserManagement() {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
     const { users } = useSelector(state => state.user)
-    useEffect(() => {
+
+  useEffect(() => {
         dispatch(getUser())
         console.log(users)
     }, [])
@@ -26,8 +27,9 @@ export default function UserManagement() {
 	useEffect(() => {
         
     }, [users])
+
 	const handleDeleteButton = async (id) => {
-console.log(id)
+    console.log(id)
 		const response = await apiDeleteUser(id);
 		if(response?.data.err ===0){
 			dispatch(getUser())
@@ -72,11 +74,6 @@ console.log(id)
               <button className="bg-red-300 hover:bg-red-800 text-white font-bold py-2 px-4 rounded border border-black mr-2" onClick={() => handleDeleteButton(user.id)}>
                 xoá
               </button>
-              <NavLink to={`${path.EDITUSER}?iduser=${user.id}`}>
-                <button className="bg-blue-400 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded border border-black">
-                  sửa
-                </button>
-              </NavLink>
             </td>
           </tr>
         ))}

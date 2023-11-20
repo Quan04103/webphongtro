@@ -20,9 +20,7 @@ const RegisterForm = ({ onClose }) => {
     confirm_password: ""
   });
 
-
   const dispatch = useDispatch();
-
   const handleSubmit = async () => {
     if(payload.password === payload.confirm_password) dispatch(actions.register(payload));
     if(payload.password !== payload.confirm_password) Swal.fire('Oops !', 'Mật khẩu không trùng khớp', 'error');

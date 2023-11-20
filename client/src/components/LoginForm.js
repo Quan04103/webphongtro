@@ -22,8 +22,6 @@ const LoginForm = ({ onClose }) => {
 
     console.log(payload);
   };
-
-
   return (
 
       <div className="fixed inset-0 flex items-center justify-center">

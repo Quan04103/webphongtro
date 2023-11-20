@@ -61,11 +61,11 @@ export const deleteUser = async (req, res) => {
 
 export const getOneUser = async (req, res) => {
     try {
-        const id = req.query.iduser;
+        const {id} = req.query;
         if (!id) {
             return res.status(400).json({
               err: -1,
-              msg: 'Missing iduser parameter',
+              msg: 'Missing id parameter',
             });
           }
         const response = await services.getOneUserService(id)

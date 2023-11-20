@@ -12,16 +12,6 @@ const List = ({ categoryCode }) => {
     const [searchParams] = useSearchParams()
     const { posts } = useSelector(state => state.post)
 
-    //Code Quân thêm để duyệt những bài đã được chấp nhận, đã xuất được những phòng đã duyệt 
-    //nhưng nếu để phân trang thì lại xuất ra tất cả các phòng
-    // useEffect(() => {
-    //   dispatch(action.getAccPost())
-    // }, []);
-    // console.log(posts)
-     
-
-    ////Code phân trang ban đầu, bỏ comment code là sẽ chạy bình thường và có phân trang
-
     useEffect(() => {            
         let params = []
         for (let entry of searchParams.entries()) {
@@ -39,7 +29,6 @@ const List = ({ categoryCode }) => {
         dispatch(getPostsLimit(searchParamsObject))
         listRef.current.scrollIntoView({behavior: 'smooth', block: 'start'})
     }, [searchParams, categoryCode])
-    console.log(posts)
     return (
         <div>      
              <div ref={listRef} className='grid grid-cols-1 md:grid md:grid-cols-3 md:px-[5rem]' >

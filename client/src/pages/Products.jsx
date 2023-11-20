@@ -76,17 +76,7 @@ export default function Products() {
     console.log('post',post)
    },[post])
 
-
-  //   const { posts } = useSelector(state => state.post)
-  //   useEffect(() => {
-  //       dispatch(getAccPost())
-  //   }, [])
-
-	// useEffect(() => {
-        
-  //   }, [posts])
 	const handleDeleteButton = async (id) => {
-
 		const response = await apiDeletePostAdmin(id);
 		if(response?.data.err ===0){
 			const response = await apiGetAccPosts();

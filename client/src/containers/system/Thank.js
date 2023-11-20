@@ -49,10 +49,6 @@ console.log(payload)
   console.log('amount', amount)
   const total = currentMoney + amount
   console.log('total',total)
-
-
-
-
   useEffect(() => {  
     if (total) {
     setTimeout(() => { 

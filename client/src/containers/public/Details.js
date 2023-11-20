@@ -33,20 +33,6 @@ const Details = () => {
   useEffect(() => {
     postId && dispatch(getPostsLimit({ id: postId }));
   }, [postId]);
-  // useEffect(() => {
-  //     postId && dispatch(getPostsLimit({ id: postId }))
-
-  // }, [postId])
-
-  //   useEffect(() => {
-
-  //       console.log("Phần tử mảng ảnh", posts[0]?.images.image);
-  //       const dataFromDB = `${posts[0]?.images.image}`;
-
-  //       const imageArray = JSON.parse(dataFromDB);
-  //       setImgRes(imageArray);
-
-  //   }, []);
 
   useEffect(() => {
     const imageData = posts[0]?.images.image;

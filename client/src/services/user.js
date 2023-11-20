@@ -56,7 +56,8 @@ export const apiGetOneUser = (id) => new Promise(async (resolve, reject) => {
     try {
         const response = await axios({
             method: 'get',
-            url: `/api/v1/post/getoneuser?iduser=${id}`,
+            url: `/api/v1/post/getoneuser`,
+            params: { id }
         })
         resolve(response)
 
