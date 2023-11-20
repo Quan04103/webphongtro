@@ -28,7 +28,7 @@ const FavoriteList = () => {
   }, []);
 
   return (
-    <div>
+    <div className='grid grid-cols-1 md:grid md:grid-cols-3 md:px-[5rem]'>
       {favoriteRooms.map((room) => (
         <Item key={room.id} {...room} />
       ))}
