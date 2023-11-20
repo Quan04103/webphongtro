@@ -15,6 +15,7 @@ import { getPosts} from '../../store/actions/post'
 import {List} from './index'
 import { useSearchParams } from "react-router-dom";
 import { Outlet } from 'react-router-dom';
+import Category from "./Category";
 
 import { LoginButton } from "./Header";
 import Pagination from "./Pagination";
@@ -97,7 +98,11 @@ const Home = () => {
             <Fillter/>
 
           </div>
+        <div>
+          <Category/>
+        </div>
         <div >
+
           <List/>
           <Pagination/>          
           </div>

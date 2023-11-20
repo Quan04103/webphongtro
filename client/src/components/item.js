@@ -1,18 +1,24 @@
-import React, { memo } from 'react'
+import React, { memo, useEffect } from 'react'
 import { formatVietnameseToString } from '../ultils/formatVietnameseToString'
 import imageroom from '../assets/room.png';
 import { path } from '../ultils/constant';
 import icons from '../ultils/icons'
 import { Link } from 'react-router-dom';
-import {
-  StarIcon
-} from "@heroicons/react/24/solid";
-import ItemRoom from '../assets/room.png';
+import { useSelector, useDispatch } from "react-redux";
+import { useSearchParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+import { getPostsLimit } from '../store/actions';
 
 const indexs = [0]
-const { GrStar,BiMap } = icons
-const Item = ({ images, user, title, star, attributes, address, id }) => {
- 
+const { GrStar,BiMap, CiHeart, FaHeart } = icons
+const Item = ({ images, user, title, star, attributes, address, id,  }) => {
+  const { posts } = useSelector((state) => state.post);
+  const { postId } = useParams();
+  useEffect(() => {
+    postId && dispatch(getPostsLimit({ id: postId }));
+  }, [postId]);
+  const dispatch = useDispatch();
 
   const firstImage = images.slice(0, 1);
 
@@ -20,30 +26,33 @@ const Item = ({ images, user, title, star, attributes, address, id }) => {
   return (
     <a href={`${path.DETATLS}${formatVietnameseToString(title)}/${id}`}>
     <div 
-     className='md:grid md:grid-flow-row md:rounded-md flex flex-rows transform  hover:scale-[1.02] md:hover:scale-[1.02]  ' 
-     style={styles.imageContainer}
+      className='md:grid md:grid-flow-row md:rounded-md xl:rounded-xl flex flex-rows transform  hover:scale-[1.02] md:hover:scale-[1.02] border border-solid border-gray-500' 
+      style={styles.imageContainer}
      >
        <div className='basis-[30%]' >
-         <img  src={firstImage} alt={`Hinh anh minh hoa`} className='h-[15rem] w-full lg:h-[25rem] md:w-[90%]'  style={styles.imageFrame}/>
+         <img  src={firstImage} alt={`Hinh anh minh hoa`} className='h-[15rem] w-full lg:h-[25rem] md:w-[90%] xl:w-full xl:h-[255px]'  style={styles.imageFrame}/>
        </div>
-       <div className='basis-[70%]' style={styles.content}>
-           <h5 style={styles.h5} className='flex flex-row gap-1 w-full'>
-             <BiMap size={20} color='gray'/>
+       <div className='basis-[70%] p-1 pl-4 pt-5'>
+           <div  className='flex flex-row gap-1 w-full text-[20px]'>
              {`${address.split(',')[address.split(',').length - 1]}`}
-             
-           </h5>
-           <h4 style={styles.h4} className='md:flex hidden'>
-             
-             {`${title.split(' ',10).join(' ')} ...`}         
-           </h4>
-           <h4 style={styles.h4} className='md:hidden flex'>
-             {title}
-                      
-           </h4>
+               
+           </div>
+           {/* <FaHeart size={20} className='hover:text-red-500 text-[#6d6c6c]'/> */}
+           <div className='md:flex hidden text-[28px] text-[#034DA1]'>
+             <b>
+              {`${title.split(' ',10).join(' ')} ...`}         
 
-           <p style={styles.p2}>{`Diện tích: ${attributes?.acreage}`}</p>
-           <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
-           <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
+             </b>
+           </div>
+           <div>
+              <b>{posts.address}</b>
+           </div>
+
+           <p className='text-[20px] font-sans'>{`Diện tích : ${attributes?.acreage}`}</p>
+           <div className='flex w-full'>
+            <div className='flex-1 text-[23px] font-bold'>{`Giá: ${attributes?.price}`}</div>
+            <div className='flex-1 pl-10 text-[23px]'>{`${attributes?.published}`}</div>
+           </div>
        </div>
      </div>
    </a>
@@ -151,15 +160,3 @@ const styles = {
   },
 };
 export default memo(Item)
-
-
-
-
-
-
-
-
-
-
-
-
