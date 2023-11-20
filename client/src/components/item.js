@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import React, { memo, useState, useEffect } from 'react'
 import { formatVietnameseToString } from '../ultils/formatVietnameseToString'
 import imageroom from '../assets/room.png';
 import { path } from '../ultils/constant';
@@ -10,14 +10,75 @@ import {
 import ItemRoom from '../assets/room.png';
 
 const indexs = [0]
-const { GrStar,BiMap } = icons
-const Item = ({ images, user, title, star, attributes, address, id }) => {
+const { GrStar,BiMap,FaHeart } = icons
+const Item = ({ images, user, title, star, attributes, address, id,onFavoriteChange}) => {
  
 
-  const firstImage = images.slice(0, 1);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const firstImage = images?.length > 0 ? images.slice(0, 1) : null;
+  function formatVietnameseToString(input) {
+    // Kiểm tra xem input có tồn tại không
+    if (input) {
+      // Thực hiện các thao tác khác trên input
+      return input.toLowerCase();  // hoặc thực hiện các thao tác khác
+    } else {
+      // Xử lý trường hợp input là undefined
+      return '';  // hoặc giá trị mặc định khác
+    }
+  }
+  useEffect(() => {
+    const favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const postKey = `${formatVietnameseToString(title)}_${id}`;
+  
+    // Kiểm tra xem thông tin phòng đã được lưu vào localStorage chưa
+    const roomInfo = JSON.parse(localStorage.getItem(postKey)) || {};
+    console.log('Room Info:', roomInfo); // Log thông tin phòng để kiểm tra
+  
+    // Nếu có thông tin, cập nhật state và hiển thị
+    if (roomInfo) {
+      setIsFavorite(favorites.includes(postKey));
+    }
+  }, [id, title]);
 
+  const handleStar = (star) => {
+    let stars = [];
+    for (let i = 1; i <= +star; i++) stars.push(<GrStar className='star-item' size={20} color='black' />);
+    return stars;
+  };
+
+  const handleFavorite = () => {
+    setIsFavorite(!isFavorite);
+    let favorites = JSON.parse(localStorage.getItem('favorites')) || [];
+    const postKey = `${formatVietnameseToString(title)}_${id}`;
+
+    if (favorites.includes(postKey)) {
+      favorites = favorites.filter((item) => item !== postKey);
+    } else {
+      favorites.push(postKey);
+    }
+
+    // Lưu thông tin phòng vào localStorage
+    const roomInfo = {
+      images,
+      user,
+      title,
+      star,
+      attributes,
+      address,
+      id,
+    };
+    console.log('Saving to localStorage:', postKey, roomInfo);
+    localStorage.setItem(postKey, JSON.stringify(roomInfo));
+    localStorage.setItem('favorites', JSON.stringify(favorites));
+
+    // Thông báo cho thành phần cha (FavoriteList) về sự thay đổi trong danh sách yêu thích
+    if (onFavoriteChange) {
+      onFavoriteChange(postKey, isFavorite);
+    }
+  };
 
   return (
+    <div>
     <a href={`${path.DETATLS}${formatVietnameseToString(title)}/${id}`}>
     <div 
      className='md:grid md:grid-flow-row md:rounded-md flex flex-rows transform  hover:scale-[1.02] md:hover:scale-[1.02]  ' 
@@ -47,7 +108,10 @@ const Item = ({ images, user, title, star, attributes, address, id }) => {
        </div>
      </div>
    </a>
-
+      <button className='ml-10' onClick={() => handleFavorite()}>
+        <FaHeart className={isFavorite ? 'text-red-500' : 'text-black'} />
+      </button>
+      </div>
   );
 };
 const styles = {

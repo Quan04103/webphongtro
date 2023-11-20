@@ -7,6 +7,7 @@ export const path = {
     CHO_THUE_PHONG_TRO: 'cho-thue-phong-tro',
     SEARCH: 'tim-kiem',
     SYSTEM: '/he-thong/*',
+    FAVORITE: 'yeu-thich',
     CREATE_POST: 'tao-moi-bai-dang',
     MANAGE_POST: 'quan-ly-bai-dang',
     QC: 'qc',
@@ -15,6 +16,7 @@ export const path = {
     LIENHE: 'lienhe',
     PAY_POST: 'paypost',
     DEPOSITHISTORY: 'lich-su-thanh-toan',
+    
     DETAILS_POST_TITLE_POSTID: '/details/:title/:postId',
     DETATLS: '/details/',
     VNPAY:'vnpay',

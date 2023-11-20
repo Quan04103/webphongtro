@@ -145,9 +145,6 @@ const iconListItem = [
   {
     icon: HeartIcon,
   },
-  {
-    icon: BellIcon,
-  },
 ];
 
 function IconList() {
@@ -155,7 +152,10 @@ function IconList() {
     <ul className="mb-4 mt-2 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center">
       {iconListItem.map(({ icon }, key) => (
         <MenuItem className="flex items-center gap-2 lg:rounded-full">
-          {React.createElement(icon, { className: "h-[18px] w-[18px]" })}{" "}
+          <Link to="/yeu-thich">
+             <HeartIcon className="h-6 w-6" />
+          </Link>
+          {/* {React.createElement(icon, { className: "h-[18px] w-[18px]" })}{" "} */}
         </MenuItem>
       ))}
     </ul>

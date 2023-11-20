@@ -1,6 +1,7 @@
 import { Routes, Route, Switch, Redirect } from "react-router-dom";
 import {
   Home,
+  Favorite,
   Login,
   Profile,
   Test,
@@ -71,8 +72,9 @@ function App() {
         <Route path={path.HOME} element={<Home />}>
           <Route path={path.LOGIN} element={<Login />} />
           <Route path={path.PROFILE} element={<Profile />} />
-        </Route>
 
+        </Route>
+        <Route path={path.FAVORITE} element={<Favorite />} />
         <Route path={path.LOGIN_ADMIN} element={<LoginAdmin />} />
 
         <Route path={path.ADMIN} element={<Layout />}>

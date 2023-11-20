@@ -71,7 +71,7 @@ export default function History() {
 
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-      <strong className="font-semibold text-4xl">Duyệt bài đăng</strong>
+      <strong className="font-semibold text-4xl">Lịch sử giao dịch người dùng</strong>
       <div className="border-x border-gray-200 rounded-sm mt-3">
         <div className="p-4">
           <DatePicker
