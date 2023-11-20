@@ -99,7 +99,7 @@ const Details = () => {
           <div class="relative p-7 flex justify-center w-full h-full text-5xl text-black font-inter">
 
 
-            <div className=" w-full xl:w-1/4 rounded-xl">
+            <div className=" w-full xl:w-[1380px] xl:h-[680px] rounded-xl">
             <Carousel className="rounded-xl ">
     {imgRes &&
       imgRes.map((link, index) => (
@@ -112,11 +112,7 @@ const Details = () => {
       ))}
     </Carousel>
 
-              <div class="absolute bottom-0 right-0 p-4">
-                <button class="rounded-mini bg-white box-border w-56 h-[66px] border-[1px] border-solid border-black font-sans font-semibold">
-                  <div>Xem thêm</div>
-                </button>
-              </div>
+              
             </div>
             {/* <img class="absolute  bg-red-200 top-[100px] left-[790px] w-80 h-60 object-cover"
                     src=""
@@ -329,11 +325,7 @@ const Details = () => {
               </tbody>
             </table>
           </div>
-          <div className="flex justify-center pt-10">
-            <button className="rounded-mini border-[#034DA1] bg-white box-border w-56 h-[66px] border-[1px] text-[25px] hover:bg-[#034DA1] hover:text-white border-solid  font-sans font-semibold">
-              Xem Thêm Tin
-            </button>
-          </div>
+          
           <div className=" w-full pt-[200px]">
             <Footer />
           </div>

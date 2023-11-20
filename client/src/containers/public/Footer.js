@@ -2,13 +2,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import logo from '../../assets/logo.png';
+import logo1 from '../../assets/logotrang.jpg';
+
 const Footer = () => {
     return (
         <footer class="rounded-lg bg-[#034DA1] text-center text-neutral-600 dark:bg-gray-600 dark:text-neutral-200 lg:text-left text-white">
             <div class="py-10 border-b-2 border-neutral-200 text-center md:text-left">
                 <div class="mx-6 grid-1 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                         <div class="mb-6 md:mb-0 flex justify-center">
-                            <img src={logo} class="w-[20rem] rounded-md shadow-lg" />
+                            <img src={logo1} class="w-[20rem] rounded-md shadow-lg" />
                         </div>
                     <div class="">
                         <h6
