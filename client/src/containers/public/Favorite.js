@@ -19,8 +19,9 @@ import FavoriteList from "./FavoriteList";
 import { LoginButton } from "./Header";
 import Pagination from "./Pagination";
 
-export const ContextRegiter = createContext();
-export const Context = createContext();
+export const ContextRegiterFav = createContext();
+export const ContextLoginFav = createContext();
+
 const Favorite = () => {
   const [params] = useSearchParams()
 
@@ -80,8 +81,6 @@ const Favorite = () => {
               <Footer />
             </div>
         </div>
-        
-
 
   );
 };
