@@ -1,39 +1,32 @@
-import { LoginButton } from "./Header";
-import List from "./List";
-import Pagination from "./Pagination";
-import { useSearchParams } from "react-router-dom";
-import { useLocation } from 'react-router-dom'
-import { apiGetProvinces } from "../../services";
-import imageIntro from "../../assets/Intro.png";
-import imageroom from "../../assets/room.png";
-import React, { createContext, useEffect } from "react";
-import Qc from "./Qc";
-import Footer from "./Footer";
-import { LoginForm } from "../../components";
-import { ComplexNavbar } from "./Header";
-import { useState, useContext } from "react";
-import { loginContext } from "./Header";
-import { useDispatch, useSelector } from "react-redux";
+import React, { createContext, useEffect, useState, useCallback,useContext } from "react";
+import { useDispatch, useSelector, } from "react-redux";
 import * as actions from "../../store/actions";
-import Header from "./Header";
+import { useSearchParams, useNavigate,useLocation} from "react-router-dom"; // Thêm useNavigate
+import List from "../public/List";
+import Pagination from "../public/Pagination";
+import Qc from "../public/Qc";
+import Footer from "../public/Footer";
+import { ComplexNavbar } from "../public/Header";
 import Fillter from "./Fillter";
+import { DataFetchingStrategy} from "./DataFetchingStrategy ";
 
-
-
-export const ContextRegiter = createContext();
-export const Context = createContext();
+export const ContextRegiter = createContext(new DataFetchingStrategy());
+export const Context = createContext( );
 const SearchDetail = () => {
-  const [params] = useSearchParams()
-  const location = useLocation()
+
+ const [params] = useSearchParams();
+  const location = useLocation();
   const dispatch = useDispatch();
+  const dataFetchingStrategy = useContext(ContextRegiter);
+   
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
+
   useEffect(() => {
-    dispatch(actions.getPrices());
-    dispatch(actions.getAreas());
-    dispatch(actions.getProvinces());
-    dispatch(actions.getCategories());
-  },[]);
+    // Đảm bảo rằng biến dataFetchingStrategy được xác định ở đây
+    dataFetchingStrategy.fetchData(dispatch, actions);
+  }, [dataFetchingStrategy, dispatch]);
+
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
   }, [isLoginPopupOpen]);

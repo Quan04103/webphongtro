@@ -1,27 +1,23 @@
-import imageIntro from "../../assets/intro4.jpg";
-import React, { createContext, useEffect, useRef } from "react";
-import Footer from "./Footer";
-import { ComplexNavbar } from "./Header";
-import { useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
+import Footer from "../public/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
 import Fillter from "../StrategyPattern/Fillter";
-import { List } from './index';
 import { useSearchParams } from "react-router-dom";
-import Pagination from "./Pagination";
+import FavoriteListSingleton from "./FavoriteList";
+import Pagination from "../public/Pagination";
+import { ComplexNavbarDetail } from "../public/favoriteBar";
+import imageIntro from "../../assets/intro4.jpg";
 
 export const ContextRegiter = createContext();
 export const Context = createContext();
 
-const Home = () => {
+const Favorite = () => {
+  const [params] = useSearchParams();
+
   const dispatch = useDispatch();
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-  const listRef = useRef();
-
-  const { posts } = useSelector(state => state.post);
-
-  const [params] = useSearchParams();
 
   useEffect(() => {
     dispatch(actions.getPrices());
@@ -31,14 +27,19 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+    // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
+  }, [isLoginPopupOpen]);
+
+  const { categories } = useSelector((state) => state.app);
+
+  useEffect(() => {
     dispatch(actions.getCategories());
   }, [dispatch]);
 
-  useEffect(() => {
-    if (listRef.current) {
-      listRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [posts]);
+  const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
+
+  // Lấy instance của FavoriteList từ Singleton
+  const FavoriteListInstance = FavoriteListSingleton.getInstance();
 
   return (
     <ContextRegiter.Provider value={[isRegisterPopupOpen, setIsRegisterPopupOpen]}>
@@ -46,22 +47,25 @@ const Home = () => {
         <div style={styles.container} className="z-50 absolute">
           <div className={isRegisterPopupOpen ? "fixed inset-0 backdrop-blur-sm z-30" : ""}>
             <div className={isLoginPopupOpen ? "fixed inset-0 backdrop-blur-sm z-30" : ""}>
-              <ComplexNavbar />
+              <ComplexNavbarDetail />
             </div>
           </div>
 
           <div style={styles.body}>
             <div style={styles.intro}>
-              <img style={styles.imageIntro} src={imageIntro} alt='Intro' />
+              <img style={styles.imageIntro} src={imageIntro} alt="Intro" />
             </div>
             <div style={styles.search1}>
               <Fillter />
             </div>
-            <div ref={listRef}>
-              <List />
+            <div>
+              {/* Render instance của FavoriteList */}
+              <FavoriteListInstance favorites={favorites} />
               <Pagination />
             </div>
-            <Footer />
+            <div>
+              <Footer />
+            </div>
           </div>
         </div>
       </Context.Provider>
@@ -98,4 +102,4 @@ const styles = {
   },
 };
 
-export default Home;
+export default Favorite;

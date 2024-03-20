@@ -1,12 +1,12 @@
-import React, { useCallback, useState } from 'react'
-import SearchItem from '../../components/SearchItem'
-import Modal from '../../components/Modal'
-import icons from '../../ultils/icons'
-import { useDispatch, useSelector } from 'react-redux'
-import { BiItalic } from 'react-icons/bi'
-import * as actions from '../../store/actions'
-import { useNavigate, createSearchParams, useLocation } from 'react-router-dom'
-import { path } from '../../ultils/constant'
+import React, { useCallback, useState } from 'react';
+import SearchItem from '../../components/SearchItem';
+import Modal from '../../components/Modal';
+import icons from '../../ultils/icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { BiItalic } from 'react-icons/bi';
+import * as actions from '../../store/actions';
+import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
+import { path } from '../../ultils/constant';
 
 const {BsChevronRight, HiOutlineLocationMarker, TbReportMoney, RiCrop2Line, GiSpookyHouse, FiSearch} = icons
 
@@ -46,6 +46,7 @@ const Fillter = () => {
       search: createSearchParams(queryCodesObj).toString(),
   })
   } 
+ 
   return (
     <>
     <div className='flex justify-center items-center'>
