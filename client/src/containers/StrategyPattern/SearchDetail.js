@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState, useCallback,useContext } fro
 import { useDispatch, useSelector, } from "react-redux";
 import * as actions from "../../store/actions";
 import { useSearchParams, useNavigate,useLocation} from "react-router-dom"; // Thêm useNavigate
-import List from "../public/List";
+import List from "../CompositePattern/List";
 import Pagination from "../public/Pagination";
 import Qc from "../public/Qc";
 import Footer from "../public/Footer";
