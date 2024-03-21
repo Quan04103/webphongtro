@@ -5,6 +5,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { apiUpdateUser } from '../../services'
 import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
 import { getCurrent } from "../../store/actions"
+import withInputValidation from "../../DesignPattern/DecoratorDP/SubmitDecorator"
 import Swal from "sweetalert2"
 const EditAccount = () => {
     const { currentData } = useSelector(state => state.user)
@@ -26,7 +27,9 @@ const EditAccount = () => {
             Swal.file('Oops!', 'Chỉnh sửa thất bại', 'err')
         }
     }
-
+    const submitWithValidate=()=>{
+        withInputValidation(handleSubmit)(payload);
+    }
     const handleUploadFile = async (e) => {
         const imageBase64 = await fileToBase64(e.target.files[0])
         setPayload(pre => ({
@@ -65,7 +68,7 @@ const EditAccount = () => {
                     <ButtonEdit text='Cập nhật'
                         bgColor='bg-blue-600 shadow-lg shadow-blue-500/50 hover:bg-blue-800'
                         textColor='text-white'
-                        onClick={handleSubmit}></ButtonEdit>
+                        onClick={submitWithValidate}></ButtonEdit>
                 </div>
             </div>
         </div>

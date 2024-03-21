@@ -16,7 +16,9 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { apiGetPenPosts } from "../services";
 import { apiGetPostByDate } from "../services";
-
+import rejectCommand from "../DesignPattern/CommandDP/RejectCommand";
+import AcceptCommand from "../DesignPattern/CommandDP/AcceptCommand";
+import RejectCommand from "../DesignPattern/CommandDP/RejectCommand";
 export default function PenProduct() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
@@ -81,47 +83,13 @@ export default function PenProduct() {
   // useEffect(() => {}, [posts]);
 
   const handleAcceptButton = async (id) => {
-    setStatus(1);
-    console.log(status);
-    const response = await apiUpdateStatus(id, status);
-    console.log(response);
-    const response1 = await apiGetPenPosts();
-    console.log("API response:", response1);
-    //console.log(response?.data?.response[0])
-    setPost(response1?.data?.response);
-    setTimeout(() => {
-      if (response?.data.err === 0) {
-        dispatch(getPenPosts());
-        Swal.fire("Thành công", "Đã chấp nhận tin đăng", "success").then(
-          () => {}
-        );
-      } else {
-        Swal.fire("Opps!", "Có lỗi gì đó", "error");
-      }
-      console.log(id);
-    }, 300);
+    const acceptCommand=new AcceptCommand(id,1)
+    acceptCommand.execute();
   };
 
   const handleRejectButton = async (id) => {
-    setStatus(2);
-    console.log(status);
-    const response = await apiUpdateStatus(id, status);
-    console.log(response);
-    const response1 = await apiGetPenPosts();
-    console.log("API response:", response1);
-    //console.log(response?.data?.response[0])
-    setPost(response1?.data?.response);
-    setTimeout(() => {
-      if (response?.data.err === 0) {
-        dispatch(getPenPosts());
-        Swal.fire("Thành công", "Không chấp nhận tin đăng thành công", "success").then(
-          () => {}
-        );
-      } else {
-        Swal.fire("Opps!", "Có lỗi gì đó", "error");
-      }
-      console.log(id);
-    }, 300);
+    const rejectCommand=new RejectCommand(id,2)
+    rejectCommand.execute();
   };
 
   return (
