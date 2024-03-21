@@ -1,26 +1,25 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import InputForm from "./InputForm";
+import InputForm from "../InputForm";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '../store/actions'
+import * as actions from '../../store/actions'
 import Swal from 'sweetalert2'
+import PayloadFactory from './PayloadFactory';
+
+
 
 const LoginForm = ({ onClose }) => {
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
-  const { isLoggedIn, msg} = useSelector(state => state.auth)
-  const [value, setValue] = useState();
+
   const dispatch = useDispatch();
   const [payload, setPayload] = useState({
-    phone: "",
-    password: "",
   });
 
   const handleSubmit = async () => {
-    dispatch(actions.login(payload));
-
-    console.log(payload);
+    const payloadFactory = new PayloadFactory();
+    const newPayload = payloadFactory.createPayload(payload.phone, payload.password);
+    dispatch(actions.login(newPayload));
+    console.log(newPayload);
   };
   return (
 
@@ -73,31 +72,31 @@ const LoginForm = ({ onClose }) => {
                   </div>
                   <div class="mt-2">
                   <InputForm
-                    className="block pl-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    value={payload.password}
-                    setValue={setPayload}
-                    keyOb={'password'}
-                    type = 'password'
-                  />
-                  </div>
+                  className="block pl-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={payload.password}
+                  setValue={setPayload}
+                  keyOb={'password'}
+                  type = 'password'
+                />
                 </div>
+              </div>
 
-                <div>
-                  <button
-                    class="flex w-full translate-y-[20px] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    type="submit"
-                    onClick={handleSubmit}
-                    
-                  >
-                    Sign in
-                  </button>
-                </div>
+              <div>
+                <button
+                  class="flex w-full translate-y-[20px] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  type="submit"
+                  onClick={handleSubmit}
+                  
+                >
+                  Sign in
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-  );
+    </div>
+);
 };
 
 export default LoginForm;
