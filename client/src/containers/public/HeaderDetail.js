@@ -22,7 +22,7 @@ import {
   PowerIcon,
   Bars2Icon,
 } from "@heroicons/react/24/outline";
-import LoginForm from "../../components/LoginForm";
+import LoginForm from "../../components/FactoryMethod/LoginForm";
 
 import RegisterForm from "../../components/RegisterForm";
 import { useDispatch, useSelector } from "react-redux";

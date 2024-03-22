@@ -7,6 +7,7 @@ import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
 import { getCurrent } from "../../store/actions"
 import withInputValidation from "../../DesignPattern/DecoratorDP/SubmitDecorator"
 import Swal from "sweetalert2"
+import withInputValidation from "../../DesignPattern/DecoratorDP/SubmitDecorator"
 const EditAccount = () => {
     const { currentData } = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -16,8 +17,8 @@ const EditAccount = () => {
         fbUrl: currentData?.fbUrl || '',
         zalo: currentData?.zalo || ''
     })
-    const handleSubmit = async () => {
-        const response = await apiUpdateUser(payload)
+    const handleSubmit = async (a) => {
+        const response = await apiUpdateUser(a)
         if (response?.data.err === 0) {
             Swal.fire('Done', 'Chỉnh sửa thành công', 'success').then(() => {
                 dispatch(getCurrent())
@@ -68,6 +69,7 @@ const EditAccount = () => {
                     <ButtonEdit text='Cập nhật'
                         bgColor='bg-blue-600 shadow-lg shadow-blue-500/50 hover:bg-blue-800'
                         textColor='text-white'
+                        onClick={submitWithValidate}></ButtonEdit>
                         onClick={submitWithValidate}></ButtonEdit>
                 </div>
             </div>
