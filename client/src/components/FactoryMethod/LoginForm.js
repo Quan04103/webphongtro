@@ -72,31 +72,31 @@ const LoginForm = ({ onClose }) => {
                   </div>
                   <div class="mt-2">
                   <InputForm
-                    className="block pl-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                    value={payload.password}
-                    setValue={setPayload}
-                    keyOb={'password'}
-                    type = 'password'
-                  />
-                  </div>
+                  className="block pl-4 w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                  value={payload.password}
+                  setValue={setPayload}
+                  keyOb={'password'}
+                  type = 'password'
+                />
                 </div>
+              </div>
 
-                <div>
-                  <button
-                    class="flex w-full translate-y-[20px] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                    type="submit"
-                    onClick={handleSubmit}
-                    
-                  >
-                    Sign in
-                  </button>
-                </div>
+              <div>
+                <button
+                  class="flex w-full translate-y-[20px] justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                  type="submit"
+                  onClick={handleSubmit}
+                  
+                >
+                  Sign in
+                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
-  );
+    </div>
+);
 };
 
 export default LoginForm;

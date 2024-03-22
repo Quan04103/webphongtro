@@ -8,6 +8,7 @@ import { getCurrent } from '../store/actions'
 import Swal from "sweetalert2"
 import { useLocation } from "react-router-dom"
 import { apiGetOneUser } from "../services"
+import withInputValidation from "../DesignPattern/DecoratorDP/SubmitDecorator"
 
 const EditUser = () => {
     const location = useLocation();
@@ -44,18 +45,22 @@ const EditUser = () => {
         zalo: currentData?.zalo || ''
     })
     const handleSubmit = async () => {
-        const response = await apiUpdateUser(payload)
-        if (response?.data.err === 0) {
-            Swal.fire('Done', 'Chỉnh sửa thành công', 'success').then(() => {
-                dispatch(getCurrent())
-            })
+        console.log(payload.name);
+        if(payload.name.trim() === ''){ // Kiểm tra nếu tên là chuỗi rỗng hoặc chỉ gồm khoảng trắng
+            Swal.fire('Fail', 'Vui lòng nhập tên', 'error'); // Thông báo lỗi
+            return; // Dừng việc xử lý tiếp theo
         }
-        else {
-            Swal.file('Oops!', 'Chỉnh sửa thất bại', 'err')
+
+        const response = await apiUpdateUser(payload); // Gửi yêu cầu cập nhật lên máy chủ
+        if (response?.data.err === 0) { // Kiểm tra kết quả trả về từ máy chủ
+            Swal.fire('Done', 'Chỉnh sửa thành công', 'success').then(() => {
+                dispatch(getCurrent());
+            });
+        } else {
+            Swal.file('Oops!', 'Chỉnh sửa thất bại', 'err');
         }
     }
-
-
+   
     const handleUploadFile = async (e) => {
         const imageBase64 = await fileToBase64(e.target.files[0])
         setPayload(pre => ({
