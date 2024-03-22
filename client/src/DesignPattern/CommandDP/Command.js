@@ -1,6 +1,6 @@
 // Command.jsx
 export default class Command {
-    async execute(id, status) {
+    async execute() {
       // Hành động cụ thể sẽ được thực thi ở các lớp con
     }
   }

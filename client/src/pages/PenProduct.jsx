@@ -16,11 +16,14 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { apiGetPenPosts } from "../services";
 import { apiGetPostByDate } from "../services";
+import rejectCommand from "../DesignPattern/CommandDP/RejectCommand";
 import AcceptCommand from "../DesignPattern/CommandDP/AcceptCommand";
-
+import RejectCommand from "../DesignPattern/CommandDP/RejectCommand";
+import getPenPostProxy from "../DesignPattern/ProxyDP/getPenPostProxy";
 export default function PenProduct() {
   const [selectedDate, setSelectedDate] = useState(null);
   const [searchResults, setSearchResults] = useState([]);
+  const proxy=new getPenPostProxy(apiGetPenPosts);
   const handleDateChange = (date) => {
     setSelectedDate(date);
   };
@@ -49,17 +52,20 @@ export default function PenProduct() {
       };
     getAccByDate();
     }, 2000)
-  };
 
+  };
   const [post, setPost] = useState([]);
   useEffect(() => {
     setTimeout(() => {
       const getPenPost = async () => {
         try {
-          const response = await apiGetPenPosts();
+          proxy.showCache();
+          const response = await proxy.fetchData();
+          proxy.showCache();
+          // const response1 = await proxy.fetchData();
           console.log("API response:", response);
           //console.log(response?.data?.response[0])
-          setPost(response?.data?.response);
+          setPost(response);
         } catch (error) {
           console.error("Error updating status:", error);
         }
@@ -82,13 +88,14 @@ export default function PenProduct() {
   // useEffect(() => {}, [posts]);
 
   const handleAcceptButton = async (id) => {
-    const acceptCommand=new AcceptCommand(id,1);
+    const acceptCommand=new AcceptCommand(id,1)
     acceptCommand.execute();
   };
 
   const handleRejectButton = async (id) => {
-    const acceptCommand=new AcceptCommand(id,2);
-    acceptCommand.execute();
+    const rejectCommand=new RejectCommand(id,2)
+    rejectCommand.execute();
+
   };
 
   return (
