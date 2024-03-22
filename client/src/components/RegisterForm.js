@@ -10,9 +10,7 @@ import Swal from "sweetalert2";
 
 
 const RegisterForm = ({ onClose }) => {
-  const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-  const [value, setValue] = useState();
-  const [invalidFields, setInvalidFields] = useState([]);
+ 
   const [payload, setPayload] = useState({
     phone: "",
     name: "",

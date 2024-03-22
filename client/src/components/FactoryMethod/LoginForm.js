@@ -1,26 +1,25 @@
 import React, { useState, createContext, useContext, useEffect } from "react";
-import logo from "../assets/logo.png";
+import logo from "../../assets/logo.png";
 import { XMarkIcon } from "@heroicons/react/24/outline";
-import InputForm from "./InputForm";
+import InputForm from "../InputForm";
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '../store/actions'
+import * as actions from '../../store/actions'
 import Swal from 'sweetalert2'
+import PayloadFactory from './PayloadFactory';
+
+
 
 const LoginForm = ({ onClose }) => {
-  const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
-  const [isRegister, setIsRegister] = useState(false);
-  const { isLoggedIn, msg} = useSelector(state => state.auth)
-  const [value, setValue] = useState();
+
   const dispatch = useDispatch();
   const [payload, setPayload] = useState({
-    phone: "",
-    password: "",
   });
 
   const handleSubmit = async () => {
-    dispatch(actions.login(payload));
-
-    console.log(payload);
+    const payloadFactory = new PayloadFactory();
+    const newPayload = payloadFactory.createPayload(payload.phone, payload.password);
+    dispatch(actions.login(newPayload));
+    console.log(newPayload);
   };
   return (
 
