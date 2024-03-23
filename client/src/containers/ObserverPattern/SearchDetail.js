@@ -1,32 +1,32 @@
-import React, { createContext, useEffect, useState, useCallback,useContext } from "react";
-import { useDispatch, useSelector, } from "react-redux";
-import * as actions from "../../store/actions";
-import { useSearchParams, useNavigate,useLocation} from "react-router-dom"; // Thêm useNavigate
+
 import List from "../CompositePattern/List";
 import Pagination from "../public/Pagination";
+import { useSearchParams } from "react-router-dom";
+import { useLocation } from 'react-router-dom'
+import React, { createContext, useEffect } from "react";
 import Qc from "../public/Qc";
 import Footer from "../public/Footer";
 import { ComplexNavbar } from "../public/Header";
+import { useState, useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import * as actions from "../../store/actions";
 import Fillter from "./Fillter";
-import { DataFetchingStrategy} from "./DataFetchingStrategy ";
 
-export const ContextRegiter = createContext(new DataFetchingStrategy());
-export const Context = createContext( );
+
+export const ContextRegiter = createContext();
+export const Context = createContext();
 const SearchDetail = () => {
-
- const [params] = useSearchParams();
-  const location = useLocation();
+  const [params] = useSearchParams()
+  const location = useLocation()
   const dispatch = useDispatch();
-  const dataFetchingStrategy = useContext(ContextRegiter);
-   
   const [isLoginPopupOpen, setIsLoginPopupOpen] = useState(false);
   const [isRegisterPopupOpen, setIsRegisterPopupOpen] = useState(false);
-
   useEffect(() => {
-    // Đảm bảo rằng biến dataFetchingStrategy được xác định ở đây
-    dataFetchingStrategy.fetchData(dispatch, actions);
-  }, [dataFetchingStrategy, dispatch]);
-
+    dispatch(actions.getPrices());
+    dispatch(actions.getAreas());
+    dispatch(actions.getProvinces());
+    dispatch(actions.getCategories());
+  },[]);
   useEffect(() => {
     // Trạng thái mới của isLoginPopupOpen đã thay đổi ở đây
   }, [isLoginPopupOpen]);
@@ -79,6 +79,7 @@ const SearchDetail = () => {
 };
 
 // Định nghĩa đối tượng chứa các thuộc tính CSS
+ 
 const styles = {
   container: {
     flexDirection: "column",
@@ -94,56 +95,6 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     overflowY: "auto",
-  },
-  intro: {
-    flex: "10%",
-  },
-  imageIntro: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-  },
-  room: {
-    flex: "40%",
-    display: "flex",
-    flexWrap: "wrap",
-    justifyContent: "space-between",
-  },
-
-  imageContainer: {
-    width: "calc(20%)",
-    margin: "40px",
-  },
-  imageFrame: {},
-  imageroom: {
-    width: "100%",
-    height: "100%",
-    objectFit: "cover",
-    marginBottom: "20px",
-  },
-  h4: {
-    display: "inline",
-    fontWeight: "bold",
-    marginBottom: "8px",
-    fontSize: "20px",
-  },
-  p1: {
-    display: "inline",
-    margin: "20px",
-    fontWeight: "bold",
-    marginBottom: "8px",
-    fontSize: "20px",
-  },
-  p2: {
-    marginBottom: "8px",
-    marginTop: "8px",
-  },
-  p3: {
-    marginBottom: "8px",
-  },
-  h3: {
-    fontWeight: "bold",
-    fontSize: "20px",
   },
   infor: {
     backgroundColor: "rgba(0, 0, 0, 0.04)",
@@ -162,11 +113,11 @@ const styles = {
   },
   textintro: {
     color: "#000",
-    fontfamily: "Inter",
-    fontsize: "16px",
-    fontstyle: "normal",
-    fontweight: "400",
-    lineheight: "normal",
+    fontFamily: "Inter",
+    fontSize: "16px",
+    fontStyle: "normal",
+    fontWeight: "400",
+    lineHeight: "normal",
     textAlign: "center",
     marginLeft: "40px",
     marginRight: "40px",
@@ -184,16 +135,19 @@ const styles = {
   },
   text: {
     color: "#000",
-    fontfamily: "Inter",
-    fontsize: "24px",
-    fontstyle: "normal",
-    fontweight: "700",
-    lineheight: "normal",
+    fontFamily: "Inter",
+    fontSize: "24px",
+    fontStyle: "normal",
+    fontWeight: "700",
+    lineHeight: "normal",
   },
   footer: {
     backgroundColor: "yellow",
     flex: "20%",
   },
 };
+
+ 
+
 
 export default SearchDetail;

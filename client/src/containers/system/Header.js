@@ -45,7 +45,7 @@ const profileMenuItems = [
         icon: UserCircleIcon,
         dispatch: '',
         key1: true,
-        link: '/',
+        link: 'http://localhost:3000',
     },
     {
         label: "Liên hệ",
@@ -85,6 +85,7 @@ function ProfileMenu() {
 
     return (
 
+        
 
         <Menu open={isMenuOpen} handler={setIsMenuOpen} placement="bottom-end">
             <MenuHandler>
@@ -175,7 +176,10 @@ export function Navbar1() {
             <div class=" px-1 sm:px-4 lg:px-14 ">
                 <div class="relative flex h-16 items-center justify-between">
                     <div class="flex">
-                        <img className="mt-5 cursor-pointer py-1.5 w-28 h-28" src={logo} />
+                    <a href="http://localhost:3000">
+                            <img className="mt-5 cursor-pointer py-1.5 w-28 h-28" src={logo} />
+                        </a>
+                       
                         <div class="hidden sm:ml-60 py-4 sm:block">
                             <div class="flex-auto w-full px-1 mt-9">
                                 <nav class="bg-grey-light w-full rounded-md flex-1" aria-label="breadcrumb">

@@ -13,7 +13,7 @@ export const path = {
     QC: 'qc',
     PROFILE: 'profile',
     EDIT_ACCOUNT: 'sua-thong-tin-ca-nhan',
-    LIENHE: 'lienhe',
+    LIENHE: '/lienhe/',
     PAY_POST: 'paypost',
     DEPOSITHISTORY: 'lich-su-thanh-toan',
     

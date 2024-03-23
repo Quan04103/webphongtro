@@ -3,13 +3,7 @@ import { InputForm, Button } from '../../components'
 import { Outlet } from 'react-router-dom'
 import Header, { ComplexNavbar } from './Header'
 import { useDispatch, useSelector } from 'react-redux'
-import imageIntro from "../../assets/Intro.png";
-import imageroom from "../../assets/room.png";
-import Qc from "./Qc";
-import Footer from "./Footer";
-import { LoginForm } from "../../components";
-import { loginContext } from "./Header";
-import { LoginButton } from "./Header";
+ 
 import { Context, ContextRegiter } from "./Home";
 
 import * as actions from '../../store/actions'
