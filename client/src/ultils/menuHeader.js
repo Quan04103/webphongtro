@@ -12,17 +12,12 @@ const menuHeader = [
     {
         id: 2,
         text: 'Yêu thích',
-        path: '/tin-da-luu',
+        path: '/yeu-thich',
         icon: <MdOutlineLibraryBooks />
     },
+  
     {
         id: 3,
-        text: 'Liên hệ',
-        path: '/lienhe',
-        icon: <BiUserPin />
-    },
-    {
-        id: 4,
         text: 'Đăng xuất',
         path: '/',
         icon: <BiUserPin />,

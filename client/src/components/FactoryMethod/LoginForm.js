@@ -5,7 +5,7 @@ import InputForm from "../InputForm";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from '../../store/actions'
 import Swal from 'sweetalert2'
-import PayloadFactory from './PayloadFactory';
+import {DefaultPayloadFactory} from './DefaultPayloadFactory';
 
 
 
@@ -16,7 +16,7 @@ const LoginForm = ({ onClose }) => {
   });
 
   const handleSubmit = async () => {
-    const payloadFactory = new PayloadFactory();
+    const payloadFactory = new DefaultPayloadFactory();
     const newPayload = payloadFactory.createPayload(payload.phone, payload.password);
     dispatch(actions.login(newPayload));
     console.log(newPayload);

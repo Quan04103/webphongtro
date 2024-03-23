@@ -2,7 +2,7 @@ import React, { createContext, useEffect, useState } from "react";
 import Footer from "../public/Footer";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
-import Fillter from "../StrategyPattern/Fillter";
+import Fillter from "../ObserverPattern/Fillter";
 import { useSearchParams } from "react-router-dom";
 import FavoriteListSingleton from "./FavoriteList";
 import Pagination from "../public/Pagination";

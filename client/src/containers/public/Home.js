@@ -5,7 +5,7 @@ import { ComplexNavbar } from "./Header";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
-import Fillter from "../StrategyPattern/Fillter";
+import Fillter from "../ObserverPattern/Fillter";
 import { List } from './index';
 import { useSearchParams } from "react-router-dom";
 import Pagination from "./Pagination";

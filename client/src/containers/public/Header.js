@@ -45,20 +45,7 @@ const profileMenuItems = [
     key1:true,
     link:'/he-thong/quan-ly-bai-dang',
   },
-  {
-    label: "Hệ thống",
-    icon: Cog6ToothIcon,
-    dispatch:'' ,
-    key1:true,
-    link:'/he-thong',
-  },
-  {
-    label: "Inbox",
-    icon: InboxArrowDownIcon,
-    dispatch: "",
-    key1:true,
-    link:'',
-  },
+ 
   {
     label: "Đăng xuất",
     icon: PowerIcon,

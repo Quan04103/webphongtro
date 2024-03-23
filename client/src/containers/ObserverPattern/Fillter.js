@@ -1,19 +1,19 @@
-import React, { useCallback, useState } from 'react';
+// Fillter.js
+import React, { useCallback,useState,useEffect} from 'react';
 import SearchItem from '../../components/SearchItem';
 import Modal from '../../components/Modal';
 import icons from '../../ultils/icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { BiItalic } from 'react-icons/bi';
-import * as actions from '../../store/actions';
-import { useNavigate, createSearchParams, useLocation } from 'react-router-dom';
+import { useNavigate, createSearchParams } from 'react-router-dom';
 import { path } from '../../ultils/constant';
+import {   useSelector } from "react-redux";
+import FilterSubject from './FilterSubject';
 
+// Import other filter strategy classes
 const {BsChevronRight, HiOutlineLocationMarker, TbReportMoney, RiCrop2Line, GiSpookyHouse, FiSearch} = icons
-
 const Fillter = () => {
-  
+  const filterSubject = FilterSubject();
   const navigate = useNavigate()
-  const location = useLocation()
+  
   const [isShowModal, setIsShowModal] = useState(false)
   const [content, setContent] = useState([])
   const [name, setName] = useState('')
@@ -21,6 +21,20 @@ const Fillter = () => {
   const [queries, setQueries] = useState({})
   const [defaultText, setDefaultText] = useState('')
 
+  useEffect(() => {
+    filterSubject.subscribe({
+      update: (queries) => {
+        setQueries(queries);
+      },
+    });
+    return () => {
+      filterSubject.unsubscribe({
+        update: (queries) => {
+          setQueries(queries);
+        },
+      });
+    };
+  }, []);
 
   const handleShowModal = (content, name, defaultText) =>{
     setContent(content)
@@ -31,7 +45,7 @@ const Fillter = () => {
 
   const handleSubmit = useCallback((e, query) => {
     e.stopPropagation()
-    setQueries(prev => ({ ...prev, ...query}))
+    filterSubject.notify({ ...queries, ...query });
     setIsShowModal(false)
   }, [isShowModal, queries])
   console.log(isShowModal);
@@ -46,7 +60,6 @@ const Fillter = () => {
       search: createSearchParams(queryCodesObj).toString(),
   })
   } 
- 
   return (
     <>
     <div className='flex justify-center items-center'>
@@ -88,4 +101,6 @@ const Fillter = () => {
   )
 }
 
-export default Fillter
+export default Fillter;
+
+ 
