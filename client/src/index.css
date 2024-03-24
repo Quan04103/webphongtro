@@ -2,9 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
 }
-
+@layer components {
+    .sidebar{
+      transition:all .4s ease-in-out;
+    }
+  }
 code {
 }
+
+  
+  
