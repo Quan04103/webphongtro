@@ -6,7 +6,7 @@ import icons from '../../ultils/icons';
 import { useNavigate, createSearchParams } from 'react-router-dom';
 import { path } from '../../ultils/constant';
 import {   useSelector } from "react-redux";
-import FilterSubject from './FilterSubject';
+import FilterSubject from './filterSubject';
 
 // Import other filter strategy classes
 const {BsChevronRight, HiOutlineLocationMarker, TbReportMoney, RiCrop2Line, GiSpookyHouse, FiSearch} = icons

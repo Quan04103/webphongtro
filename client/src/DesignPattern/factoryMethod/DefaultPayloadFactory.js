@@ -1,4 +1,4 @@
-import PayloadFactory from './PayloadFactory';
+import PayloadFactory from './payloadFactory';
 
 export class DefaultPayloadFactory extends PayloadFactory {
     createPayload(phone, password) {

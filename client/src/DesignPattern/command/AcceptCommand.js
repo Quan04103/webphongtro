@@ -1,8 +1,8 @@
-import Command from "./Command";
+import Command from "./command";
 import { apiUpdateStatus, apiGetPenPosts } from "../../services";
 import { getPenPosts } from "../../store/actions/post";
 import Swal from "sweetalert2";
-import Reciever from "./Reciever";
+import Reciever from "./reciever";
 
 export default class AcceptCommand extends Command {
   constructor(id, status) {

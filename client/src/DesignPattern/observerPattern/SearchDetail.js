@@ -1,5 +1,5 @@
 
-import List from "../CompositePattern/List";
+import List from "../composite/list";
 import Pagination from "../public/Pagination";
 import { useSearchParams } from "react-router-dom";
 import { useLocation } from 'react-router-dom'
@@ -10,7 +10,7 @@ import { ComplexNavbar } from "../public/Header";
 import { useState, useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../../store/actions";
-import Fillter from "./Fillter";
+import Fillter from "./fillter";
 
 
 export const ContextRegiter = createContext();

@@ -4,18 +4,6 @@ import imageeroom from '../../src/assets/room.png';
 const ItemRoom = ( {attributes,images,star,title,user,address} ) => {
   
     return (
-        // <div style={styles.imageContainer}>
-        //       <div style={styles.imageFrame}>
-        //         <img style={styles.imageroom} src={imageroom} alt={`Room `} />
-        //       </div>
-        //       <h4 style={styles.h4}>{title}</h4>
-        //       <pr></pr>
-        //       <p style={styles.p1}> {`★ ${star}`} </p>
-        //       <p style={styles.p2}>{`Diện tích: ${attributes?.acreage}`}</p>
-        //       <p style={styles.p3}>{`Đăng tin bởi: ${user?.name}`}</p>
-        //       <h3 style={styles.h3}>{`Giá: ${attributes?.price}`}</h3>
-        // </div>
-  
         <div className='w-[500px] h-[400px] bg-[#c24040] p-30px flex justify-end rounded-xl'>
           <div>
               <img style={styles.imageroom} className='w-400px h-300px absolate top-0' src={imageeroom} alt={`Room `} />
@@ -26,20 +14,14 @@ const ItemRoom = ( {attributes,images,star,title,user,address} ) => {
             </div>
             <div className='text-[#FFD700]'>
             {`★ ${star}`} 
-
             </div>
           </div>
           </div>
-          
-
         </div>
-
-
     )
 };
 
 const styles = {
-
     imageContainer: {
       width: 'calc(20%)',
       margin: '40px',
