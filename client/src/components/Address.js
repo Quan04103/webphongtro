@@ -1,6 +1,6 @@
 
 import React, { memo, useEffect, useState } from 'react'
-import { Select, InputReadOnly } from '../components'
+import { Select, InputReadOnly } from '.'
 import { apiGetPublicProvinces, apiGetPublicDistrict } from '../services'
 import { useSelector } from 'react-redux'
 

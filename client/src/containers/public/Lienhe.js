@@ -4,7 +4,7 @@ import { Outlet } from 'react-router-dom'
 import Header, { ComplexNavbar } from './Header'
 import { useDispatch, useSelector } from 'react-redux'
  
-import { Context, ContextRegiter } from "./Home";
+import { Context, ContextRegiter } from "./home";
 
 import * as actions from '../../store/actions'
 

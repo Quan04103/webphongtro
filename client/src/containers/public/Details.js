@@ -11,7 +11,7 @@ import iconZalo from "../../assets/iconZalo1.jpg";
 import { ComplexNavbar } from "./Header";
 import { List } from "./index";
 import { useSearchParams } from "react-router-dom";
-import { ComplexNavbarDetail } from "./HeaderDetail";
+import { ComplexNavbarDetail } from "./headerDetail";
 import { Anh } from "../../components";
 import { StarIcon } from "@heroicons/react/24/solid";
 import { apiGetPostsLimit } from "../../services";

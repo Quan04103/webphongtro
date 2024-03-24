@@ -1,7 +1,7 @@
 import React, {createContext} from 'react'
 import { Outlet } from 'react-router'
-import Sidebar from './Sidebar'
-import Header, { Navbar1, ProfileMenu } from './Header'
+import Sidebar from './sidebar'
+import Header, { Navbar1, ProfileMenu } from './header'
 import * as actions from "../../store/actions";
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";

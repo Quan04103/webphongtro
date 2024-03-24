@@ -24,7 +24,7 @@ import {
 } from "@heroicons/react/24/outline";
 import LoginForm from "../../components/FactoryMethod/LoginForm";
 
-import RegisterForm from "../../components/RegisterForm";
+import RegisterForm from "../../components/registerForm";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
@@ -33,7 +33,7 @@ import { NavLink } from "react-router-dom";
 import { blobToBase64 } from "../../ultils/Common/tobase64";
 import logo from '../../assets/logo.png';
 import anonavatar from '../../assets/anonavatar.png';
-import {ContextLoginDetail, ContextRegiterDetail} from './Details'
+import {ContextLoginDetail, ContextRegiterDetail} from './details'
 
 
 

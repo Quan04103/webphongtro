@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
-import { Select, InputReadOnly, InputFormV2 } from '../components'
+import { Select, InputReadOnly, InputFormV2 } from '.'
 import { useDispatch, useSelector } from 'react-redux'
-import {Address} from '../components/Address'
+import {Address} from './address'
 import * as actions from '../store/actions'
 
 

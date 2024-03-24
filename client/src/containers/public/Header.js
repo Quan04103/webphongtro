@@ -23,8 +23,8 @@ import {
   Bars2Icon,
 } from "@heroicons/react/24/outline";
 import LoginForm from "../../components/FactoryMethod/LoginForm";
-import { Context, ContextRegiter } from "./Home";
-import RegisterForm from "../../components/RegisterForm";
+import { Context, ContextRegiter } from "./home";
+import RegisterForm from "../../components/registerForm";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import * as actions from "../../store/actions";
