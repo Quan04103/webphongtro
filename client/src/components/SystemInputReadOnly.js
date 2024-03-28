@@ -1,13 +1,34 @@
 import React from 'react';
+import SystemInputBuilder from './SystemInputBuilder';
+class SystemInputReadOnlyBuilder extends SystemInputBuilder {
+    constructor() {
+        super();
+        this.props = {
+            label: '',
+            value: '',
+            direction: ''
+        };
+    }
 
-// Hàm builder để tạo ra các props cho SystemInputReadOnly
-const buildSystemInputReadOnlyProps = (label, value, direction) => {
-    return {
-        label,
-        value,
-        direction
-    };
-};
+    setLabel(label) {
+        this.props.label = label;
+        return this;
+    }
+
+    setValue(value) {
+        this.props.value = value;
+        return this;
+    }
+
+    setDirection(direction) {
+        this.props.direction = direction;
+        return this;
+    }
+
+    build() {
+        return this.props;
+    }
+}
 
 const SystemInputReadOnly = ({ label, value, direction }) => {
     return (
@@ -26,4 +47,4 @@ const SystemInputReadOnly = ({ label, value, direction }) => {
     );
 };
 
-export { SystemInputReadOnly, buildSystemInputReadOnlyProps };
+export { SystemInputReadOnlyBuilder, SystemInputReadOnly };

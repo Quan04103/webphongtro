@@ -6,7 +6,7 @@ import { apiUpdateUser } from '../../services'
 import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
 import { getCurrent } from "../../store/actions"
 import Swal from "sweetalert2"
-import { SystemInputReadOnly, buildSystemInputReadOnlyProps } from '../../components/SystemInputReadOnly'; 
+import { SystemInputReadOnly, SystemInputReadOnlyBuilder } from '../../components/SystemInputReadOnly'; 
 
 const EditAccount = () => {
     const { currentData } = useSelector(state => state.user)
@@ -36,8 +36,17 @@ const EditAccount = () => {
             avatar: imageBase64
         }))
     }
-    const inputProps1 = buildSystemInputReadOnlyProps("Mã thành viên", `${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}`, 'flex-row text-center');
-    const inputProps2 = buildSystemInputReadOnlyProps("Số điện thoại", currentData?.phone, 'flex-row text-center');
+    const inputProps1 = new SystemInputReadOnlyBuilder()
+    .setLabel("Mã thành viên")
+    .setValue(`${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}`)
+    .setDirection('flex-row text-center')
+    .build();
+
+    const inputProps2 = new SystemInputReadOnlyBuilder()
+        .setLabel("Số điện thoại")
+        .setValue(currentData?.phone)
+        .setDirection('flex-row text-center')
+        .build();
     return (
         <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen">
             <h1 className='text-13xl font-bold py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
