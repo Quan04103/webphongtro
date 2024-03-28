@@ -78,7 +78,6 @@ function App() {
         <Route path={path.LOGIN_ADMIN} element={<LoginAdmin />} />
 
         <Route path={path.ADMIN} element={<Layout />}>
-          
           <Route index element={<Dashboard />} />
           <Route path={path.HISTORY} element={<History />} />
           <Route path={path.PRODUCT} element={<Products />} />
@@ -86,7 +85,6 @@ function App() {
           <Route path={path.USERMANAGEMENT} element={<UserManagement />} />
           <Route path="products/editpost" element={<EditPost />}/>
           <Route path="usermanagement/edituser" element={<EditUser />}/>
-
           <Route path="register" element={<Register />} />
         </Route>
 

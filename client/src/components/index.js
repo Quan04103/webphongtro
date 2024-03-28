@@ -13,6 +13,7 @@ export {default as Modal} from './Modal'
 export { default as Item } from './item'
 export { default as UpdatePost  } from './UpdatePost'
 export { default as ButtonEdit  } from './ButtonEdit'
-export {default as SystemInputReadOnly } from './SystemInputReadOnly'
+// export {default as SystemInputReadOnly } from './SystemInputReadOnly'
+
 export {default as SystemInputFormV2 } from './SystemInputFormV2'
 export {default as Anh } from './Anh'

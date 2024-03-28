@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import anonavatar from "../../assets/anonavatar.png"
-import { SystemInputReadOnly, SystemInputFormV2, ButtonEdit } from '../../components'
+import { SystemInputFormV2, ButtonEdit } from '../../components'
 import { useSelector, useDispatch } from 'react-redux'
 import { apiUpdateUser } from '../../services'
 import { fileToBase64, blobToBase64 } from "../../ultils/Common/tobase64"
 import { getCurrent } from "../../store/actions"
 import Swal from "sweetalert2"
+import { SystemInputReadOnly, buildSystemInputReadOnlyProps } from '../../components/SystemInputReadOnly'; 
+
 const EditAccount = () => {
     const { currentData } = useSelector(state => state.user)
     const dispatch = useDispatch()
@@ -34,15 +36,17 @@ const EditAccount = () => {
             avatar: imageBase64
         }))
     }
-
+    const inputProps1 = buildSystemInputReadOnlyProps("Mã thành viên", `${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}`, 'flex-row text-center');
+    const inputProps2 = buildSystemInputReadOnlyProps("Số điện thoại", currentData?.phone, 'flex-row text-center');
     return (
         <div className="flex flex-col gap-10 bg-white p-7 w-full h-screen">
             <h1 className='text-13xl font-bold py-4 h-[69px] flex-none border-b border-gray-200'>Chỉnh sửa thông tin cá nhân</h1>
             <div className='w-1/2 flex items-center justify-center flex-auto'>
                 <div className='py-6 flex flex-1/3 flex-col gap-5 w-full'>
-                    <SystemInputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
-                    <SystemInputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" />
-
+                    {/* <SystemInputReadOnly value={`#${currentData?.id?.match(/\d/g).join('')?.slice(0, 6)}` || ''} direction='flex-row text-center' label="Mã thành viên" />
+                    <SystemInputReadOnly value={currentData?.phone} editPhone direction='flex-row text-center' label="Số điện thoại" /> */}
+                    <SystemInputReadOnly {...inputProps1} />
+                    <SystemInputReadOnly {...inputProps2} />
                     <SystemInputFormV2
                         name='name'
                         setValue={setPayload}

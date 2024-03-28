@@ -1,6 +1,15 @@
-import React from 'react'
+import React from 'react';
 
-const SystemInputReadOnly = ({ label, value, direction, editPhone }) => {
+// Hàm builder để tạo ra các props cho SystemInputReadOnly
+const buildSystemInputReadOnlyProps = (label, value, direction) => {
+    return {
+        label,
+        value,
+        direction
+    };
+};
+
+const SystemInputReadOnly = ({ label, value, direction }) => {
     return (
         <div className={`flex ${direction ? direction : 'flex-col gap-3'}`}>
             <label className='font-semibold w-48 items-center flex' htmlFor="exactly-address">{label}</label>
@@ -12,11 +21,9 @@ const SystemInputReadOnly = ({ label, value, direction, editPhone }) => {
                     className='border border-gray-200 outline-none rounded-[5px] p-2 w-full'
                     value={value || ''}
                 />
-
             </div>
-            {/* <div className='flex'>{editPhone && <small className='text-blue-500 py-4 cursor-pointer'>Đổi số điện thoại</small>}</div> */}
         </div>
-    )
-}
+    );
+};
 
-export default SystemInputReadOnly
+export { SystemInputReadOnly, buildSystemInputReadOnlyProps };
